@@ -39,12 +39,58 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
+  id    String  @id @default(cuid())
+  name  String?
+  email String? @unique
 
   image    String?
   accounts Account[]
   sessions Session[]
+}
+
+model AuthorizedEmails {
+  id    String @id @default(cuid())
+  email String
+}
+
+model Category {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  title     String
+  image     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  posts     Post[]
+
+  @@index([name])
+}
+
+enum PostType {
+  CONSTRUCTION
+  FINISHED
+  PROJECT
+}
+
+model Post {
+  id        String   @id @default(cuid())
+  type      PostType
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String
+  client    String
+  date      DateTime
+
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId String
+
+  mainImage String
+  images    Image[]
+}
+
+model Image {
+  id         String   @id @default(cuid())
+  url        String
+  uploadedAt DateTime @default(now())
+  Post       Post?    @relation(fields: [postId], references: [id])
+  postId     String?
 }

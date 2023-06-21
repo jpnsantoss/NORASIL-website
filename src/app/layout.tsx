@@ -1,5 +1,9 @@
+import Navbar from "@/components/Navbar";
+import Providers from "@/components/Providers";
+import { Toaster } from "@/components/ui/Toaster";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
+import { Mail, Phone } from "lucide-react";
 import { Open_Sans } from "next/font/google";
 
 export const metadata = {
@@ -23,8 +27,15 @@ export default function RootLayout({
         openSans.className
       )}
     >
-      <body className="min-h-screen pt-12 bg-slate-50 antialiased">
-        {children}
+      <body className="min-h-screen pt-12 bg-neutral-50 antialiased">
+        <Providers>
+          {/* @ts-expect-error server component */}
+          <Navbar />
+          <div className="container max-w-7xl mx-auto h-full pt-12">
+            {children}
+          </div>
+          <Toaster />
+        </Providers>
       </body>
     </html>
   );

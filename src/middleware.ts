@@ -9,8 +9,8 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL('/sign-in', req.nextUrl))
   }
 }
-
 // See "Matching Paths" below to learn more
-// export const config = {
-//   matcher: ['/r/:path*/submit', '/r/create'],
-// }
+export const config = {
+  //'/r/:path*/submit', '/r/create'
+   matcher: [],
+ }
