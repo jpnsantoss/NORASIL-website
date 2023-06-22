@@ -1,5 +1,5 @@
-import AuthorizedEmails from "@/components/AuthorizedEmails";
-import Categories from "@/components/Categories";
+import CategoriesContainer from "@/components/Admin/CategoriesContainer";
+import UsersContainer from "@/components/Admin/UsersContainer";
 import { getAuthSession } from "@/lib/auth";
 
 const Page = async ({}) => {
@@ -10,8 +10,8 @@ const Page = async ({}) => {
         Welcome back, {session?.user.name ?? "... "}!
       </h1>
       <div className="grid lg:grid-cols-3 w-full gap-4">
-        <Categories />
-        <AuthorizedEmails />
+        <CategoriesContainer />
+        <UsersContainer />
       </div>
     </div>
   );
