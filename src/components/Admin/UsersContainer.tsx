@@ -1,3 +1,4 @@
+import { db } from "@/lib/db";
 import {
   Card,
   CardContent,
@@ -7,10 +8,17 @@ import {
 } from "../ui/Card";
 import { Separator } from "../ui/Separator";
 import { default as UsersForm } from "./UsersForm";
+import UsersList from "./UsersList";
 
-const UsersContainer = () => {
+const UsersContainer = async () => {
+  const authorizedEmails = await db.authorizedEmail.findMany({
+    include: {
+      user: true,
+    },
+  });
+
   return (
-    <Card className="h-[45vh] overflow-y-hidden">
+    <Card className="h-[50vh] overflow-y-hidden">
       <CardHeader>
         <CardTitle>Authorized Users</CardTitle>
         <CardDescription>
@@ -22,6 +30,7 @@ const UsersContainer = () => {
         <Separator className="my-4" />
         <div className="space-y-4">
           <h4 className="text-sm font-medium">People with access</h4>
+          <UsersList authorizedEmails={authorizedEmails} />
         </div>
       </CardContent>
     </Card>

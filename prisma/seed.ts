@@ -5,7 +5,7 @@ const db = new PrismaClient()
 dotenv.config();
 
 async function main() {
-  const user = await db.authorizedEmails.create({
+  const user = await db.authorizedEmail.create({
     data: {
       email: process.env.ADMIN_EMAIL! as string ,
     },

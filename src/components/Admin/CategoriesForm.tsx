@@ -48,7 +48,7 @@ const CategoriesForm = () => {
         if (err.response?.status === 409) {
           return toast({
             title: "Category already exists.",
-            description: "Please choose a category name.",
+            description: "Please choose a different name.",
             variant: "destructive",
           });
         }

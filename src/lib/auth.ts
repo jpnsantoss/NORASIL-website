@@ -1,5 +1,4 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { nanoid } from "nanoid";
 import { NextAuthOptions, getServerSession } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { db } from "./db";
@@ -20,16 +19,15 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async signIn({ user }) {
-      const isAllowedToSignIn = user.email ? await db.authorizedEmails.findFirst({
-        where: {
-          email: user.email
-        }
-      }) : false;
-      if (!isAllowedToSignIn) {
-        return false;
-      } 
-
-      return true
+      if(user.email) {
+        const isAllowedToSignIn = await db.authorizedEmail.findUnique({
+          where: {
+            email: user.email
+          }
+        });
+        return !!isAllowedToSignIn;
+      }
+      return false;
     },
     async session({token, session}) {
       if(token) {
@@ -63,6 +61,23 @@ export const authOptions: NextAuthOptions = {
     },
     redirect() {
       return '/'
+    },
+  },
+  events: {
+    async createUser(message) {
+      // Handle user created
+      // Access the message object for additional information
+      if(message.user.email) {
+      
+      await db.authorizedEmail.update({
+        where: {
+          email: message.user.email,
+        },
+        data: {
+          userId: message.user.id
+        }
+      });
+    }
     },
   }
 }

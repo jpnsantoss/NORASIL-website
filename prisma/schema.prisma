@@ -39,18 +39,21 @@ model Session {
 }
 
 model User {
-  id    String  @id @default(cuid())
-  name  String?
-  email String? @unique
-
-  image    String?
-  accounts Account[]
-  sessions Session[]
+  id              String           @id @default(cuid())
+  name            String?
+  email           String?          @unique
+  image           String?
+  emailVerified   DateTime?
+  accounts        Account[]
+  sessions        Session[]
+  authorizedEmail AuthorizedEmail?
 }
 
-model AuthorizedEmails {
-  id    String @id @default(cuid())
-  email String
+model AuthorizedEmail {
+  id     String  @id @default(cuid())
+  email  String  @unique
+  user   User?   @relation(fields: [userId], references: [id])
+  userId String? @unique
 }
 
 model Category {
