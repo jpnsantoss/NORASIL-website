@@ -1,5 +1,3 @@
-import Link from "next/link";
-import { Icons } from "./Icons";
 import UserAuthForm from "./UserAuthForm";
 
 const SignIn = () => {

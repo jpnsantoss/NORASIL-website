@@ -41,7 +41,7 @@ const CategoriesContainer = async () => {
                 <span>List of categories</span>
               </AccordionTrigger>
               <AccordionContent>
-                <CategoriesList data={categories} />
+                <CategoriesList categories={categories} />
               </AccordionContent>
             </AccordionItem>
           </Accordion>

@@ -10,7 +10,9 @@ const Page = async ({}) => {
         Welcome back, {session?.user.name ?? "... "}!
       </h1>
       <div className="grid lg:grid-cols-3 w-full gap-4">
+        {/* @ts-expect-error server component */}
         <CategoriesContainer />
+        {/* @ts-expect-error server component */}
         <UsersContainer />
       </div>
     </div>

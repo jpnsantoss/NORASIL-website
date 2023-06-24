@@ -3,7 +3,6 @@ import Providers from "@/components/Providers";
 import { Toaster } from "@/components/ui/Toaster";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
-import { Mail, Phone } from "lucide-react";
 import { Open_Sans } from "next/font/google";
 
 export const metadata = {

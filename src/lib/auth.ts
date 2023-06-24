@@ -60,7 +60,7 @@ export const authOptions: NextAuthOptions = {
       }
     },
     redirect() {
-      return '/'
+      return '/admin'
     },
   },
   events: {

@@ -16,9 +16,18 @@ export const CategoryFormValidator = z.object({
 })
 
 export const CategoryValidator = z.object({
+  name: z.string(),
   title: z.string().min(3).max(32),
-  image: z.string().url()
+  imageUrl: z.string().url(),
+  imageKey: z.string()
 })
+
+export const DeleteCategoryValidator = z.object({
+  id: z.string(),
+  imageKey: z.string(),
+})
+
 
 export type CategoryFormRequest = z.infer<typeof CategoryFormValidator>
 export type CategoryRequest = z.infer<typeof CategoryValidator>
+export type DeleteCategoryRequest = z.infer<typeof DeleteCategoryValidator>

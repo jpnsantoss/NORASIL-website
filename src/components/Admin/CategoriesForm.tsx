@@ -36,8 +36,14 @@ const CategoriesForm = () => {
     mutationFn: async ({ title, image }: CategoryFormRequest) => {
       const [res] = await uploadFiles([image[0]], "imageUploader");
       const payload: CategoryRequest = {
+        name: title
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/\s/g, "")
+          .toLowerCase(),
         title,
-        image: res.fileUrl,
+        imageUrl: res.fileUrl,
+        imageKey: res.fileKey,
       };
 
       const { data } = await axios.post("/api/category", payload);

@@ -1,6 +1,7 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { CategoryValidator } from "@/lib/validators/category";
+import { CategoryValidator, DeleteCategoryValidator } from "@/lib/validators/category";
+import { utapi } from "uploadthing/server";
 import { z } from "zod";
 
 export async function POST(req: Request) {
@@ -13,9 +14,7 @@ export async function POST(req: Request) {
 
     const body = await req.json();
 
-    const {title, image} = CategoryValidator.parse(body);
-
-    const name = title.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s/g, "").toLowerCase();
+    const {name, title, imageUrl, imageKey} = CategoryValidator.parse(body);
 
     const category = await db.category.findFirst({
       where: {
@@ -30,7 +29,8 @@ export async function POST(req: Request) {
     await db.category.create({
       data: {
         title,
-        image,
+        imageUrl,
+        imageKey,
         name,
       }
     })
@@ -42,5 +42,33 @@ export async function POST(req: Request) {
     }
 
     return new Response("Could create category, please try again later.", {status: 500});
+  }
+}
+
+export async function PATCH(req: Request) {
+  try {
+    const session = await getAuthSession();
+
+    if(!session?.user) {
+      return new Response("Unauthorized", {status: 401});
+    }
+    const body = await req.json();
+    const {id, imageKey} = DeleteCategoryValidator.parse(body);
+
+    await db.category.delete({
+      where: {
+        id
+      }
+    })
+
+    await utapi.deleteFiles(imageKey);
+
+    return new Response("OK");
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return new Response("Invalid request data passed", {status: 422})
+    }
+
+    return new Response("Could remove user, please try again later.", {status: 500});
   }
 }

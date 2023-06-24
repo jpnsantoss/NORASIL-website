@@ -58,6 +58,12 @@ export async function PATCH(req: Request) {
       }
     })
 
+    await db.user.deleteMany({
+      where: {
+        email
+      }
+    })
+
     return new Response("OK");
   } catch (error) {
     if (error instanceof z.ZodError) {
