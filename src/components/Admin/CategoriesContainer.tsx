@@ -23,7 +23,7 @@ const CategoriesContainer = async () => {
     },
   });
   return (
-    <Card className="lg:col-span-2 min-h-[40vh]">
+    <Card>
       <CardHeader>
         <CardTitle>Categories</CardTitle>
         <CardDescription>

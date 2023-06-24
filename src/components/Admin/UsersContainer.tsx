@@ -18,7 +18,7 @@ const UsersContainer = async () => {
   });
 
   return (
-    <Card className="h-[50vh] overflow-y-hidden">
+    <Card className="h-fit">
       <CardHeader>
         <CardTitle>Authorized Users</CardTitle>
         <CardDescription>
