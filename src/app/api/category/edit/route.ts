@@ -1,46 +1,41 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { CategoryValidator, DeleteCategoryValidator } from "@/lib/validators/category";
+import { EditCategoryValidator } from "@/lib/validators/category";
 import { utapi } from "uploadthing/server";
 import { z } from "zod";
 
-export async function POST(req: Request) {
+export async function PATCH(req: Request) {
   try {
     const session = await getAuthSession();
 
     if(!session?.user) {
       return new Response("Unauthorized", {status: 401});
     }
-
     const body = await req.json();
-
-    const {name, title, imageUrl, imageKey} = CategoryValidator.parse(body);
-
-    const category = await db.category.findFirst({
-      where: {
-        name
-      }
-    })
-    if(category) {
-      return new Response("Category already exists", {status: 409});
-    }
-
+    const {id, imageKey, imageUrl, oldImageKey, name, title} = EditCategoryValidator.parse(body);
     
-    await db.category.create({
+    await db.category.update({
+      where: {
+        id
+      },
       data: {
         title,
+        name,
         imageUrl,
         imageKey,
-        name,
       }
     })
 
+    if(oldImageKey != imageKey) {
+    await utapi.deleteFiles(oldImageKey);
+    }
+
     return new Response("OK");
-  } catch(error) {
+  } catch (error) {
     if (error instanceof z.ZodError) {
       return new Response("Invalid request data passed", {status: 422})
     }
 
-    return new Response("Could create category, please try again later.", {status: 500});
+    return new Response("Could not edit category, please try again later.", {status: 500});
   }
 }

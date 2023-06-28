@@ -22,6 +22,8 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "../ui/AlertDialog";
+import { Dialog, DialogTrigger } from "../ui/Dialog";
+import { default as EditCategory } from "./EditCategory";
 
 interface CategoriesListProps {
   categories: Category[];
@@ -35,7 +37,7 @@ const CategoriesList: FC<CategoriesListProps> = ({ categories }) => {
         id,
         imageKey,
       };
-      const { data } = await axios.patch("/api/category", payload);
+      const { data } = await axios.patch("/api/category/delete", payload);
       return data;
     },
     onError: () => {
@@ -77,7 +79,12 @@ const CategoriesList: FC<CategoriesListProps> = ({ categories }) => {
                   </div>
                 </div>
                 <div className="space-x-2">
-                  <Button variant="ghost">Picture</Button>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="outline">Edit</Button>
+                    </DialogTrigger>
+                    <EditCategory category={category} />
+                  </Dialog>
                   <AlertDialog>
                     <AlertDialogTrigger>
                       {isLoading ? (
