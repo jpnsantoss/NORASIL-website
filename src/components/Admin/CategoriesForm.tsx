@@ -6,7 +6,6 @@ import {
   CategoryFormRequest,
   CategoryFormValidator,
   CategoryRequest,
-  CategoryValidator,
 } from "@/lib/validators/category";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
@@ -14,27 +13,31 @@ import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { Button } from "../ui/Button";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../ui/Form";
 import { Input } from "../ui/Input";
-import { Label } from "../ui/Label";
 
 const CategoriesForm = () => {
   const router = useRouter();
 
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-  } = useForm<CategoryFormRequest>({
+  const form = useForm<CategoryFormRequest>({
     resolver: zodResolver(CategoryFormValidator),
     defaultValues: {
       title: "",
-      image: null,
+      image: undefined,
     },
   });
 
   const { mutate: createCategory, isLoading } = useMutation({
     mutationFn: async ({ title, image }: CategoryFormRequest) => {
-      const [res] = await uploadFiles([image[0]], "imageUploader");
+      const [res] = await uploadFiles([image], "imageUploader");
       const payload: CategoryRequest = {
         name: title
           .normalize("NFD")
@@ -74,38 +77,65 @@ const CategoriesForm = () => {
   });
 
   return (
-    <form
-      className="space-y-4 my-4"
-      onSubmit={handleSubmit((e) => {
-        createCategory(e);
-      })}
-    >
-      <div className="grid w-full max-w-sm items-center gap-1.5">
-        <Label htmlFor="name">Name</Label>
-        <Input
-          id="name"
-          type="text"
-          placeholder="Name"
-          {...register("title")}
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit((e) => {
+          createCategory(e);
+        })}
+        className="space-y-8"
+      >
+        <FormField
+          control={form.control}
+          name="title"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Title</FormLabel>
+              <FormControl>
+                <Input placeholder="title" {...field} />
+              </FormControl>
+              <FormDescription>
+                This is the category public display name.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-        {errors?.title && (
-          <p className="px-1 text-xs text-red-600">{errors.title.message}</p>
-        )}
-      </div>
-      <div className="grid w-full max-w-sm items-center gap-1.5">
-        <Label htmlFor="picture">Picture</Label>
-        <Input id="picture" type="file" {...register("image")} />
-        {errors?.image && (
-          <p className="px-1 text-xs text-red-600">
-            {errors.image.message?.toString()}
-          </p>
-        )}
-      </div>
-
-      <Button className="px-8" isLoading={isLoading}>
-        Create
-      </Button>
-    </form>
+        <FormField
+          control={form.control}
+          name="image"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Image</FormLabel>
+              <FormControl>
+                <Input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0] || null;
+                    field.onChange(file as File);
+                  }}
+                  onBlur={field.onBlur}
+                  name={field.name}
+                  ref={field.ref}
+                />
+              </FormControl>
+              <FormDescription>
+                This is the image associated with this category.
+              </FormDescription>
+              {/* {form.formState.errors.image && (
+                <p className="text-sm text-destructive font-medium">
+                  {form.formState.errors.image.message}
+                </p>
+              )} */}
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit" isLoading={isLoading}>
+          Submit
+        </Button>
+      </form>
+    </Form>
   );
 };
 

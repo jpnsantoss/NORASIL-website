@@ -1,14 +1,25 @@
 import PostsForm from "@/components/Admin/PostsForm";
 import PostsList from "@/components/Admin/PostsList";
 import { buttonVariants } from "@/components/ui/Button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/Card";
+import { Command, CommandInput } from "@/components/ui/Command";
+import { db } from "@/lib/db";
 import { cn } from "@/lib/utils";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
-import { FC } from "react";
 
-interface pageProps {}
-
-const page: FC<pageProps> = ({}) => {
+const Page = async () => {
+  const categories = await db.category.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
   return (
     <div className="grid gap-4">
       <div>
@@ -23,10 +34,37 @@ const page: FC<pageProps> = ({}) => {
           Dashboard
         </Link>
       </div>
-      <PostsForm />
-      <PostsList />
+      <Card>
+        <CardHeader>
+          <CardTitle>Create Post</CardTitle>
+          <CardDescription>
+            Create here posts to be displayed in the portfolio
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          {/* Posts Form Component */}
+          <PostsForm categories={categories} />
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <div className="grid lg:grid-cols-2 gap-4">
+            <div>
+              <CardTitle>Posts List</CardTitle>
+              <CardDescription>List of created posts.</CardDescription>
+            </div>
+            <Command className="rounded-lg border shadow-md">
+              <CommandInput placeholder="Search for a build..." />
+            </Command>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <PostsList />
+        </CardContent>
+      </Card>
     </div>
   );
 };
 
-export default page;
+export default Page;

@@ -72,7 +72,6 @@ model Category {
 enum PostType {
   CONSTRUCTION
   FINISHED
-  PROJECT
 }
 
 model Post {
@@ -80,6 +79,7 @@ model Post {
   type      PostType
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  name      String   @unique
   title     String
   client    String
   date      DateTime
