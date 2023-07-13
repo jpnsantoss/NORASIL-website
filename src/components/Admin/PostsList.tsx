@@ -1,26 +1,11 @@
-import { cn } from "@/lib/utils";
-import { X } from "lucide-react";
-import { FC } from "react";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "../ui/AlertDialog";
-import { Button, buttonVariants } from "../ui/Button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../ui/Card";
-import { Command, CommandInput } from "../ui/Command";
+"use client";
+import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
+import { ExtendedPost } from "@/types/db";
+import { useIntersection } from "@mantine/hooks";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { Loader2 } from "lucide-react";
+import { FC, useEffect, useRef } from "react";
 import {
   Table,
   TableBody,
@@ -29,53 +14,47 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/Table";
+import PostRow from "./PostRow";
 
-interface PostsListProps {}
+interface PostsListProps {
+  initialPosts: ExtendedPost[];
+}
 
-const posts = [
-  {
-    id: 1,
-    title: "Isto é apenas um teste",
-    type: "In construction",
-    client: "Continental",
-    date: "28/06/2023",
-    category: "Industrial",
-  },
-  {
-    id: 1,
-    title: "Isto é apenas um teste",
-    type: "In construction",
-    client: "Continental",
-    date: "28/06/2023",
-    category: "Industrial",
-  },
-  {
-    id: 1,
-    title: "Isto é apenas um teste",
-    type: "In construction",
-    client: "Continental",
-    date: "28/06/2023",
-    category: "Industrial",
-  },
-  {
-    id: 1,
-    title: "Isto é apenas um teste",
-    type: "In construction",
-    client: "Continental",
-    date: "28/06/2023",
-    category: "Industrial",
-  },
-  {
-    id: 1,
-    title: "Isto é apenas um teste",
-    type: "In construction",
-    client: "Continental",
-    date: "28/06/2023",
-    category: "Industrial",
-  },
-];
+const PostsList: FC<PostsListProps> = ({ initialPosts }) => {
+  const lastPostRef = useRef<HTMLElement>(null);
 
-const PostsList: FC<PostsListProps> = ({}) => {
+  const { ref, entry } = useIntersection({
+    root: lastPostRef.current,
+    threshold: 1,
+  });
+
+  const { data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
+    ["infinite-query"],
+    async ({ pageParam = 1 }) => {
+      const query = `/api/posts?limit=${INFINITE_SCROLLING_PAGINATION_RESULTS}&page=${pageParam}`;
+
+      const { data } = await axios.get(query);
+      return data as ExtendedPost[];
+    },
+    {
+      getNextPageParam: (_, pages) => {
+        return pages.length + 1;
+      },
+      initialData: {
+        pages: [initialPosts],
+        pageParams: [1],
+      },
+    }
+  );
+
+  useEffect(() => {
+    if (entry?.isIntersecting) {
+      fetchNextPage();
+    }
+  }, [entry, fetchNextPage]);
+
+  const posts = data?.pages.flatMap((page) => page) ?? initialPosts;
+
   return (
     <Table>
       <TableHeader>
@@ -89,55 +68,28 @@ const PostsList: FC<PostsListProps> = ({}) => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {posts.map((post) => (
-          <TableRow key={post.id}>
-            <TableCell>{post.title}</TableCell>
-            <TableCell className="hidden lg:table-cell">{post.type}</TableCell>
-            <TableCell className="hidden lg:table-cell">
-              {post.client}
-            </TableCell>
-            <TableCell className="hidden lg:table-cell">{post.date}</TableCell>
-            <TableCell className="hidden lg:table-cell">
-              {post.category}
-            </TableCell>
-            <TableCell className="text-right space-x-2">
-              <Button variant="outline">Edit</Button>
-              <AlertDialog>
-                <AlertDialogTrigger>
-                  <div
-                    className={cn(
-                      buttonVariants({ variant: "destructive" }),
-                      "text-black hover:text-white"
-                    )}
-                  >
-                    <X className="w-4 h-4" />
-                  </div>
-                </AlertDialogTrigger>
-                <AlertDialogContent>
-                  <AlertDialogHeader>
-                    <AlertDialogTitle>
-                      Are you absolutely sure?
-                    </AlertDialogTitle>
-                    <AlertDialogDescription>
-                      This action cannot be undone. This will permanently delete
-                      this category and all the posts associated to it.
-                    </AlertDialogDescription>
-                  </AlertDialogHeader>
-                  <AlertDialogFooter>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction
-                    // onClick={() => {
-                    //   if (item.email) deleteUser({ email: item.email });
-                    // }}
-                    >
-                      Continue
-                    </AlertDialogAction>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
+        {posts.map((post, index) => {
+          if (index === posts.length - 1) {
+            return (
+              <TableRow key={post.id} ref={ref}>
+                <PostRow post={post} />
+              </TableRow>
+            );
+          } else {
+            return (
+              <TableRow key={post.id}>
+                <PostRow post={post} />
+              </TableRow>
+            );
+          }
+        })}
+        {isFetchingNextPage && (
+          <TableRow>
+            <TableCell>
+              <Loader2 className="w-6 h-6 text-zinc-500 animate-spin" />
             </TableCell>
           </TableRow>
-        ))}
+        )}
       </TableBody>
     </Table>
   );

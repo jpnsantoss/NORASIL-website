@@ -9,6 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/Card";
 import { Command, CommandInput } from "@/components/ui/Command";
+import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
 import { db } from "@/lib/db";
 import { cn } from "@/lib/utils";
 import { ChevronLeft } from "lucide-react";
@@ -20,6 +21,18 @@ const Page = async () => {
       createdAt: "desc",
     },
   });
+
+  const posts = await db.post.findMany({
+    include: {
+      category: true,
+      images: true,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+    take: INFINITE_SCROLLING_PAGINATION_RESULTS,
+  });
+
   return (
     <div className="grid gap-4">
       <div>
@@ -60,7 +73,7 @@ const Page = async () => {
           </div>
         </CardHeader>
         <CardContent>
-          <PostsList />
+          <PostsList initialPosts={posts} />
         </CardContent>
       </Card>
     </div>

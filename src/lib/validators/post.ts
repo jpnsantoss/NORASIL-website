@@ -49,5 +49,15 @@ export const PostValidator = z.object({
   }))
 });
 
+export const DeletePostValidator = z.object({
+  id: z.string(),
+  mainImageKey: z.string(),
+  images: z.array(z.object({
+    url: z.string().url(),
+    key: z.string()
+  }))
+})
+
 export type PostFormRequest = z.infer<typeof PostFormValidator>;
 export type PostRequest = z.infer<typeof PostValidator>;
+export type DeletePostRequest = z.infer<typeof DeletePostValidator>;

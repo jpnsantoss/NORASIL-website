@@ -47,7 +47,7 @@ const EditCategory: FC<EditCategoryProps> = ({ category }) => {
     resolver: zodResolver(EditCategoryFormValidator),
     defaultValues: {
       title: category.title,
-      image: null,
+      image: undefined,
     },
   });
 
@@ -59,7 +59,7 @@ const EditCategory: FC<EditCategoryProps> = ({ category }) => {
       };
 
       if (image) {
-        const [uploadRes] = await uploadFiles([image[0]], "imageUploader");
+        const [uploadRes] = await uploadFiles([image], "imageUploader");
         res = uploadRes;
       } else {
         res = {
