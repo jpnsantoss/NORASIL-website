@@ -83,6 +83,7 @@ model Post {
   title     String
   client    String
   date      DateTime
+  deadline  String
 
   category   Category @relation(fields: [categoryId], references: [id])
   categoryId String
@@ -97,6 +98,6 @@ model Image {
   url        String
   key        String
   uploadedAt DateTime @default(now())
-  Post       Post?    @relation(fields: [postId], references: [id])
-  postId     String?
+  Post       Post     @relation(fields: [postId], references: [id])
+  postId     String
 }

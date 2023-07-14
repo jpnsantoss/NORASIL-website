@@ -50,6 +50,7 @@ const PostsForm: FC<PostsFormProps> = ({ categories }) => {
     defaultValues: {
       title: "",
       client: "",
+      deadline: "",
       type: undefined,
       category: undefined,
       date: undefined,
@@ -61,6 +62,7 @@ const PostsForm: FC<PostsFormProps> = ({ categories }) => {
   const { mutate: createPost, isLoading } = useMutation({
     mutationFn: async ({
       title,
+      deadline,
       category,
       client,
       date,
@@ -87,6 +89,7 @@ const PostsForm: FC<PostsFormProps> = ({ categories }) => {
           .replace(/\s/g, "")
           .toLowerCase(),
         title,
+        deadline,
         category,
         type,
         client,
@@ -167,6 +170,22 @@ const PostsForm: FC<PostsFormProps> = ({ categories }) => {
             />
             <FormField
               control={form.control}
+              name="deadline"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Deadline</FormLabel>
+                  <FormControl>
+                    <Input placeholder="deadline" {...field} />
+                  </FormControl>
+                  <FormDescription>
+                    This is the time taken to make the build.
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
               name="type"
               render={({ field }) => (
                 <FormItem>
@@ -198,6 +217,8 @@ const PostsForm: FC<PostsFormProps> = ({ categories }) => {
                 </FormItem>
               )}
             />
+          </div>
+          <div className="space-y-8 pt-2">
             <FormField
               control={form.control}
               name="category"
@@ -228,8 +249,6 @@ const PostsForm: FC<PostsFormProps> = ({ categories }) => {
                 </FormItem>
               )}
             />
-          </div>
-          <div className="space-y-8 pt-2">
             <FormField
               control={form.control}
               name="date"
