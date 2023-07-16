@@ -25,8 +25,6 @@ const Page = async ({ params }: pageProps) => {
   const { name } = params;
   const decodedName = decodeURIComponent(name);
 
-  console.log(decodedName);
-
   const post = await db.post.findFirst({
     where: { name: decodedName },
     include: {

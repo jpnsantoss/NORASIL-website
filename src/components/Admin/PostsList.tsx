@@ -29,7 +29,7 @@ const PostsList: FC<PostsListProps> = ({ initialPosts }) => {
   });
 
   const { data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
-    ["infinite-query"],
+    ["infinite-query", initialPosts],
     async ({ pageParam = 1 }) => {
       const query = `/api/posts?limit=${INFINITE_SCROLLING_PAGINATION_RESULTS}&page=${pageParam}`;
 
@@ -38,6 +38,9 @@ const PostsList: FC<PostsListProps> = ({ initialPosts }) => {
     },
     {
       getNextPageParam: (_, pages) => {
+        if (!pages[pages.length - 1].length) {
+          return undefined; // No more pages to fetch
+        }
         return pages.length + 1;
       },
       initialData: {
@@ -47,11 +50,14 @@ const PostsList: FC<PostsListProps> = ({ initialPosts }) => {
     }
   );
 
+  const hasNextPage =
+    data?.pages && data.pages[data.pages.length - 1].length > 0;
+
   useEffect(() => {
-    if (entry?.isIntersecting) {
+    if (entry?.isIntersecting && !isFetchingNextPage && hasNextPage) {
       fetchNextPage();
     }
-  }, [entry, fetchNextPage]);
+  }, [entry, fetchNextPage, isFetchingNextPage, hasNextPage]);
 
   const posts = data?.pages.flatMap((page) => page) ?? initialPosts;
 

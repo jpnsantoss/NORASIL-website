@@ -50,8 +50,6 @@ export async function POST(req: Request) {
       },
     });
 
-    console.log(post)
-
     if (images && images.length > 0) {
       await Promise.all(images.map(async (image) => {
           await db.image.create({
