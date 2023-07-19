@@ -1,18 +1,17 @@
 "use client";
 
 import { toast } from "@/hooks/use-toast";
-import { uploadFiles } from "@/lib/uploadthing";
 import { cn } from "@/lib/utils";
 import {
+  EditPostFormRequest,
+  EditPostFormValidator,
   EditPostRequest,
-  PostFormRequest,
-  PostFormValidator,
 } from "@/lib/validators/post";
 import { ExtendedPost } from "@/types/db";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Category } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -47,8 +46,8 @@ interface EditPostProps {
 const EditPost: FC<EditPostProps> = ({ post, categories }) => {
   const router = useRouter();
 
-  const form = useForm<PostFormRequest>({
-    resolver: zodResolver(PostFormValidator),
+  const form = useForm<EditPostFormRequest>({
+    resolver: zodResolver(EditPostFormValidator),
     defaultValues: {
       title: post.title,
       client: post.client,
@@ -59,7 +58,7 @@ const EditPost: FC<EditPostProps> = ({ post, categories }) => {
     },
   });
 
-  const { mutate: createPost, isLoading } = useMutation({
+  const { mutate: editPost, isLoading } = useMutation({
     mutationFn: async ({
       title,
       category,
@@ -67,8 +66,9 @@ const EditPost: FC<EditPostProps> = ({ post, categories }) => {
       client,
       date,
       type,
-    }: PostFormRequest) => {
+    }: EditPostFormRequest) => {
       const payload: EditPostRequest = {
+        id: post.id,
         name: title
           .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "")
@@ -82,7 +82,7 @@ const EditPost: FC<EditPostProps> = ({ post, categories }) => {
         date: date.toISOString(),
       };
 
-      const { data } = await axios.patch("/api/post", payload);
+      const { data } = await axios.patch("/api/post/edit", payload);
       return data;
     },
     onError: (err) => {
@@ -92,11 +92,19 @@ const EditPost: FC<EditPostProps> = ({ post, categories }) => {
         variant: "destructive",
       });
     },
-    onSuccess: () => {
+    onSuccess: (data, variables) => {
+      const { title } = variables;
       toast({
         description: "The post has been edited.",
       });
       router.refresh();
+      router.push(
+        `/admin/posts/${title
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/\s/g, "")
+          .toLowerCase()}`
+      );
     },
   });
 
@@ -105,7 +113,7 @@ const EditPost: FC<EditPostProps> = ({ post, categories }) => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit((e) => {
-            createPost(e);
+            editPost(e);
           })}
           className="space-y-8"
         >

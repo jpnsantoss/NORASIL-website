@@ -87,19 +87,9 @@ const CategoriesList: FC<CategoriesListProps> = ({ categories }) => {
                   </Dialog>
                   <AlertDialog>
                     <AlertDialogTrigger>
-                      {isLoading ? (
-                        <div
-                          className={cn(buttonVariants({ variant: "ghost" }))}
-                        >
-                          <Loader2 className="w-4 h-4 animate-spin" />
-                        </div>
-                      ) : (
-                        <div
-                          className={cn(buttonVariants({ variant: "ghost" }))}
-                        >
-                          <X className="w-4 h-4" />
-                        </div>
-                      )}
+                      <div className={cn(buttonVariants({ variant: "ghost" }))}>
+                        <X className="w-4 h-4" />
+                      </div>
                     </AlertDialogTrigger>
                     <AlertDialogContent>
                       <AlertDialogHeader>

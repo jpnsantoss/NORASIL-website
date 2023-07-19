@@ -1,7 +1,6 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { CategoryValidator, DeleteCategoryValidator } from "@/lib/validators/category";
-import { utapi } from "uploadthing/server";
+import { CategoryValidator } from "@/lib/validators/category";
 import { z } from "zod";
 
 export async function POST(req: Request) {

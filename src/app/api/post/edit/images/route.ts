@@ -1,0 +1,70 @@
+import { getAuthSession } from "@/lib/auth";
+import { db } from "@/lib/db";
+import { DeleteImageValidator, ImagesValidator } from "@/lib/validators/image";
+import { utapi } from "uploadthing/server";
+import { z } from "zod";
+
+//add images
+export async function POST(req: Request) {
+  try {
+    const session = await getAuthSession();
+
+    if (!session?.user) {
+      return new Response("Unauthorized", { status: 401 });
+    }
+    const body = await req.json();
+    const { newImages: images, postId } = ImagesValidator.parse(body);
+
+    await Promise.all(
+      images.map(async (image) => {
+        await db.image.create({
+          data: {
+            postId,
+            url: image.url,
+            key: image.key,
+          },
+        });
+      })
+    );
+
+    return new Response("OK");
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return new Response("Invalid request data passed", { status: 422 });
+    }
+
+    return new Response("Could create post, please try again later.", {
+      status: 500,
+    });
+  }
+}
+
+//delete image
+
+export async function PATCH(req: Request) {
+  try {
+    const session = await getAuthSession();
+
+    if (!session?.user) {
+      return new Response("Unauthorized", { status: 401 });
+    }
+    const body = await req.json();
+    const { id, imageKey } = DeleteImageValidator.parse(body);
+
+    await db.image.delete({
+      where: {
+        id
+      }
+    })
+
+    await utapi.deleteFiles(imageKey);
+
+    return new Response("OK");
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return new Response("Invalid request data passed", {status: 422})
+    }
+
+    return new Response("Could not remove image, please try again later.", {status: 500});
+  }
+}

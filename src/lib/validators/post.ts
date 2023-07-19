@@ -79,6 +79,7 @@ export const EditPostFormValidator = z.object({
 });
 
 export const EditPostValidator = z.object({
+  id: z.string(),
   name: z.string(),
   title: z.string(),
   client: z.string(),

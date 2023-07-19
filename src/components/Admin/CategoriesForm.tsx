@@ -122,11 +122,6 @@ const CategoriesForm = () => {
               <FormDescription>
                 This is the image associated with this category.
               </FormDescription>
-              {/* {form.formState.errors.image && (
-                <p className="text-sm text-destructive font-medium">
-                  {form.formState.errors.image.message}
-                </p>
-              )} */}
               <FormMessage />
             </FormItem>
           )}
