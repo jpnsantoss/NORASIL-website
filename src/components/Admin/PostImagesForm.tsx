@@ -156,7 +156,7 @@ const PostImagesForm: FC<PostImagesFormProps> = ({ post }) => {
           <Loader2 className="w-8 h-8 animate-spin" />
         </div>
       ) : (
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid lg:grid-cols-3 gap-4">
           {post.images.map((image: PrismaImage) => (
             <div key={post.id} className="w-full relative">
               <AspectRatio ratio={16 / 9}>

@@ -1,5 +1,6 @@
 import PostsForm from "@/components/Admin/PostsForm";
 import PostsList from "@/components/Admin/PostsList";
+import PostsSearch from "@/components/Admin/PostsSearch";
 import { buttonVariants } from "@/components/ui/Button";
 import {
   Card,
@@ -8,7 +9,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/Card";
-import { Command, CommandInput } from "@/components/ui/Command";
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
 import { db } from "@/lib/db";
 import { cn } from "@/lib/utils";
@@ -67,9 +67,7 @@ const Page = async () => {
               <CardTitle>Posts List</CardTitle>
               <CardDescription>List of created posts.</CardDescription>
             </div>
-            <Command className="rounded-lg border shadow-md">
-              <CommandInput placeholder="Search for a build..." />
-            </Command>
+            <PostsSearch />
           </div>
         </CardHeader>
         <CardContent>

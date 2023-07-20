@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 const imageMaxSize = 5 * 1024 * 1024; // 5MB
-const allowedImageFormats = ["image/jpeg", "image/png", "image/gif"]; // Add more formats as needed
+const allowedImageFormats = ["image/jpeg", "image/png", "image/webp"]; // Add more formats as needed
 
 const fileSchema = z
   .instanceof(File, {message: "Please select a valid main image file."})

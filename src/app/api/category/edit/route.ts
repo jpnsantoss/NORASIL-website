@@ -13,6 +13,16 @@ export async function PATCH(req: Request) {
     }
     const body = await req.json();
     const {id, imageKey, imageUrl, oldImageKey, name, title} = EditCategoryValidator.parse(body);
+
+    const existingCategory = await db.category.findFirst({
+      where: {
+        name,
+      },
+    });
+
+    if (existingCategory && existingCategory.id != id) {
+      return new Response("Category already exists", { status: 409 });
+    }
     
     await db.category.update({
       where: {

@@ -3,7 +3,7 @@ import UsersContainer from "@/components/Admin/UsersContainer";
 import WelcomeContainer from "@/components/Admin/WelcomeContainer";
 import { getAuthSession } from "@/lib/auth";
 
-const Page = async ({}) => {
+const Page = async () => {
   const session = await getAuthSession();
   return (
     <div className="container py-12">

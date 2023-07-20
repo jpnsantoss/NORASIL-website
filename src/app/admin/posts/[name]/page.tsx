@@ -1,6 +1,18 @@
+import DeletePost from "@/components/Admin/DeletePost";
 import EditPost from "@/components/Admin/EditPost";
 import PostImages from "@/components/Admin/PostImages";
-import { buttonVariants } from "@/components/ui/Button";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/AlertDialog";
+import { Button, buttonVariants } from "@/components/ui/Button";
 import {
   Card,
   CardContent,
@@ -59,9 +71,10 @@ const Page = async ({ params }: pageProps) => {
             portfolio.
           </CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="space-y-2">
           {/* Posts Form Component */}
           <EditPost categories={categories} post={post} />
+          <DeletePost post={post} />
         </CardContent>
       </Card>
       <Card>

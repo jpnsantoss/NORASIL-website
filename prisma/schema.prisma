@@ -85,7 +85,7 @@ model Post {
   date      DateTime
   deadline  String
 
-  category   Category @relation(fields: [categoryId], references: [id])
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Restrict)
   categoryId String
 
   mainImageUrl String
@@ -98,6 +98,6 @@ model Image {
   url        String
   key        String
   uploadedAt DateTime @default(now())
-  Post       Post     @relation(fields: [postId], references: [id])
+  Post       Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId     String
 }

@@ -103,7 +103,7 @@ const PostMainImageForm: FC<PostMainImageFormProps> = ({ post }) => {
           </Button>
         </form>
       </Form>
-      <div className="w-[450px]">
+      <div className="grid lg:grid-cols-3 w-full">
         <AspectRatio ratio={16 / 9}>
           <Image
             src={post.mainImageUrl}

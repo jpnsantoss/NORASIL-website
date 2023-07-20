@@ -3,7 +3,7 @@ import { User } from "next-auth";
 import Link from "next/link";
 import { FC } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/Avatar";
-import { Button, buttonVariants } from "../ui/Button";
+import { buttonVariants } from "../ui/Button";
 import { Card } from "../ui/Card";
 
 interface WelcomeContainerProps {

@@ -1,18 +1,14 @@
 "use client";
+
 import { toast } from "@/hooks/use-toast";
 import { uploadFiles } from "@/lib/uploadthing";
 import {
-  CategoryFormRequest,
-  CategoryFormValidator,
-  CategoryRequest,
   EditCategoryFormRequest,
   EditCategoryFormValidator,
   EditCategoryRequest,
 } from "@/lib/validators/category";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Category } from "@prisma/client";
-import { AlertDialogAction } from "@radix-ui/react-alert-dialog";
-import { DialogClose } from "@radix-ui/react-dialog";
 import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import Image from "next/image";
@@ -27,8 +23,16 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "../ui/Dialog";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../ui/Form";
 import { Input } from "../ui/Input";
 import { Label } from "../ui/Label";
 import { Separator } from "../ui/Separator";
@@ -39,11 +43,7 @@ interface EditCategoryProps {
 
 const EditCategory: FC<EditCategoryProps> = ({ category }) => {
   const router = useRouter();
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-  } = useForm<EditCategoryFormRequest>({
+  const form = useForm<EditCategoryFormRequest>({
     resolver: zodResolver(EditCategoryFormValidator),
     defaultValues: {
       title: category.title,
@@ -96,7 +96,7 @@ const EditCategory: FC<EditCategoryProps> = ({ category }) => {
       }
       toast({
         title: "There was an error.",
-        description: "Could not create category.",
+        description: "Could not edit category.",
         variant: "destructive",
       });
     },
@@ -109,59 +109,83 @@ const EditCategory: FC<EditCategoryProps> = ({ category }) => {
   });
 
   return (
-    <DialogContent className="">
-      <form
-        onSubmit={handleSubmit((e) => {
-          editCategory(e);
-        })}
-      >
-        <DialogHeader>
-          <DialogTitle>Edit {category.title}</DialogTitle>
-          <DialogDescription>
-            Make changes to the category here. Click save when you are done.
-          </DialogDescription>
-        </DialogHeader>
-        <div className="grid gap-4 py-4 justify-center">
-          <div className="grid w-full max-w-sm items-center gap-1.5">
-            <Label htmlFor="name">Name</Label>
-            <Input
-              id="title"
-              type="text"
-              placeholder="Name"
-              {...register("title")}
+    <DialogContent>
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit((e) => {
+            editCategory(e);
+          })}
+          className="space-y-8"
+        >
+          <DialogHeader>
+            <DialogTitle>Edit {category.title}</DialogTitle>
+            <DialogDescription>
+              Make changes to the category here. Click save when you are done.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4 py-4 justify-center">
+            <FormField
+              control={form.control}
+              name="title"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Title</FormLabel>
+                  <FormControl>
+                    <Input placeholder="title" {...field} />
+                  </FormControl>
+                  <FormDescription>
+                    This is the category public display name.
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-            {errors?.title && (
-              <p className="px-1 text-xs text-red-600">
-                {errors.title.message}
-              </p>
-            )}
+            <Separator />
+            <div className="w-96">
+              <Label>Current image</Label>
+              <AspectRatio ratio={16 / 9} className="bg-muted">
+                <Image
+                  src={category.imageUrl}
+                  alt={`${category.title} Picture`}
+                  fill
+                  className="rounded-md object-cover"
+                />
+              </AspectRatio>
+            </div>
+            <FormField
+              control={form.control}
+              name="image"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Image</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0] || null;
+                        field.onChange(file as File);
+                      }}
+                      onBlur={field.onBlur}
+                      name={field.name}
+                      ref={field.ref}
+                    />
+                  </FormControl>
+                  <FormDescription>
+                    This is the image associated with this category.
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </div>
-          <Separator />
-          <div className="w-96">
-            <Label>Current image</Label>
-            <AspectRatio ratio={16 / 9} className="bg-muted">
-              <Image
-                src={category.imageUrl}
-                alt={`${category.title} Picture`}
-                fill
-                className="rounded-md object-cover"
-              />
-            </AspectRatio>
-          </div>
-          <div className="grid w-full max-w-sm items-center gap-1.5">
-            <Label htmlFor="picture">Change Picture</Label>
-            <Input id="picture" type="file" {...register("image")} />
-            {errors?.image && (
-              <p className="px-1 text-xs text-red-600">
-                {errors.image.message?.toString()}
-              </p>
-            )}
-          </div>
-        </div>
-        <DialogFooter>
-          <Button type="submit">Save changes</Button>
-        </DialogFooter>
-      </form>
+          <DialogFooter>
+            <Button type="submit" isLoading={isLoading}>
+              Save changes
+            </Button>
+          </DialogFooter>
+        </form>
+      </Form>
     </DialogContent>
   );
 };
