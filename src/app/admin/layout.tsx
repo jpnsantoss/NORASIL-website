@@ -9,28 +9,12 @@ export const metadata = {
   description:
     "Fundada em Maio de 1983, a Norasil – Sociedade de Construção Civil, S.A., (com Sede e Estaleiro Central em Matosinhos) tem como objecto principal a execução de empreitadas de obras públicas e de obras particulares.",
 };
-
-const openSans = Open_Sans({ subsets: ["latin"] });
-
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={cn(
-        "text-slate-900 antialiased light w-full h-full m-0",
-        openSans.className
-      )}
-    >
-      <body className="min-h-screen h-full w-full m-0 antialiased bg-white">
-        <Providers>
-          {children}
-          <Toaster />
-        </Providers>
-      </body>
-    </html>
+    <div className="container max-w-7xl mx-auto h-full py-12">{children}</div>
   );
 }
