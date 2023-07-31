@@ -1,5 +1,7 @@
+import Company from "@/components/Home/Company";
 import Header from "@/components/Home/Header";
 import RecentBuilds from "@/components/Home/RecentBuilds";
+import ValueOffer from "@/components/Home/ValueOffer";
 
 const page = () => {
   return (
@@ -7,6 +9,8 @@ const page = () => {
       <Header />
       {/* @ts-expect-error server component */}
       <RecentBuilds />
+      <ValueOffer />
+      <Company />
     </div>
   );
 };
