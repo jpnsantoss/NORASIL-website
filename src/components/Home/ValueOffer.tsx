@@ -25,12 +25,12 @@ const ValueOffer: FC = () => {
   return (
     <div className="container grid lg:grid-cols-4 gap-8 py-16">
       {Offers.map((offer, index) => (
-        <div key={index} className="w-full h-[40vh] relative shadow-lg">
+        <div key={index} className="w-full lg:h-[40vh] relative shadow-lg">
           <Image
             src={offer.image}
             alt="Teste"
             fill
-            className="bg-cover bg-center"
+            className="object-cover object-center"
           />
           <div className="absolute bottom-0 h-28 w-full bg-white  grid grid-cols-4">
             <div className="col-span-3 p-4">

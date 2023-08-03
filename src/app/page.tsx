@@ -1,6 +1,6 @@
 import Company from "@/components/Home/Company";
 import Header from "@/components/Home/Header";
-import RecentBuilds from "@/components/Home/RecentBuilds";
+import InConstruction from "@/components/Home/InConstruction";
 import ValueOffer from "@/components/Home/ValueOffer";
 
 const page = () => {
@@ -8,7 +8,7 @@ const page = () => {
     <div className="w-full h-full m-0">
       <Header />
       {/* @ts-expect-error server component */}
-      <RecentBuilds />
+      <InConstruction />
       <ValueOffer />
       <Company />
     </div>

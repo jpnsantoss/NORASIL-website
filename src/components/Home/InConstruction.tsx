@@ -2,7 +2,7 @@ import { db } from "@/lib/db";
 import { Button } from "../ui/Button";
 import PostCard from "./PostCard";
 
-const RecentBuilds = async () => {
+const InConstruction = async () => {
   const posts = await db.post.findMany({
     where: {
       type: "CONSTRUCTION",
@@ -39,4 +39,4 @@ const RecentBuilds = async () => {
   );
 };
 
-export default RecentBuilds;
+export default InConstruction;
