@@ -3,7 +3,8 @@ import QualityPolicy from "@/components/About/QualityPolicy";
 import Sqa from "@/components/About/Sqa";
 import Story from "@/components/About/Story";
 import ValueOffer from "@/components/About/ValueOffer";
-import Navbar from "@/components/Home/Navbar";
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 
 import Image from "next/image";
 import { FC } from "react";
@@ -27,6 +28,7 @@ const Page: FC<pageProps> = ({}) => {
       <QualityPolicy />
       <ValueOffer />
       <Sqa />
+      <Footer />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Inter } from "next/font/google";
+import Navbar from "../Navbar";
 import { Button } from "../ui/Button";
-import Navbar from "./Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 const Header = () => {

@@ -1,4 +1,4 @@
-import Navbar from "@/components/Home/Navbar";
+import Navbar from "@/components/Navbar";
 import { FC } from "react";
 
 interface pageProps {}
