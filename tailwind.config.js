@@ -16,6 +16,11 @@ module.exports = {
       },
     },
     extend: {
+      boxShadow: {
+        'DEFAULT': '0px 10px 10px 0px rgba(0, 0, 0, 0.25)',
+        'btn': '0px 5px 5px 0px rgba(255, 168, 0, 0.5)'
+      },
+
       colors: {
         white: "hsl(0 0% 92%)",
         lightGray: "hsl(0 0% 84%)",

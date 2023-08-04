@@ -9,7 +9,7 @@ const ValueOffer = () => {
       </h1>
       <div className="container grid lg:grid-cols-3 gap-8 py-16">
         <div className="w-full flex items-center">
-          <div className="w-full shadow-[0px_10px_10px_0px_rgba(0,0,0,0.25)] border border-lightGray rounded-xl space-y-6 p-8">
+          <div className="w-full shadow border border-lightGray rounded-xl space-y-6 p-8">
             <HeartHandshake className="w-10 h-10 text-primary" />
             <div className="space-y-4">
               <h1 className="font-bold text-3xl">Proximity and Flexibility</h1>
@@ -21,7 +21,7 @@ const ValueOffer = () => {
           </div>
         </div>
         <div className="w-full grid gap-8">
-          <div className="w-full shadow-[0px_10px_10px_0px_rgba(0,0,0,0.25)] border border-lightGray rounded-xl space-y-6 p-8">
+          <div className="w-full shadow border border-lightGray rounded-xl space-y-6 p-8">
             <Search className="w-10 h-10 text-primary" />
             <div className="space-y-4">
               <h1 className="font-bold text-3xl">Rigor</h1>
@@ -37,7 +37,7 @@ const ValueOffer = () => {
             </h2>
             <Button className="font-bold">See our works</Button>
           </div>
-          <div className="w-full shadow-[0px_10px_10px_0px_rgba(0,0,0,0.25)] border border-lightGray rounded-xl space-y-6 p-8">
+          <div className="w-full shadow border border-lightGray rounded-xl space-y-6 p-8">
             <Wrench className="w-10 h-10 text-primary" />
             <div className="space-y-4">
               <h1 className="font-bold text-3xl">Competence</h1>
@@ -49,7 +49,7 @@ const ValueOffer = () => {
           </div>
         </div>
         <div className="w-full flex items-center">
-          <div className="w-full shadow-[0px_10px_10px_0px_rgba(0,0,0,0.25)] border border-lightGray rounded-xl space-y-6 p-8">
+          <div className="w-full shadow border border-lightGray rounded-xl space-y-6 p-8">
             <ShieldCheck className="w-10 h-10 text-primary" />
             <div className="space-y-4">
               <h1 className="font-bold text-3xl">SQA</h1>

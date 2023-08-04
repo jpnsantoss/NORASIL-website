@@ -13,7 +13,7 @@ interface PostCardProps {
 
 const PostCard: FC<PostCardProps> = ({ post }) => {
   return (
-    <div className="relative shadow-2xl rounded-3xl">
+    <div className="relative shadow rounded-3xl">
       <div className="w-full h-64 rounded-t-3xl overflow-hidden relative">
         <Image
           alt={post.title}
