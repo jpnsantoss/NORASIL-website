@@ -80,7 +80,7 @@ const Company = () => {
         </div> */}
 
         <div className="z-10 flex flex-col items-center gap-8">
-          <div className="relative h-[30vh] w-[80%] p-4 lg:w-full flex justify-center">
+          <div className="relative h-[20vh] md:h-[35vh] w-[80%] p-4 lg:w-full flex justify-center">
             <div
               ref={firstDivRef}
               className={cn(

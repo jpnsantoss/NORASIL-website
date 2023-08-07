@@ -4,11 +4,11 @@ import { Button } from "../ui/Button";
 const QualityPolicy = () => {
   return (
     <div className="py-16">
-      <h1 className="text-5xl font-bold text-center">
+      <h1 className="text-5xl font-bold text-center leading-[4.5rem]">
         Política de <span className=" bg-secondary">Qualidade</span>
       </h1>
       <div className="space-y-8 py-16">
-        <div className="grid grid-cols-3 gap-8 container">
+        <div className="grid lg:grid-cols-3 gap-8 container">
           <div className="w-full shadow border border-lightGray rounded-xl space-y-6 p-8">
             <Target className="w-12 h-12 text-primary" />
             <div className="space-y-4">
@@ -44,29 +44,26 @@ const QualityPolicy = () => {
             </div>
           </div>
         </div>
-        <div className="w-full h-64 container">
-          <div className="grid grid-cols-6 gap-8">
-            <div className="w-full shadow border border-lightGray rounded-xl space-y-6 p-8 col-span-2 col-start-2">
-              <Eye className="w-12 h-12 text-primary" />
-              <div className="space-y-4">
-                <h1 className="font-bold text-4xl">Visão</h1>
-                <p className="text-darkGray text-lg">
-                  A nossa visão é ser reconhecidos como uma empresa que oferece
-                  soluçõesde alta qualidade, visando o sucesso dos nossos
-                  clientes.
-                </p>
-              </div>
+        <div className="container grid lg:grid-cols-6 gap-8">
+          <div className="w-full shadow border border-lightGray rounded-xl space-y-6 p-8 lg:col-span-2 lg:col-start-2">
+            <Eye className="w-12 h-12 text-primary" />
+            <div className="space-y-4">
+              <h1 className="font-bold text-4xl">Visão</h1>
+              <p className="text-darkGray text-lg">
+                A nossa visão é ser reconhecidos como uma empresa que oferece
+                soluçõesde alta qualidade, visando o sucesso dos nossos
+                clientes.
+              </p>
             </div>
-            <div className="w-full shadow border border-lightGray rounded-xl space-y-6 p-8 col-span-2">
-              <Lightbulb className="w-12 h-12 text-primary" />
-              <div className="space-y-4">
-                <h1 className="font-bold text-4xl">Estratégia</h1>
-                <p className="text-darkGray text-lg">
-                  Na Norasil, trabalhamos na promoção e valorização da sua
-                  imagem, consolidando-se como referência no mercado da
-                  construção civil.
-                </p>
-              </div>
+          </div>
+          <div className="w-full shadow border border-lightGray rounded-xl space-y-6 p-8 lg:col-span-2">
+            <Lightbulb className="w-12 h-12 text-primary" />
+            <div className="space-y-4">
+              <h1 className="font-bold text-4xl">Estratégia</h1>
+              <p className="text-darkGray text-lg">
+                Na Norasil, trabalhamos na promoção e valorização da sua imagem,
+                consolidando-se como referência no mercado da construção civil.
+              </p>
             </div>
           </div>
         </div>

@@ -6,7 +6,7 @@ import { Button } from "../ui/Button";
 const inter = Inter({ subsets: ["latin"] });
 const Header = () => {
   return (
-    <div className="w-full h-full mb-16 overflow-x-hidden">
+    <div className="w-full h-full overflow-x-hidden">
       <div className="w-full h-full absolute left-0 top-0 z-20">
         <div className="relative w-full h-full">
           <Navbar />

@@ -9,7 +9,7 @@ const ValueOffer: FC = () => {
     <div className="py-16">
       <div className="container grid lg:grid-cols-2 gap-8 py-16 lg:px-48">
         <div className="w-full flex items-center">
-          <div className="w-full relative rounded-xl h-[60vh] overflow-hidden">
+          <div className="w-full relative rounded-xl h-[40vh] lg:h-[60vh] overflow-hidden">
             <Image
               src="/assets/images/valueoffer/pic2.jpg"
               alt="Competência"
