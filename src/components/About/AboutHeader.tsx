@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 const AboutHeader: FC<AboutHeaderProps> = ({}) => {
   return (
-    <div className="w-full px-4 lg:px-48 py-16">
+    <div className="w-full px-4 lg:px-48 lg:py-16">
       <h2 className="text-2xl font-semibold mb-2">De obra em obra,</h2>
       <div className="grid lg:grid-cols-2 gap-16">
         <div className="flex flex-col justify-between">

@@ -4,10 +4,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/Tabs";
 const Story = () => {
   return (
     <div className="w-full px-4 lg:px-48 py-16">
-      <h1 className="text-5xl font-bold text-center">
+      <h1 className="text-5xl font-bold text-center leading-[4.5rem]">
         A nossa <span className=" bg-secondary">História</span>
       </h1>
-      <Tabs defaultValue="creation" className="py-16">
+      <Tabs defaultValue="creation" className="pt-16">
         <TabsList className="h-full grid lg:grid-cols-7 w-full gap-2 bg-transparent">
           <Separator className="bg-gray w-full h-px" />
           <TabsTrigger

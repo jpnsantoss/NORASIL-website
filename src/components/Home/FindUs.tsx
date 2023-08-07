@@ -7,8 +7,8 @@ const FindUs = () => {
         <span className=" bg-secondary">Find Us</span>
       </h1>
       <div className="flex gap-4 w-full justify-center items-center py-8">
-        <MapPin className="w-8 h-8 text-primary" />
-        <h2 className="text-xl font-bold text-darkGray">
+        <MapPin className="lg:w-8 lg:h-8 text-primary" />
+        <h2 className="text-lg lg:text-xl font-bold text-darkGray">
           Rua de Brito Capelo 598, Matosinhos
         </h2>
       </div>

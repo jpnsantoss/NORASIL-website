@@ -7,7 +7,7 @@ const ValueOffer = () => {
       <h1 className="text-4xl font-bold text-center">
         Proposta de <span className=" bg-secondary">Valor</span>
       </h1>
-      <div className="container grid lg:grid-cols-3 gap-8 py-16">
+      <div className="container grid lg:grid-cols-3 gap-8 pt-16">
         <div className="w-full flex items-center">
           <div className="w-full shadow border border-lightGray rounded-xl space-y-6 p-8">
             <HeartHandshake className="w-10 h-10 text-primary" />

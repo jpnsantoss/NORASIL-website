@@ -24,10 +24,10 @@ const Company = () => {
   }, []);
   return (
     <div className="py-16 bg-black relative overflow-hidden">
-      <h1 className="text-5xl font-bold text-center text-white">
+      <h1 className="text-5xl font-bold text-center text-white leading-[4.5rem]">
         Sobre a <span className=" bg-primary">Empresa</span>
       </h1>
-      <div className="container grid lg:grid-cols-2 gap-32 pt-32 pb-16 items-center">
+      <div className="container grid lg:grid-cols-2 gap-32 pt-16 items-center">
         <div className="space-y-6">
           <h2 className="text-4xl text-white">
             Uma Empresa{" "}
@@ -80,7 +80,7 @@ const Company = () => {
         </div> */}
 
         <div className="z-10 flex flex-col items-center gap-8">
-          <div className="relative h-[20vh] md:h-[35vh] w-[80%] p-4 lg:w-full flex justify-center">
+          <div className="relative h-[25vh] md:h-[35vh] p-4 w-full flex justify-center">
             <div
               ref={firstDivRef}
               className={cn(

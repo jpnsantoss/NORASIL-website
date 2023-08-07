@@ -13,12 +13,12 @@ const Header = () => {
           {/* <div className="w-1/2 h-full flex items-center justify-center text-8xl font-bold text-white">
 
           </div> */}
-          <div className="py-24 px-4 lg:px-48">
+          <div className="lg:py-24 px-4 lg:px-48">
             <div className="flex flex-col gap-4">
               <h1
                 className={cn(
                   inter.className,
-                  "text-6xl lg:text-7xl font-extrabold leading-[4.5rem] lg:leading-[5rem]"
+                  "text-5xl lg:text-7xl font-extrabold leading-[4.5rem] lg:leading-[5rem]"
                 )}
               >
                 40 anos <br /> de{" "}
@@ -36,7 +36,7 @@ const Header = () => {
               </div>
             </div>
           </div>
-          <div className="2xl:float-right flex justify-center lg:justify-end items-center border border-darkGray rounded-xl overflow-x-hidden lg:mx-48 2xl:mx-96 mx-4 lg:w-1/2 2xl:w-1/3">
+          <div className="2xl:float-right flex justify-center lg:justify-end items-center border border-darkGray rounded-xl overflow-x-hidden lg:mx-48 2xl:mx-96 mx-4 lg:w-1/2 2xl:w-1/3 my-8">
             <div className="bg-black w-full flex items-center justify-center text-lightGray flex-col gap-2 py-4">
               <span className="font-bold text-4xl text-primary">672</span>
               Obras

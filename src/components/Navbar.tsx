@@ -44,13 +44,14 @@ const Navbar: FC<NavbarProps> = ({ dark }) => {
           height="120"
           alt="Logo"
         />
-        <ul className="2xl:flex gap-4 text-xl font-bold text-darkGray 2xl:text-white hidden">
+        <ul className="2xl:flex gap-8 text-xl font-bold text-darkGray 2xl:text-white hidden">
           <li>
             <Link
               href="/"
               className={cn(
                 buttonVariants({
                   variant: "link",
+                  size: "sm",
                   className: cn(
                     "text-xl font-bold",
                     pathname == "/"
@@ -71,6 +72,7 @@ const Navbar: FC<NavbarProps> = ({ dark }) => {
               className={cn(
                 buttonVariants({
                   variant: "link",
+                  size: "sm",
                   className: cn(
                     "text-xl font-bold",
                     pathname == "/about"
@@ -91,6 +93,7 @@ const Navbar: FC<NavbarProps> = ({ dark }) => {
               className={cn(
                 buttonVariants({
                   variant: "link",
+                  size: "sm",
                   className: cn(
                     "text-xl font-bold",
                     pathname == "/documentos"
@@ -111,6 +114,7 @@ const Navbar: FC<NavbarProps> = ({ dark }) => {
               className={cn(
                 buttonVariants({
                   variant: "link",
+                  size: "sm",
                   className: cn(
                     "text-xl font-bold",
                     pathname == "/portfolio"
@@ -131,8 +135,9 @@ const Navbar: FC<NavbarProps> = ({ dark }) => {
               className={cn(
                 buttonVariants({
                   variant: "link",
+                  size: "sm",
                   className: cn(
-                    "text-xl font-bold",
+                    "text-xl font-bold border-2",
                     pathname == "/contacto"
                       ? "text-primary underline"
                       : dark
