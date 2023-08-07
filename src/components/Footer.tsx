@@ -10,7 +10,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className="mt-16 bg-black relative">
+    <div className="mt-32 bg-black relative">
       <div className="w-full grid lg:grid-cols-9">
         <div className="lg:mx-auto col-span-2 space-y-4 py-8 px-8 lg:py-16 lg:pl-16">
           <Image
@@ -59,7 +59,7 @@ const Footer = () => {
           </ul>
         </div>
         <div className="w-full h-full relative col-span-3">
-          <div className="lg:absolute w-full h-full -top-24 bg-white rounded-l-xl shadow p-8">
+          <div className="lg:absolute w-full h-full -top-24 bg-white rounded-l-xl shadow-[-2px_-2px_10px_0px_rgba(0,0,0,0.25)] p-8">
             <div className="flex gap-4 h-full">
               <MessagesSquare className="w-10 h-10 text-primary" />
               <div className="flex flex-col justify-between h-full gap-4">

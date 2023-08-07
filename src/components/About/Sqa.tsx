@@ -3,7 +3,7 @@ import { Award, Circle, HardHat, Leaf } from "lucide-react";
 const Sqa = () => {
   return (
     <div className="py-16">
-      <h1 className="text-4xl font-bold text-center">
+      <h1 className="text-5xl font-bold text-center">
         <span className=" bg-secondary">Segurança, Qualidade e Ambiente</span>
       </h1>
       <div className="container py-16 space-y-16 relative">

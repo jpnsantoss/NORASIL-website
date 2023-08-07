@@ -3,7 +3,7 @@ import { Circle, Eye, Lightbulb, PieChart, Target } from "lucide-react";
 const QualityPolicy = () => {
   return (
     <div className="py-16 bg-black relative overflow-hidden">
-      <h1 className="text-4xl font-bold text-center text-white">
+      <h1 className="text-5xl font-bold text-center text-white">
         Política de <span className=" bg-primary">Qualidade</span>
       </h1>
       <div className="container grid lg:grid-cols-2 gap-2 py-16">

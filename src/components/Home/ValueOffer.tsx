@@ -14,7 +14,7 @@ import { Button, buttonVariants } from "../ui/Button";
 const ValueOffer: FC = () => {
   return (
     <div className="py-16">
-      <div className="container grid lg:grid-cols-2 gap-8 py-16 px-48">
+      <div className="container grid lg:grid-cols-2 gap-8 py-16 lg:px-48">
         <div className="w-full flex items-center">
           <div className="w-full relative rounded-xl h-[60vh] overflow-hidden">
             <Image
@@ -43,7 +43,7 @@ const ValueOffer: FC = () => {
             </div>
           </div>
         </div>
-        <div className="w-full grid gap-8">
+        <div className="w-full grid order-first lg:order-last gap-8">
           <div className="w-full shadow border border-lightGray rounded-xl py-16 px-8">
             <div className="space-y-8">
               <h1 className=" text-4xl">

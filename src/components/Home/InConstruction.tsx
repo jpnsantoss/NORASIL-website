@@ -18,7 +18,7 @@ const InConstruction = async () => {
   });
   return (
     <div className="py-16">
-      <h1 className="text-4xl font-bold text-center">
+      <h1 className="text-5xl font-bold text-center">
         Obras em <span className=" bg-secondary">Construção</span>
       </h1>
 
