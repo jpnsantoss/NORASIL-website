@@ -4,7 +4,7 @@ const imageMaxSize = 5 * 1024 * 1024; // 5MB
 const allowedImageFormats = ["image/jpeg", "image/png", "image/webp"]; // Add more formats as needed
 
 const fileSchema = z
-  .instanceof(File, {message: "Please select a valid main image file."})
+  .any()
   .refine((file) => file.size <= imageMaxSize, {
     message: `Please select a file up to ${imageMaxSize / (1024 * 1024)}MB in size.`,
     path: [],
