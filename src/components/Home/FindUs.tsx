@@ -1,4 +1,4 @@
-import { MapPin, Pin } from "lucide-react";
+import { MapPin } from "lucide-react";
 
 const FindUs = () => {
   return (

@@ -1,11 +1,4 @@
 import { cn } from "@/lib/utils";
-import {
-  HeartHandshake,
-  PlusIcon,
-  Search,
-  ShieldCheck,
-  Wrench,
-} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";

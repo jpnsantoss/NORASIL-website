@@ -1,18 +1,7 @@
 import DeletePost from "@/components/Admin/DeletePost";
 import EditPost from "@/components/Admin/EditPost";
 import PostImages from "@/components/Admin/PostImages";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/AlertDialog";
-import { Button, buttonVariants } from "@/components/ui/Button";
+import { buttonVariants } from "@/components/ui/Button";
 import {
   Card,
   CardContent,
@@ -25,7 +14,6 @@ import { cn } from "@/lib/utils";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { FC } from "react";
 
 interface pageProps {
   params: {

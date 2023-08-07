@@ -4,7 +4,7 @@ import { Post, Prisma } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import debounce from "lodash.debounce";
-import { ArrowBigRight, ArrowRight, Dot, Users } from "lucide-react";
+import { Dot } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { FC, useCallback, useEffect, useRef, useState } from "react";
 import {

@@ -2,7 +2,7 @@
 import { AuthorizedEmail, User } from "@prisma/client";
 import { Loader2, X } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/Avatar";
-import { Button, buttonVariants } from "../ui/Button";
+import { buttonVariants } from "../ui/Button";
 
 import { toast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";

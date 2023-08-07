@@ -74,7 +74,7 @@ const PostImagesForm: FC<PostImagesFormProps> = ({ post }) => {
       const { data } = await axios.post("/api/post/edit/images", payload);
       return data;
     },
-    onError: (err) => {
+    onError: () => {
       toast({
         title: "There was an error.",
         description: "Could not add images.",

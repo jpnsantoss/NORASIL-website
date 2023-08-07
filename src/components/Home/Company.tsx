@@ -1,9 +1,9 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { Circle, Dot, Square } from "lucide-react";
+import { Circle, Dot } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button, buttonVariants } from "../ui/Button";
 
 const Company = () => {

@@ -2,7 +2,6 @@ import Footer from "@/components/Footer";
 import Company from "@/components/Home/Company";
 import FindUs from "@/components/Home/FindUs";
 import Header from "@/components/Home/Header";
-import InConstruction from "@/components/Home/InConstruction";
 import QualityPolicy from "@/components/Home/QualityPolicy";
 import ValueOffer from "@/components/Home/ValueOffer";
 

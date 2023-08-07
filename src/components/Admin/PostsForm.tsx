@@ -82,7 +82,6 @@ const PostsForm: FC<PostsFormProps> = ({ categories }) => {
         imageResults = await Promise.all(imageUploadPromises);
       }
 
-      console.log(imageResults);
       const payload: PostRequest = {
         name: title
           .normalize("NFD")

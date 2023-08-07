@@ -85,7 +85,7 @@ const EditPost: FC<EditPostProps> = ({ post, categories }) => {
       const { data } = await axios.patch("/api/post/edit", payload);
       return data;
     },
-    onError: (err) => {
+    onError: () => {
       toast({
         title: "There was an error.",
         description: "Could not edit post.",

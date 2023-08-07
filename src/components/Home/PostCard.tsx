@@ -1,5 +1,4 @@
 import { ExtendedPost } from "@/types/db";
-import { Post } from "@prisma/client";
 import { format } from "date-fns";
 import { Calendar, Contact, Link2 } from "lucide-react";
 import Image from "next/image";

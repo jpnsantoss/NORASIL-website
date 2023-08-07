@@ -1,6 +1,5 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { DeleteCategoryValidator } from "@/lib/validators/category";
 import { DeletePostValidator } from "@/lib/validators/post";
 import { utapi } from "uploadthing/server";
 import { z } from "zod";

@@ -1,4 +1,4 @@
-import { Eye, HeartHandshake, Lightbulb, PieChart, Target } from "lucide-react";
+import { Eye, Lightbulb, PieChart, Target } from "lucide-react";
 import { Button } from "../ui/Button";
 
 const QualityPolicy = () => {

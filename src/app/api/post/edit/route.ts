@@ -5,7 +5,6 @@ import { z } from "zod";
 
 export async function PATCH(req: Request) {
   try {
-    console.log("teste")
     const session = await getAuthSession();
 
     if(!session?.user) {

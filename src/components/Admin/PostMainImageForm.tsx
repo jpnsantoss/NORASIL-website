@@ -52,7 +52,7 @@ const PostMainImageForm: FC<PostMainImageFormProps> = ({ post }) => {
       const { data } = await axios.patch("/api/post/edit/mainImage", payload);
       return data;
     },
-    onError: (err) => {
+    onError: () => {
       toast({
         title: "There was an error.",
         description: "Could not change main image.",

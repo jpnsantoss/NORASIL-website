@@ -1,10 +1,4 @@
-import {
-  Facebook,
-  Instagram,
-  Linkedin,
-  MessageSquare,
-  MessagesSquare,
-} from "lucide-react";
+import { Facebook, Instagram, Linkedin, MessagesSquare } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
