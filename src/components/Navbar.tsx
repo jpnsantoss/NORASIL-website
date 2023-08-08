@@ -2,11 +2,14 @@
 import { cn } from "@/lib/utils";
 import {
   Building,
+  FileSearch,
   Home,
   ImageIcon,
   LogOut,
   Menu,
+  Newspaper,
   Paperclip,
+  PaperclipIcon,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -29,6 +32,15 @@ import {
 
 import { FC } from "react";
 import Contact from "./Contact";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/Select";
 import { Sheet, SheetTrigger } from "./ui/Sheet";
 
 interface NavbarProps {
@@ -84,25 +96,32 @@ const Navbar: FC<NavbarProps> = ({ dark }) => {
           </Link>
         </li>
         <li>
-          <Link
-            href="/documentos"
-            className={cn(
-              buttonVariants({
-                variant: "link",
-                size: "sm",
-                className: cn(
-                  "text-xl font-bold",
-                  pathname == "/documentos"
-                    ? "text-primary underline"
-                    : dark
-                    ? "text-darkGray"
-                    : "2xl:text-white text-darkGray"
-                ),
-              })
-            )}
-          >
-            Documentos
-          </Link>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="link"
+                size="sm"
+                className={cn(
+                  "text-xl font-bold focus:ring-0",
+                  dark ? "text-darkGray" : "2xl:text-white text-darkGray"
+                )}
+              >
+                Documentos
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-56">
+              <DropdownMenuLabel>Pdf Documents</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                <Building className="mr-2 h-4 w-4" />
+                <span>Alvará de Construção</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <FileSearch className="mr-2 h-4 w-4" />
+                <span>Relatório de Contas</span>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </li>
         <li>
           <Link
