@@ -4,7 +4,7 @@ import { Button } from "../ui/Button";
 const ValueOffer = () => {
   return (
     <div className="py-16">
-      <h1 className="text-4xl font-bold text-center">
+      <h1 className="text-5xl font-bold text-center leading-[4.5rem] px-4">
         Proposta de <span className=" bg-secondary">Valor</span>
       </h1>
       <div className="container grid lg:grid-cols-3 gap-8 pt-16">

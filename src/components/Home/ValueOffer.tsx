@@ -8,12 +8,12 @@ const ValueOffer: FC = () => {
   return (
     <div className="container grid lg:grid-cols-2 gap-8 py-16 lg:px-48">
       <div className="w-full flex items-center">
-        <div className="w-full relative rounded-xl h-[40vh] lg:h-[60vh] overflow-hidden">
+        <div className="w-full relative rounded-xl h-[40vh] lg:h-[60vh] overflow-hidden group">
           <Image
             src="/assets/images/valueoffer/pic2.jpg"
             alt="Competência"
             fill
-            className="object-center object-cover"
+            className="object-center object-cover group-hover:scale-110 transition ease-in-out duration-300"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent from-30% to-[#000] pointer-events-none"></div>
           <div className="absolute bottom-0 w-full p-8 space-y-2">
@@ -51,12 +51,12 @@ const ValueOffer: FC = () => {
             </Button>
           </div>
         </div>
-        <div className="w-full relative rounded-xl h-[40vh] overflow-hidden">
+        <div className="w-full relative rounded-xl h-[40vh] overflow-hidden group">
           <Image
             src="/assets/images/valueoffer/pic1.jpg"
             alt="Competência"
             fill
-            className="object-center object-cover"
+            className="object-center object-cover group-hover:scale-110 transition ease-in-out duration-300"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent from-30% to-[#000] pointer-events-none"></div>
           <div className="absolute bottom-0 w-full p-8 space-y-2">

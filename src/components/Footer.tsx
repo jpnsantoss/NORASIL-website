@@ -1,6 +1,8 @@
+import { cn } from "@/lib/utils";
 import { Facebook, Instagram, Linkedin, MessagesSquare } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { buttonVariants } from "./ui/Button";
 
 const Footer = () => {
   return (
@@ -18,37 +20,85 @@ const Footer = () => {
             para garantir construções <br /> seguras, duráveis e únicas.
           </p>
         </div>
-        <div className=" space-y-8 col-span-2 lg:mx-auto py-8 px-8 lg:py-16">
+        <div className=" space-y-4 col-span-2 lg:mx-auto py-8 px-8 lg:py-16">
           <h1 className="uppercase text-2xl text-white font-bold">
             Links Úteis
           </h1>
-          <ul className="text-gray font-bold space-y-4">
+          <ul>
             <li>
-              <Link href="/">Início</Link>
+              <Link
+                href="/"
+                className={cn(
+                  buttonVariants({ variant: "link" }),
+                  "p-0 text-gray font-bold"
+                )}
+              >
+                Início
+              </Link>
             </li>
             <li>
-              <Link href="/portfolio">Portfólio</Link>
+              <Link
+                href="/portfolio"
+                className={cn(
+                  buttonVariants({ variant: "link" }),
+                  "p-0 text-gray font-bold"
+                )}
+              >
+                Portfólio
+              </Link>
             </li>
 
             <li>
-              <Link href="/localizacao">Localização</Link>
+              <Link
+                href="/localizacao"
+                className={cn(
+                  buttonVariants({ variant: "link" }),
+                  "p-0 text-gray font-bold"
+                )}
+              >
+                Localização
+              </Link>
             </li>
           </ul>
         </div>
-        <div className="lg:mx-auto space-y-8 col-span-2 py-8 px-8 lg:py-16">
+        <div className="lg:mx-auto space-y-4 col-span-2 py-8 px-8 lg:py-16">
           <h1 className="uppercase text-2xl text-white font-bold">
             Informações Adicionais
           </h1>
-          <ul className="text-gray font-bold space-y-4">
+          <ul>
             <li>
-              <Link href="/">Política de Privacidade</Link>
+              <Link
+                href="/"
+                className={cn(
+                  buttonVariants({ variant: "link" }),
+                  "p-0 text-gray font-bold"
+                )}
+              >
+                Política de Privacidade
+              </Link>
             </li>
             <li>
-              <Link href="/portfolio">Política de Cookies</Link>
+              <Link
+                href="/portfolio"
+                className={cn(
+                  buttonVariants({ variant: "link" }),
+                  "p-0 text-gray font-bold"
+                )}
+              >
+                Política de Cookies
+              </Link>
             </li>
 
             <li>
-              <Link href="/localizacao">Livro de Reclamações</Link>
+              <Link
+                href="/localizacao"
+                className={cn(
+                  buttonVariants({ variant: "link" }),
+                  "p-0 text-gray font-bold"
+                )}
+              >
+                Livro de Reclamações
+              </Link>
             </li>
           </ul>
         </div>
@@ -64,9 +114,27 @@ const Footer = () => {
                   <li>(+351) 229 399 250</li>
                 </ul>
                 <div className="flex gap-8">
-                  <Instagram className="w-8 h-8 text-primary" />
-                  <Facebook className="w-8 h-8 text-primary" />
-                  <Linkedin className="w-8 h-8 text-primary" />
+                  <a
+                    href="https://www.instagram.com/norasil1983/"
+                    target="_blank"
+                    referrerPolicy="no-referrer"
+                  >
+                    <Instagram className="w-8 h-8 text-primary hover:scale-110 duration-300 transition ease-in-out" />
+                  </a>
+                  <a
+                    href="https://www.facebook.com/norasil.pt/"
+                    target="_blank"
+                    referrerPolicy="no-referrer"
+                  >
+                    <Facebook className="w-8 h-8 text-primary hover:scale-110 duration-300 transition ease-in-out" />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/company/norasil"
+                    target="_blank"
+                    referrerPolicy="no-referrer"
+                  >
+                    <Linkedin className="w-8 h-8 text-primary hover:scale-110 duration-300 transition ease-in-out" />
+                  </a>
                 </div>
               </div>
             </div>

@@ -23,8 +23,8 @@ const Company = () => {
     };
   }, []);
   return (
-    <div className="py-16 bg-black relative overflow-hidden">
-      <h1 className="text-5xl font-bold text-center text-white leading-[4.5rem]">
+    <div className="py-32 my-16 bg-black relative overflow-hidden">
+      <h1 className="text-5xl font-bold text-center text-white px-4 leading-[4.5rem]">
         Sobre a <span className=" bg-primary">Empresa</span>
       </h1>
       <div className="container grid lg:grid-cols-2 gap-32 pt-16 items-center">

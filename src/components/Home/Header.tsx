@@ -18,7 +18,7 @@ const Header = () => {
               <h1
                 className={cn(
                   inter.className,
-                  "text-5xl lg:text-7xl font-extrabold leading-[4.5rem] lg:leading-[5rem]"
+                  "text-5xl lg:text-7xl font-extrabold leading-[4rem] lg:leading-[5rem]"
                 )}
               >
                 40 anos <br /> de{" "}

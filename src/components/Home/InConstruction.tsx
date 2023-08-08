@@ -22,7 +22,7 @@ const InConstruction = async () => {
         Obras em <span className=" bg-secondary">Construção</span>
       </h1>
 
-      <div className="container grid lg:grid-cols-3 gap-24 py-16 mx-auto">
+      <div className="container lg:px-24 grid lg:grid-cols-3 gap-8 lg:gap-24 py-16 mx-auto">
         {posts.map((post) => (
           <PostCard post={post} key={post.id} />
         ))}
