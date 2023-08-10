@@ -1,10 +1,14 @@
+import PostsSearch from "@/components/Admin/PostsSearch";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import { Button } from "@/components/ui/Button";
+import { Button, buttonVariants } from "@/components/ui/Button";
 import { Label } from "@/components/ui/Label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/RadioGroup";
 import { db } from "@/lib/db";
+import { cn } from "@/lib/utils";
 import { MessagesSquare } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 const Page = async () => {
   const categories = await db.category.findMany({
@@ -12,11 +16,20 @@ const Page = async () => {
       createdAt: "desc",
     },
   });
+  const posts = await db.post.findMany({
+    take: 5,
+    orderBy: {
+      date: "desc",
+    },
+    include: {
+      category: true,
+    },
+  });
   return (
     <div>
       <Navbar dark />
 
-      <div className="mx-auto w-full px-16 grid grid-cols-4 gap-8 my-16">
+      <div className="mx-auto w-full px-16 grid grid-cols-4 gap-16 my-16">
         <div className="w-full space-y-8">
           <div className="bg-white border border-gray shadow p-8 space-y-8 rounded-xl">
             <h1 className="text-3xl font-bold">Status</h1>
@@ -61,13 +74,41 @@ const Page = async () => {
             <Button>Contact</Button>
           </div>
         </div>
-        <div className="col-span-3 w-full h-[80vh] bg-lightGray space-y-3 overflow-y-auto">
-          <div className="h-96 bg-red-300 w-full"></div>
-          <div className="h-96 bg-red-300 w-full"></div>
-          <div className="h-96 bg-red-300 w-full"></div>
-          <div className="h-96 bg-red-300 w-full"></div>
-          <div className="h-96 bg-red-300 w-full"></div>
-          <div className="h-96 bg-red-300 w-full"></div>
+        <div className="col-span-3 w-full h-full space-y-16">
+          <div className="px-48">
+            <PostsSearch />
+          </div>
+          <div className="w-full h-[75vh] space-y-32 overflow-y-auto">
+            {posts.map((post) => (
+              <div key={post.id} className="grid grid-cols-2 gap-8 h-96">
+                <div className="h-full relative">
+                  <Image
+                    src={post.mainImageUrl}
+                    fill
+                    alt={post.title}
+                    className="object-cover object-center"
+                  />
+                </div>
+                <div className="h-full flex flex-col justify-between">
+                  <div className="space-y-4">
+                    <h1 className="text-5xl font-bold">{post.title}</h1>
+                    <h2 className="text-darkGray text-2xl">
+                      #{post.category.title}
+                    </h2>
+                  </div>
+                  <Link
+                    href="/about"
+                    className={cn(
+                      buttonVariants({ variant: "link" }),
+                      "text-primary p-0 text-2xl font-bold w-fit"
+                    )}
+                  >
+                    See More
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
       <Footer />

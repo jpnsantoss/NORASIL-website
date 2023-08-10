@@ -59,7 +59,7 @@ const PostsSearch: FC<PostsSearchProps> = ({}) => {
   return (
     <Command
       ref={commandRef}
-      className="relative rounded-lg border z-50 overflow-visible"
+      className="relative rounded-lg border z-50 overflow-visible h-fit"
     >
       <CommandInput
         onValueChange={(text) => {
