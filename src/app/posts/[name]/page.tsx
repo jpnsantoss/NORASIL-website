@@ -16,7 +16,7 @@ import { Separator } from "@/components/ui/Separator";
 import { db } from "@/lib/db";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
-import { ChevronLeft, Clock } from "lucide-react";
+import { Calendar, ChevronLeft, Clock, Hammer } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -81,13 +81,13 @@ const Page = async ({ params }: pageProps) => {
             </div>
             <Separator orientation="vertical" className="bg-gray h-full" />
             <div className="px-8 space-y-4 flex flex-col items-center justify-center">
-              <Clock className="w-10 h-10 text-primary" />
+              <Calendar className="w-10 h-10 text-primary" />
               <h1 className="text-2xl font-bold">Prazo</h1>
               <h2 className="text-darkGray text-lg">{post.deadline}</h2>
             </div>
             <Separator orientation="vertical" className="bg-gray h-full" />
             <div className="px-8 space-y-4 flex flex-col items-center justify-center">
-              <Clock className="w-10 h-10 text-primary" />
+              <Hammer className="w-10 h-10 text-primary" />
               <h1 className="text-2xl font-bold">Status</h1>
               <h2 className="text-darkGray text-lg">
                 {post.type === "FINISHED" ? "Finished" : "In Construction"}
