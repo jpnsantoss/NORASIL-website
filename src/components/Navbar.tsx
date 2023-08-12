@@ -7,9 +7,7 @@ import {
   ImageIcon,
   LogOut,
   Menu,
-  Newspaper,
   Paperclip,
-  PaperclipIcon,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -23,7 +21,6 @@ import {
   DropdownMenuLabel,
   DropdownMenuPortal,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
@@ -32,15 +29,6 @@ import {
 
 import { FC } from "react";
 import Contact from "./Contact";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "./ui/Select";
 import { Sheet, SheetTrigger } from "./ui/Sheet";
 
 interface NavbarProps {
