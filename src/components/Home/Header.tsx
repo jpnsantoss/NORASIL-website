@@ -6,14 +6,11 @@ import { Button } from "../ui/Button";
 const inter = Inter({ subsets: ["latin"] });
 const Header = () => {
   return (
-    <div className="w-full h-full overflow-x-hidden">
-      <div className="w-full h-full absolute left-0 top-0 z-20">
-        <div className="relative w-full h-full">
+    <div className="w-full h-full min-h-[1080px] overflow-hidden">
+      <div className="w-full absolute left-0 top-0 z-20">
+        <div className="relative w-full">
           <Navbar />
-          {/* <div className="w-1/2 h-full flex items-center justify-center text-8xl font-bold text-white">
-
-          </div> */}
-          <div className="lg:py-24 px-4 lg:px-48">
+          <div className="lg:py-12 px-4 lg:px-48">
             <div className="flex flex-col gap-4">
               <h1
                 className={cn(
