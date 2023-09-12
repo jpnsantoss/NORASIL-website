@@ -7,7 +7,6 @@ import { usePathname } from "next/navigation";
 import { buttonVariants } from "./ui/Button";
 
 const Footer = () => {
-  const pathname = usePathname();
   return (
     <div className="mt-32 bg-black relative">
       <div className="w-full grid lg:grid-cols-9">
@@ -105,11 +104,7 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <div
-          className={cn("w-full h-full relative col-span-3", {
-            hidden: pathname != "/",
-          })}
-        >
+        <div className="w-full h-full relative col-span-3">
           <div className="lg:absolute w-full h-full -top-24 bg-white rounded-t-xl lg:rounded-l-xl lg:rounded-tr-none shadow-[-2px_-2px_10px_0px_rgba(0,0,0,0.25)] p-8">
             <div className="flex gap-4 h-full">
               <MessagesSquare className="w-10 h-10 text-primary" />

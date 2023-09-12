@@ -39,12 +39,12 @@ const Page = async () => {
                 key={post.id}
                 className="grid lg:grid-cols-2 gap-8 px-4 lg:h-96"
               >
-                <div className="h-64 lg:h-full relative">
+                <div className="h-64 lg:h-full relative rounded-lg overflow-hidden group">
                   <Image
                     src={post.mainImageUrl}
                     fill
                     alt={post.title}
-                    className="object-cover object-center rounded-lg"
+                    className="object-center object-cover group-hover:scale-110 transition ease-in-out duration-300"
                   />
                 </div>
                 <div className="h-full flex flex-col lg:justify-between">

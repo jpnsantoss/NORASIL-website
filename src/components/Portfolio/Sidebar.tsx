@@ -16,14 +16,27 @@ interface SidebarProps {
 }
 
 const Sidebar: FC<SidebarProps> = ({ categories }) => {
-  const [scroll, setScroll] = useState<boolean>(false);
+  const [scroll, setScroll] = useState(false);
+  const [contact, setContact] = useState(false);
+  const scrollThreshold = 100;
+
   const handleScroll = () => {
-    if (window.scrollY > 100) {
+    const distanceFromBottom =
+      document.documentElement.scrollHeight -
+      window.innerHeight -
+      window.scrollY;
+
+    if (window.scrollY > scrollThreshold) {
       setScroll(true);
-      console.log(scroll);
     } else {
       setScroll(false);
-      console.log(scroll);
+    }
+
+    if (distanceFromBottom < scrollThreshold) {
+      setContact(true);
+      // Load more content or trigger an action here
+    } else {
+      setContact(false);
     }
   };
 
@@ -71,7 +84,14 @@ const Sidebar: FC<SidebarProps> = ({ categories }) => {
           ))}
         </RadioGroup>
       </div>
-      <div className="bg-white border border-gray shadow p-8 gap-4 rounded-xl flex flex-col">
+      <div
+        className={cn(
+          "bg-white border border-gray shadow p-8 gap-4 rounded-xl flex flex-col transition-transform ease-in-out duration-300",
+          {
+            "scale-0": contact,
+          }
+        )}
+      >
         <div className="flex gap-4 items-center">
           <MessagesSquare className="text-primary w-8 h-8" />
 
