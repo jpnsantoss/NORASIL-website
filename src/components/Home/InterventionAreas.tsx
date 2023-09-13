@@ -11,7 +11,7 @@ interface InterventionAreasProps {
 const InterventionAreas: FC<InterventionAreasProps> = ({ categories }) => {
   const [selected, setSelected] = useState(categories[0].id);
   return (
-    <div className="py-16 grid container gap-8">
+    <div className="py-16 grid gap-8">
       <div className="flex gap-8 w-full justify-center">
         {categories.map((category) => (
           <Button
@@ -23,7 +23,7 @@ const InterventionAreas: FC<InterventionAreasProps> = ({ categories }) => {
           </Button>
         ))}
       </div>
-      <div className="max-w-full overflow-hidden flex">
+      {/* <div className="max-w-full overflow-hidden flex">
         {categories.map((category) => (
           <div key={category.id} className="relative">
             <Image
@@ -34,6 +34,25 @@ const InterventionAreas: FC<InterventionAreasProps> = ({ categories }) => {
             />
           </div>
         ))}
+      </div> */}
+
+      <div className="flex p-0 items-center justify-center">
+        <div id="wrapper" className="max-w-[1400px] relative">
+          <div
+            id="carousel"
+            className="no-scrollbar flex gap-16 cursor-grab overflow-x-scroll scroll-smooth snap-mandatory snap-x"
+          >
+            {categories.map((category) => (
+              <img
+                key={category.id}
+                src={category.imageUrl}
+                alt="img"
+                draggable="false"
+                className="flex-shrink-0 h-[600px] w-[1000px] object-cover snap-start"
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
