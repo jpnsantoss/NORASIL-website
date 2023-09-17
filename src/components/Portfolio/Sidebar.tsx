@@ -86,7 +86,7 @@ const Sidebar: FC<SidebarProps> = ({ categories }) => {
       </div>
       <div
         className={cn(
-          "bg-white border border-gray shadow p-8 gap-4 rounded-xl flex flex-col transition-transform ease-in-out duration-300",
+          "bg-white border hidden lg:flex border-gray shadow p-8 gap-4 rounded-xl flex-col transition-transform ease-in-out duration-300",
           {
             "scale-0": contact,
           }

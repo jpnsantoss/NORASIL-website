@@ -1,59 +1,53 @@
-"use client";
-import { Category } from "@prisma/client";
+import { db } from "@/lib/db";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { FC, useState } from "react";
-import { Button } from "../ui/Button";
+import { AspectRatio } from "../ui/AspectRatio";
+import { buttonVariants } from "../ui/Button";
+import { Separator } from "../ui/Separator";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/Tabs";
 
-interface InterventionAreasProps {
-  categories: Category[];
-}
+const InterventionAreas = async () => {
+  const categories = await db.category.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
 
-const InterventionAreas: FC<InterventionAreasProps> = ({ categories }) => {
-  const [selected, setSelected] = useState(categories[0].id);
   return (
-    <div className="py-16 grid gap-8">
-      <div className="flex gap-8 w-full justify-center">
+    <div className="w-full px-4 lg:px-48 py-16">
+      <h1 className="text-5xl font-bold text-center leading-[4.5rem]">
+        Áreas de <span className=" bg-secondary">Intervenção</span>
+      </h1>
+      <Tabs defaultValue={categories[0].name} className="pt-16">
+        <TabsList className="h-full flex flex-col xl:flex-row w-full gap-8 bg-transparent">
+          {categories.map((category) => (
+            <TabsTrigger
+              key={category.id}
+              value={category.name}
+              // className="font-bold text-2xl text-darkGray"
+              className={cn(buttonVariants({ variant: "outline" }))}
+            >
+              {category.title}
+            </TabsTrigger>
+          ))}
+        </TabsList>
         {categories.map((category) => (
-          <Button
+          <TabsContent
             key={category.id}
-            variant={category.id === selected ? "default" : "outline"}
-            onClick={() => setSelected(category.id)}
+            value={category.name}
+            className="container py-8 px-4 lg:px-48 relative"
           >
-            {category.title}
-          </Button>
-        ))}
-      </div>
-      {/* <div className="max-w-full overflow-hidden flex">
-        {categories.map((category) => (
-          <div key={category.id} className="relative">
-            <Image
-              src={category.imageUrl}
-              width={1500}
-              height={1500}
-              alt={category.name}
-            />
-          </div>
-        ))}
-      </div> */}
-
-      <div className="flex p-0 items-center justify-center">
-        <div id="wrapper" className="max-w-[1400px] relative">
-          <div
-            id="carousel"
-            className="no-scrollbar flex gap-16 cursor-grab overflow-x-scroll scroll-smooth snap-mandatory snap-x"
-          >
-            {categories.map((category) => (
-              <img
-                key={category.id}
+            <AspectRatio ratio={16 / 9} className="bg-muted shadow rounded-md">
+              <Image
                 src={category.imageUrl}
-                alt="img"
-                draggable="false"
-                className="flex-shrink-0 h-[600px] w-[1000px] object-cover snap-start"
+                alt={category.title}
+                fill
+                className="rounded-md object-cover"
               />
-            ))}
-          </div>
-        </div>
-      </div>
+            </AspectRatio>
+          </TabsContent>
+        ))}
+      </Tabs>
     </div>
   );
 };

@@ -30,7 +30,7 @@ const Page = async () => {
       <div className="mx-auto w-full lg:px-16 grid lg:grid-cols-4 gap-16 my-16">
         <Sidebar categories={categories} />
         <div className="lg:col-span-3 lg:col-start-2 w-full h-full space-y-16">
-          <div className="px-4 w-1/2">
+          <div className="px-4 lg:w-1/2">
             <PostsSearch />
           </div>
           <div className="w-full space-y-16 lg:space-y-32">

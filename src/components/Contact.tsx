@@ -1,3 +1,5 @@
+import { Mail, Map, MapPin, Phone, Pin } from "lucide-react";
+import Image from "next/image";
 import { Button } from "./ui/Button";
 import { Input } from "./ui/Input";
 import { Label } from "./ui/Label";
@@ -13,31 +15,45 @@ import {
 const Contact = () => {
   return (
     <SheetContent>
-      <SheetHeader>
-        <SheetTitle>Edit profile</SheetTitle>
-        <SheetDescription>
-          Make changes to your profile here. Click save when you done.
-        </SheetDescription>
-      </SheetHeader>
-      <div className="grid gap-4 py-4">
-        <div className="grid grid-cols-4 items-center gap-4">
-          <Label htmlFor="name" className="text-right">
-            Name
-          </Label>
-          <Input id="name" value="Pedro Duarte" className="col-span-3" />
+      <div className="container flex flex-col gap-4 h-full items-center justify-center mx-auto p-4">
+        <div className="my-4 overflow-hidden rounded-full">
+          <Image
+            src={"/assets/images/icon.svg"}
+            alt="Norasil"
+            width={150}
+            height={150}
+          />
         </div>
-        <div className="grid grid-cols-4 items-center gap-4">
-          <Label htmlFor="username" className="text-right">
-            Username
-          </Label>
-          <Input id="username" value="@peduarte" className="col-span-3" />
+        <div className="text-center">
+          <h1 className="font-bold font-title text-3xl uppercase">Norasil</h1>
+          <h2 className="font-medium font-title">
+            Soc. de Construção Civil, S.A.
+          </h2>
+        </div>
+        <div className="py-8 space-y-16">
+          <div className="flex items-center text-center flex-col gap-2">
+            <Phone />
+            <div>
+              <h2 className="text-lg font-semibold">Telefone (Sede)</h2>
+              <p className="text-sm">(+351) 229 399 250</p>
+            </div>
+          </div>
+          <div className="flex items-center text-center flex-col gap-2">
+            <Mail />
+            <div>
+              <h2 className="text-lg font-semibold">Endereço de E-Mail</h2>
+              <p className="text-sm">(+351) 229 399 250</p>
+            </div>
+          </div>
+          <div className="flex items-center text-center flex-col gap-2">
+            <MapPin />
+            <div>
+              <h2 className="text-lg font-semibold">Localização (Sede)</h2>
+              <p className="text-sm">Rua de Brito Capelo 598, Matosinhos</p>
+            </div>
+          </div>
         </div>
       </div>
-      <SheetFooter>
-        <SheetClose asChild>
-          <Button type="submit">Save changes</Button>
-        </SheetClose>
-      </SheetFooter>
     </SheetContent>
   );
 };

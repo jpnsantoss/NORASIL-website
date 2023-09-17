@@ -3,7 +3,7 @@ import Company from "@/components/Home/Company";
 import FindUs from "@/components/Home/FindUs";
 import Header from "@/components/Home/Header";
 import InConstruction from "@/components/Home/InConstruction";
-import InterventionAreasContainer from "@/components/Home/InterventionAreasContainer";
+import InterventionAreas from "@/components/Home/InterventionAreas";
 import QualityPolicy from "@/components/Home/QualityPolicy";
 import ValueOffer from "@/components/Home/ValueOffer";
 
@@ -16,7 +16,7 @@ const page = () => {
       <ValueOffer />
       <Company />
       {/* @ts-expect-error server component */}
-      <InterventionAreasContainer />
+      <InterventionAreas />
       <QualityPolicy />
       <FindUs />
       <Footer />
