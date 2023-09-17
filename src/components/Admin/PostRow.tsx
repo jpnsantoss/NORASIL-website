@@ -1,12 +1,7 @@
 "use client";
-import { toast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
-import { DeletePostRequest } from "@/lib/validators/post";
 import { ExtendedPost } from "@/types/db";
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { FC } from "react";
 import { buttonVariants } from "../ui/Button";
 import { TableCell } from "../ui/Table";

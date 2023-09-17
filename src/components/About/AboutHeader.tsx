@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 import { Inter } from "next/font/google";
-import Image from "next/image";
 import { FC } from "react";
 import { Button } from "../ui/Button";
 

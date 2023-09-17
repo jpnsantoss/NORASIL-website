@@ -58,26 +58,6 @@ const Company = () => {
             </Link>
           </h3>
         </div>
-        {/* <div className="relative z-10 h-[25vh] lg:h-full m-4">
-          <Image
-            src="/assets/images/company/pic1.jpg"
-            alt="Norasil"
-            fill
-            className="object-cover object-center -rotate-6"
-          />
-          <Image
-            src="/assets/images/company/pic2.jpg"
-            alt="Norasil"
-            fill
-            className="object-cover object-center rotate-6"
-          />
-          <Image
-            src="/assets/images/company/pic3.jpg"
-            alt="Norasil"
-            fill
-            className="object-cover object-center"
-          />
-        </div> */}
 
         <div className="z-10 flex flex-col items-center gap-8">
           <div className="relative h-[25vh] md:h-[35vh] p-4 w-full flex justify-center">

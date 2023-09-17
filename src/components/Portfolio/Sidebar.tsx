@@ -6,7 +6,6 @@ import { RadioGroup, RadioGroupItem } from "../ui/RadioGroup";
 
 import { cn } from "@/lib/utils";
 import { Category } from "@prisma/client";
-import { link } from "fs";
 import { MessagesSquare } from "lucide-react";
 import { FC } from "react";
 import { Button } from "../ui/Button";

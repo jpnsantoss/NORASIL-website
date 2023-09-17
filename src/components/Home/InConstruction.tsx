@@ -1,5 +1,7 @@
 import { db } from "@/lib/db";
-import { Button } from "../ui/Button";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { Button, buttonVariants } from "../ui/Button";
 import PostCard from "./PostCard";
 
 const InConstruction = async () => {
@@ -28,12 +30,12 @@ const InConstruction = async () => {
         ))}
       </div>
       <div className="w-full flex justify-center">
-        <Button
-          size={"lg"}
-          className="text-xl font-bold py-6 px-10 rounded-lg shadow-md shadow-secondary"
+        <Link
+          href={"/portfolio"}
+          className={cn(buttonVariants({ size: "lg" }), "shadow-btn")}
         >
           Ver Obras
-        </Button>
+        </Link>
       </div>
     </div>
   );

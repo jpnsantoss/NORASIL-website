@@ -1,16 +1,6 @@
-import { Mail, Map, MapPin, Phone, Pin } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import Image from "next/image";
-import { Button } from "./ui/Button";
-import { Input } from "./ui/Input";
-import { Label } from "./ui/Label";
-import {
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-} from "./ui/Sheet";
+import { SheetContent } from "./ui/Sheet";
 
 const Contact = () => {
   return (

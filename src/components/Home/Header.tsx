@@ -1,12 +1,15 @@
+"use client";
 import { cn } from "@/lib/utils";
 import { Inter } from "next/font/google";
+import Image from "next/image";
+import Link from "next/link";
 import Navbar from "../Navbar";
-import { Button } from "../ui/Button";
+import { buttonVariants } from "../ui/Button";
 
 const inter = Inter({ subsets: ["latin"] });
 const Header = () => {
   return (
-    <div className="w-full h-full lg:min-h-[1080px] overflow-hidden">
+    <div className="w-full h-full lg:min-h-[900px] overflow-hidden">
       <div className="w-full absolute left-0 top-0 z-20">
         <div className="relative w-full">
           <Navbar />
@@ -27,9 +30,12 @@ const Header = () => {
                 construções seguras, duráveis e únicas.
               </p>
               <div>
-                <Button className="font-bold text-2xl p-6 my-4" size={"lg"}>
+                <Link
+                  href={"/portfolio"}
+                  className={cn(buttonVariants({ size: "lg" }), "my-4")}
+                >
                   Ver obras
-                </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -50,9 +56,9 @@ const Header = () => {
         </div>
       </div>
       <div
-        className="hidden 2xl:block bg-cover bg-left ml-[40%] before:-ml-[70%] w-[60%] h-full relative before:absolute before:w-full before:h-full before:bg-white before:top-0 before:-left-[10%] before:transform before:skew-x-12"
+        className="hidden 2xl:block ml-[40%] before:-ml-[70%] w-[60%] h-full relative before:absolute before:w-full before:h-full before:bg-white before:top-0 before:-left-[10%] before:transform before:skew-x-12"
         style={{
-          backgroundImage: "url('/assets/images/background.png')",
+          backgroundImage: "url('/assets/images/background.webp')",
         }}
       ></div>
     </div>

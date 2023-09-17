@@ -8,6 +8,7 @@ import {
   LogOut,
   Menu,
   Paperclip,
+  Phone,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -39,7 +40,14 @@ const Navbar: FC<NavbarProps> = ({ dark }) => {
   const pathname = usePathname();
   return (
     <div className="flex justify-between items-center py-16 px-4 lg:px-48">
-      <Image src="/assets/images/logo.png" width="300" height="66" alt="Logo" />
+      <Link href={"/"}>
+        <Image
+          src="/assets/images/Logo.svg"
+          width="280"
+          height="66"
+          alt="Logo"
+        />
+      </Link>
       <ul className="2xl:flex gap-8 items-center text-xl font-bold text-darkGray 2xl:text-white hidden">
         <li>
           <Link
@@ -100,14 +108,28 @@ const Navbar: FC<NavbarProps> = ({ dark }) => {
             <DropdownMenuContent className="w-56">
               <DropdownMenuLabel>Pdf Documents</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <Building className="mr-2 h-4 w-4" />
-                <span>Alvará de Construção</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <FileSearch className="mr-2 h-4 w-4" />
-                <span>Relatório de Contas</span>
-              </DropdownMenuItem>
+              <Link
+                href="/assets/documents/AlvaraDeConstrucao.pdf"
+                locale={false}
+                target="_blank"
+                referrerPolicy="no-referrer"
+              >
+                <DropdownMenuItem className="hover:cursor-pointer">
+                  <Building className="mr-2 h-4 w-4" />
+                  <span>Alvará de Construção</span>
+                </DropdownMenuItem>
+              </Link>
+              <Link
+                href="/assets/documents/RelatorioDeContas.pdf"
+                locale={false}
+                target="_blank"
+                referrerPolicy="no-referrer"
+              >
+                <DropdownMenuItem className="hover:cursor-pointer">
+                  <FileSearch className="mr-2 h-4 w-4" />
+                  <span>Relatório de Contas</span>
+                </DropdownMenuItem>
+              </Link>
             </DropdownMenuContent>
           </DropdownMenu>
         </li>
@@ -157,9 +179,7 @@ const Navbar: FC<NavbarProps> = ({ dark }) => {
       </ul>
       <DropdownMenu>
         <DropdownMenuTrigger className="2xl:hidden" asChild>
-          <Button variant="ghost" size={"xs"} className="hover:bg-primary">
-            <Menu className="w-8 h-8" />
-          </Button>
+          <Menu className="w-10 h-10 hover:cursor-pointer hover:scale-110 transition duration-300 ease-in-out" />
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56">
           <DropdownMenuLabel>Onde queres ir?</DropdownMenuLabel>
@@ -178,18 +198,32 @@ const Navbar: FC<NavbarProps> = ({ dark }) => {
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSub>
-              <DropdownMenuSubTrigger>
+              <DropdownMenuSubTrigger className="hover:cursor-pointer">
                 <Paperclip className="mr-2 h-4 w-4" />
                 <span>Documentos</span>
               </DropdownMenuSubTrigger>
               <DropdownMenuPortal>
                 <DropdownMenuSubContent>
-                  <DropdownMenuItem>
-                    <span>Alvará de Construção</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <span>Relatório de Contas</span>
-                  </DropdownMenuItem>
+                  <Link
+                    href="/assets/documents/AlvaraDeConstrucao.pdf"
+                    locale={false}
+                    target="_blank"
+                    referrerPolicy="no-referrer"
+                  >
+                    <DropdownMenuItem className="hover:cursor-pointer">
+                      <span>Alvará de Construção</span>
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link
+                    href="/assets/documents/RelatorioDeContas.pdf"
+                    locale={false}
+                    target="_blank"
+                    referrerPolicy="no-referrer"
+                  >
+                    <DropdownMenuItem className="hover:cursor-pointer">
+                      <span>Relatório de Contas</span>
+                    </DropdownMenuItem>
+                  </Link>
                 </DropdownMenuSubContent>
               </DropdownMenuPortal>
             </DropdownMenuSub>
@@ -200,11 +234,6 @@ const Navbar: FC<NavbarProps> = ({ dark }) => {
               </Link>
             </DropdownMenuItem>
           </DropdownMenuGroup>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>
-            <LogOut className="mr-2 h-4 w-4" />
-            <span>Log out</span>
-          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>

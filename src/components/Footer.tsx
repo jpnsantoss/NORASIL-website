@@ -3,7 +3,6 @@ import { cn } from "@/lib/utils";
 import { Facebook, Instagram, Linkedin, MessagesSquare } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { buttonVariants } from "./ui/Button";
 
 const Footer = () => {
@@ -12,10 +11,10 @@ const Footer = () => {
       <div className="w-full grid lg:grid-cols-9">
         <div className="lg:mx-auto col-span-2 space-y-4 py-8 px-8 lg:py-16 lg:pl-16">
           <Image
-            src="/assets/images/logo_light.png"
+            src="/assets/images/LogoLight.svg"
             alt="Logo"
             width={240}
-            height={100}
+            height={56}
           />
           <p className="text-gray font-bold">
             Com experiência no mercado, <br /> investimos em inovação <br />

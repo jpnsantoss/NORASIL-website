@@ -25,11 +25,11 @@ const QualityPolicy = () => {
                 Comprometidos com a excelência em cada projeto.
               </h1>
               <h2 className="text-gray font-bold text-2xl">
-                Want to know more <br /> about us?
+                Está interessado em <br /> saber mais?
               </h2>
             </div>
             <div>
-              <Button className="font-bold">About us</Button>
+              <Button className="font-bold">Sobre nós</Button>
             </div>
           </div>
           <div className="w-full shadow border border-lightGray rounded-xl space-y-6 p-8">

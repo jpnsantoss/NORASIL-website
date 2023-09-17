@@ -44,7 +44,7 @@ const Page = async () => {
                     src={post.mainImageUrl}
                     fill
                     alt={post.title}
-                    className="object-center object-cover group-hover:scale-110 transition ease-in-out duration-300"
+                    className="object-center object-cover group-hover:scale-110 transition ease-in-out duration-500"
                   />
                 </div>
                 <div className="h-full flex flex-col lg:justify-between">

@@ -12,7 +12,7 @@ const Story = () => {
           <Separator className="bg-gray w-full h-px" />
           <TabsTrigger
             value="creation"
-            className="font-bold text-2xl text-darkGray"
+            className="font-bold text-2xl bg-transparent data-[state=active]:bg-transparent"
           >
             [ Creation ]
           </TabsTrigger>

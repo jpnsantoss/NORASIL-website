@@ -13,7 +13,7 @@ const ValueOffer: FC = () => {
             src="/assets/images/valueoffer/pic2.jpg"
             alt="Competência"
             fill
-            className="object-center object-cover group-hover:scale-110 transition ease-in-out duration-300"
+            className="object-center object-cover group-hover:scale-105 transition ease-in-out duration-500"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent from-30% to-[#000] pointer-events-none"></div>
           <div className="absolute bottom-0 w-full p-8 space-y-2">
@@ -27,7 +27,7 @@ const ValueOffer: FC = () => {
               href="/about"
               className={cn(
                 buttonVariants({ variant: "link" }),
-                "text-primary p-0 text-xl"
+                "text-primary p-0 text-2xl"
               )}
             >
               See More
@@ -46,9 +46,12 @@ const ValueOffer: FC = () => {
               nossos clientes, combinando o nosso conhecimento técnico e
               compromisso com o prazo e orçamento.
             </p>
-            <Button className="shadow-btn" size={"lg"}>
+            <Link
+              href={"/about"}
+              className={cn(buttonVariants(), "shadow-btn")}
+            >
               Ver Tudo
-            </Button>
+            </Link>
           </div>
         </div>
         <div className="w-full relative rounded-xl h-[40vh] overflow-hidden group">
@@ -56,7 +59,7 @@ const ValueOffer: FC = () => {
             src="/assets/images/valueoffer/pic1.jpg"
             alt="Competência"
             fill
-            className="object-center object-cover group-hover:scale-110 transition ease-in-out duration-300"
+            className="object-center object-cover group-hover:scale-105 transition ease-in-out duration-500"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent from-30% to-[#000] pointer-events-none"></div>
           <div className="absolute bottom-0 w-full p-8 space-y-2">
@@ -70,7 +73,7 @@ const ValueOffer: FC = () => {
               href="/about"
               className={cn(
                 buttonVariants({ variant: "link" }),
-                "text-primary p-0 text-xl"
+                "text-primary p-0 text-2xl"
               )}
             >
               See More

@@ -3,8 +3,8 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { AspectRatio } from "../ui/AspectRatio";
 import { buttonVariants } from "../ui/Button";
-import { Separator } from "../ui/Separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/Tabs";
+import InterventionImages from "./InterventionImages";
 
 const InterventionAreas = async () => {
   const categories = await db.category.findMany({
@@ -25,27 +25,17 @@ const InterventionAreas = async () => {
               key={category.id}
               value={category.name}
               // className="font-bold text-2xl text-darkGray"
-              className={cn(buttonVariants({ variant: "outline" }))}
+              className={cn(
+                buttonVariants({ variant: "outline" }),
+                "data-[state=active]:bg-secondary data-[state=active]:outline-secondary data-[state=active]:text-darkGray"
+              )}
             >
               {category.title}
             </TabsTrigger>
           ))}
         </TabsList>
         {categories.map((category) => (
-          <TabsContent
-            key={category.id}
-            value={category.name}
-            className="container py-8 px-4 lg:px-48 relative"
-          >
-            <AspectRatio ratio={16 / 9} className="bg-muted shadow rounded-md">
-              <Image
-                src={category.imageUrl}
-                alt={category.title}
-                fill
-                className="rounded-md object-cover"
-              />
-            </AspectRatio>
-          </TabsContent>
+          <InterventionImages key={category.id} category={category} />
         ))}
       </Tabs>
     </div>

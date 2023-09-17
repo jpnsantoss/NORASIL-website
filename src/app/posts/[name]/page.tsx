@@ -2,10 +2,7 @@ import Footer from "@/components/Footer";
 import InConstruction from "@/components/Home/InConstruction";
 import Navbar from "@/components/Navbar";
 import PostDetails from "@/components/Portfolio/PostDetails";
-import { Separator } from "@/components/ui/Separator";
 import { db } from "@/lib/db";
-import { format } from "date-fns";
-import { Calendar, Clock, Hammer } from "lucide-react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
