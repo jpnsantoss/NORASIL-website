@@ -73,7 +73,7 @@ const Company = () => {
               )}
             >
               <Image
-                src="/assets/images/company/pic1.jpg"
+                src="/assets/images/company/pic1.webp"
                 alt="Company 1"
                 fill
                 className="object-cover object-center"
@@ -91,7 +91,7 @@ const Company = () => {
               )}
             >
               <Image
-                src="/assets/images/company/pic2.jpg"
+                src="/assets/images/company/pic2.webp"
                 alt="Company 2"
                 fill
                 className="object-cover object-center"
@@ -109,7 +109,7 @@ const Company = () => {
               )}
             >
               <Image
-                src="/assets/images/company/pic3.jpg"
+                src="/assets/images/company/pic3.webp"
                 alt="Company 3"
                 fill
                 className="object-cover object-center"

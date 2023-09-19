@@ -1,7 +1,7 @@
 import { db } from "@/lib/db";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { Button, buttonVariants } from "../ui/Button";
+import { buttonVariants } from "../ui/Button";
 import PostCard from "./PostCard";
 
 const InConstruction = async () => {

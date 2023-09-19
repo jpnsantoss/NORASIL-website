@@ -16,9 +16,9 @@ const Page: FC<pageProps> = ({}) => {
     <div>
       <Navbar dark />
       <AboutHeader />
-      <div className="w-full h-24 lg:h-64 shadow-inner relative my-16">
+      <div className="w-full h-[15vh] lg:h-[25vh] shadow-inner relative my-16">
         <Image
-          src="/assets/images/about_banner.png"
+          src="/assets/images/about_banner.webp"
           alt="Banner"
           fill
           className="object-cover object-center"
