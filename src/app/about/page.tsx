@@ -1,3 +1,4 @@
+import AboutBanner from "@/components/About/AboutBanner";
 import AboutHeader from "@/components/About/AboutHeader";
 import QualityPolicy from "@/components/About/QualityPolicy";
 import Sqa from "@/components/About/Sqa";
@@ -16,14 +17,7 @@ const Page: FC<pageProps> = ({}) => {
     <div>
       <Navbar dark />
       <AboutHeader />
-      <div className="w-full h-[15vh] lg:h-[25vh] shadow-inner relative my-16">
-        <Image
-          src="/assets/images/about_banner.webp"
-          alt="Banner"
-          fill
-          className="object-cover object-center"
-        />
-      </div>
+      <AboutBanner />
       <Story />
       <QualityPolicy />
       <ValueOffer />

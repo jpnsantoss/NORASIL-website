@@ -1,11 +1,11 @@
 import PostsSearch from "@/components/Admin/PostsSearch";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import PortfolioImage from "@/components/Portfolio/PortfolioImage";
 import Sidebar from "@/components/Portfolio/Sidebar";
 import { buttonVariants } from "@/components/ui/Button";
 import { db } from "@/lib/db";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
 import Link from "next/link";
 
 const Page = async () => {
@@ -39,14 +39,7 @@ const Page = async () => {
                 key={post.id}
                 className="grid lg:grid-cols-2 gap-8 px-4 lg:h-96"
               >
-                <div className="h-64 lg:h-full relative rounded-lg overflow-hidden group">
-                  <Image
-                    src={post.mainImageUrl}
-                    fill
-                    alt={post.title}
-                    className="object-center object-cover group-hover:scale-110 transition ease-in-out duration-500"
-                  />
-                </div>
+                <PortfolioImage post={post} />
                 <div className="h-full flex flex-col lg:justify-between">
                   <div className="space-y-4">
                     <h1 className="text-3xl lg:text-5xl font-bold">

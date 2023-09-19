@@ -43,43 +43,59 @@ const PostDetails: FC<PostDetailsProps> = ({ images, post }) => {
               <button
                 key={image.id}
                 onClick={() => setOpen(true)}
-                className="h-64 relative rounded-xl overflow-hidden group"
+                className="h-64 relative rounded-xl bg-lightGray overflow-hidden group"
               >
                 <Image
                   src={image.url}
                   fill
                   alt={`Image n${index}`}
-                  className="object-center object-cover group-hover:scale-110 transition ease-in-out duration-300"
+                  loading="lazy"
+                  className="rounded-md object-cover transition opacity-0 duration-500 object-center  group-hover:scale-105 ease-in-out "
+                  onLoadingComplete={(image) =>
+                    image.classList.remove("opacity-0")
+                  }
                 />
               </button>
             ))
           ) : (
             <>
-              <div className="h-64 relative rounded-xl overflow-hidden group">
+              <div className="h-64 relative rounded-xl bg-lightGray overflow-hidden group">
                 <Image
                   src={images[0].url}
                   fill
                   alt={`Image n0`}
-                  className="object-center object-cover group-hover:scale-110 transition ease-in-out duration-300"
+                  loading="lazy"
+                  className="rounded-md object-cover transition opacity-0 duration-500 object-center  group-hover:scale-105 ease-in-out "
+                  onLoadingComplete={(image) =>
+                    image.classList.remove("opacity-0")
+                  }
                 />
               </div>
-              <div className="h-64 relative rounded-xl overflow-hidden group">
+              <div className="h-64 relative rounded-xl bg-lightGray overflow-hidden group">
                 <Image
                   src={images[1].url}
                   fill
                   alt={`Image n0`}
-                  className="object-center object-cover group-hover:scale-110 transition ease-in-out duration-300"
+                  loading="lazy"
+                  className="rounded-md object-cover transition opacity-0 duration-500 object-center  group-hover:scale-105 ease-in-out "
+                  onLoadingComplete={(image) =>
+                    image.classList.remove("opacity-0")
+                  }
                 />
               </div>
               <button
                 onClick={() => setShowImages((prev) => !prev)}
-                className="h-64 relative rounded-xl overflow-hidden group"
+                className="h-64 relative rounded-xl bg-lightGray overflow-hidden group"
               >
                 <Image
                   src={images[2].url}
                   fill
                   alt={`Image n0`}
-                  className="object-center object-cover group-hover:scale-110 transition ease-in-out duration-300"
+                  loading="lazy"
+                  className="rounded-md object-cover transition opacity-0 duration-500 object-center  group-hover:scale-105 ease-in-out "
+                  onLoadingComplete={(image) =>
+                    image.classList.remove("opacity-0")
+                  }
                 />
                 <div className="w-full h-full bg-black opacity-75 absolute top-0 left-0" />
                 <div className="w-full h-full flex items-center justify-center">
@@ -100,7 +116,7 @@ const PostDetails: FC<PostDetailsProps> = ({ images, post }) => {
         <div className="border border-gray h-64 rounded-xl py-8 flex justify-center items-center gap-8">
           <div className="px-8 space-y-4 flex flex-col items-center justify-center">
             <Clock className="w-10 h-10 text-primary" />
-            <h1 className="text-2xl font-bold">Date</h1>
+            <h1 className="text-2xl font-bold">Data</h1>
             <h2 className="text-darkGray text-lg">
               {format(post.date, "dd/MM/yyyy")}
             </h2>
@@ -114,9 +130,9 @@ const PostDetails: FC<PostDetailsProps> = ({ images, post }) => {
           <Separator orientation="vertical" className="bg-gray h-full" />
           <div className="px-8 space-y-4 flex flex-col items-center justify-center">
             <Hammer className="w-10 h-10 text-primary" />
-            <h1 className="text-2xl font-bold">Status</h1>
+            <h1 className="text-2xl font-bold">Estado</h1>
             <h2 className="text-darkGray text-lg">
-              {post.type === "FINISHED" ? "Finished" : "In Construction"}
+              {post.type === "FINISHED" ? "Terminado" : "Em Construção"}
             </h2>
           </div>
         </div>
@@ -132,7 +148,7 @@ const PostDetails: FC<PostDetailsProps> = ({ images, post }) => {
           {images.slice(2).map((image) => (
             <div
               key={image.id}
-              className="h-64 relative rounded-xl overflow-hidden group"
+              className="h-64 relative rounded-xl bg-lightGray overflow-hidden group"
             >
               <Image
                 src={image.url}

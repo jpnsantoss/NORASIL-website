@@ -2,6 +2,7 @@ import Footer from "@/components/Footer";
 import InConstruction from "@/components/Home/InConstruction";
 import Navbar from "@/components/Navbar";
 import PostDetails from "@/components/Portfolio/PostDetails";
+import PostImage from "@/components/Portfolio/PostImage";
 import { db } from "@/lib/db";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -30,16 +31,20 @@ const Page = async ({ params }: pageProps) => {
     <div className="">
       <Navbar dark />
       <div className="container space-y-8">
-        <div className="relative w-full h-[60vh] rounded-xl shadow-md overflow-hidden group">
-          <Image
-            src={post.mainImageUrl}
-            alt={post.title}
-            fill
-            className="object-center object-cover group-hover:scale-105 transition ease-in-out duration-500"
-          />
-        </div>
+        <PostImage post={post} />
 
         <PostDetails post={post} images={post.images} />
+        <div className="space-y-4">
+          <h1 className="text-5xl font-bold">{post.title}</h1>
+          <h2 className="text-2xl text-darkGray">
+            <span className="text-primary"># </span>
+            {post.category.title}
+          </h2>
+          <h2 className="text-2xl text-darkGray">
+            <span className="font-bold text-black">Cliente: </span>
+            {post.client}
+          </h2>
+        </div>
       </div>
 
       {/* @ts-expect-error server component */}
