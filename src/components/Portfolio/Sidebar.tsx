@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Label } from "../ui/Label";
 import { RadioGroup, RadioGroupItem } from "../ui/RadioGroup";
 
@@ -9,6 +9,7 @@ import { Category } from "@prisma/client";
 import { MessagesSquare } from "lucide-react";
 import { FC } from "react";
 import { Button } from "../ui/Button";
+import { PortfolioContext } from "./PortfolioContainer";
 
 interface SidebarProps {
   categories: Category[];
@@ -17,6 +18,23 @@ interface SidebarProps {
 const Sidebar: FC<SidebarProps> = ({ categories }) => {
   const [scroll, setScroll] = useState(false);
   const [contact, setContact] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const portfolioContext = useContext(PortfolioContext);
+
+  if (!portfolioContext) {
+    // Handle the case when the context is null
+    return null; // Or return some default value or component
+  }
+
+  const { category, setCategory, status, setStatus } = portfolioContext;
+
   const scrollThreshold = 100;
 
   const handleScroll = () => {
@@ -39,13 +57,6 @@ const Sidebar: FC<SidebarProps> = ({ categories }) => {
     }
   };
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
     <div
       className={cn(
@@ -55,15 +66,25 @@ const Sidebar: FC<SidebarProps> = ({ categories }) => {
     >
       <div className="bg-white border border-gray shadow p-8 space-y-8 rounded-xl">
         <h1 className="text-3xl font-bold">Status</h1>
-        <RadioGroup defaultValue="FINISHED" className="space-y-4">
+        <RadioGroup
+          defaultValue="all"
+          onValueChange={(value) => setStatus(value)}
+          className="space-y-4"
+        >
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="FINISHED" id="finished" />
+            <RadioGroupItem value="all" id="all" />
+            <Label htmlFor="all" className="text-lg font-semibold">
+              All
+            </Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="finished" id="finished" />
             <Label htmlFor="finished" className="text-lg font-semibold">
               Finished Projects
             </Label>
           </div>
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="CONSTRUCTION" id="construction" />
+            <RadioGroupItem value="construction" id="construction" />
             <Label htmlFor="construction" className="text-lg font-semibold">
               Under Construction
             </Label>
@@ -72,10 +93,22 @@ const Sidebar: FC<SidebarProps> = ({ categories }) => {
       </div>
       <div className="bg-white border border-gray shadow p-8 space-y-8 rounded-xl">
         <h1 className="text-3xl font-bold">Categories</h1>
-        <RadioGroup defaultValue="FINISHED" className="space-y-4">
+        <RadioGroup
+          defaultValue="all"
+          onValueChange={(value) => {
+            setCategory(value);
+          }}
+          className="space-y-4"
+        >
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value={"all"} id={"all"} />
+            <Label htmlFor={"all"} className="text-lg font-semibold">
+              Geral
+            </Label>
+          </div>
           {categories.map((category) => (
             <div key={category.id} className="flex items-center space-x-2">
-              <RadioGroupItem value={category.id} id={category.name} />
+              <RadioGroupItem value={category.name} id={category.name} />
               <Label htmlFor={category.name} className="text-lg font-semibold">
                 {category.title}
               </Label>
