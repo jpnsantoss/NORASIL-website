@@ -126,7 +126,7 @@ const CategoriesForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit" isLoading={isLoading}>
+        <Button type="submit" className="shadow-btn" isLoading={isLoading}>
           Submit
         </Button>
       </form>

@@ -78,17 +78,19 @@ const CategoriesList: FC<CategoriesListProps> = ({ categories }) => {
                     </p>
                   </div>
                 </div>
-                <div className="space-x-2">
+                <div className="space-x-2 flex items-center">
                   <Dialog>
                     <DialogTrigger asChild>
-                      <Button variant="outline">Edit</Button>
+                      <Button variant="subtle" size={"sm"}>
+                        Edit
+                      </Button>
                     </DialogTrigger>
                     <EditCategory category={category} />
                   </Dialog>
                   <AlertDialog>
                     <AlertDialogTrigger>
-                      <div className={cn(buttonVariants({ variant: "ghost" }))}>
-                        <X className="w-4 h-4" />
+                      <div className="p-2 hover:scale-125 hover:text-destructive transition duration-300 ease-in-out">
+                        <X className="w-5 h-5" />
                       </div>
                     </AlertDialogTrigger>
                     <AlertDialogContent>

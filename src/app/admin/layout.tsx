@@ -10,7 +10,5 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <div className="container max-w-7xl mx-auto h-full py-12">{children}</div>
-  );
+  return <div className="container py-12">{children}</div>;
 }

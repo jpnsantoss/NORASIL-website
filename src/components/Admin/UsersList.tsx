@@ -84,8 +84,8 @@ const UsersList: FC<UsersListProps> = ({ authorizedEmails }) => {
                 </div>
                 <AlertDialog>
                   <AlertDialogTrigger>
-                    <div className={cn(buttonVariants({ variant: "ghost" }))}>
-                      <X className="w-4 h-4" />
+                    <div className="p-2 hover:scale-125 hover:text-destructive transition duration-300 ease-in-out">
+                      <X className="w-5 h-5" />
                     </div>
                   </AlertDialogTrigger>
                   <AlertDialogContent>
