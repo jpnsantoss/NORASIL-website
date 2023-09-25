@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { ExtendedPost } from "@/types/db";
 import { Category, Post } from "@prisma/client";
 import Link from "next/link";
 import { FC } from "react";
@@ -6,14 +7,12 @@ import { buttonVariants } from "../ui/Button";
 import PortfolioImage from "./PortfolioImage";
 
 interface PortfolioPostProps {
-  post: Post & {
-    category: Category;
-  };
+  post: ExtendedPost;
 }
 
 const PortfolioPost: FC<PortfolioPostProps> = ({ post }) => {
   return (
-    <div key={post.id} className="grid lg:grid-cols-2 gap-8 px-4 lg:h-96">
+    <div className="grid lg:grid-cols-2 gap-8 px-4 lg:h-96">
       <PortfolioImage post={post} />
       <div className="h-full flex flex-col lg:justify-between">
         <div className="space-y-4">

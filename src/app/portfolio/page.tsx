@@ -28,7 +28,6 @@ const Page = async () => {
       <PortfolioContainer posts={posts} categories={categories} />
 
       <div className="lg:pt-32">
-        Posts
         <Footer />
       </div>
     </div>

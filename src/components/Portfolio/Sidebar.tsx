@@ -78,14 +78,14 @@ const Sidebar: FC<SidebarProps> = ({ categories }) => {
             </Label>
           </div>
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="finished" id="finished" />
-            <Label htmlFor="finished" className="text-lg font-semibold">
+            <RadioGroupItem value="CONSTRUCTION" id="FINISHED" />
+            <Label htmlFor="FINISHED" className="text-lg font-semibold">
               Finished Projects
             </Label>
           </div>
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="construction" id="construction" />
-            <Label htmlFor="construction" className="text-lg font-semibold">
+            <RadioGroupItem value="CONSTRUCTION" id="CONSTRUCTION" />
+            <Label htmlFor="CONSTRUCTION" className="text-lg font-semibold">
               Under Construction
             </Label>
           </div>
