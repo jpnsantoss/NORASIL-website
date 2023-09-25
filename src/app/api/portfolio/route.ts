@@ -5,8 +5,8 @@ export async function GET(req: Request) {
   const url = new URL(req.url);
 
   const categoryName = url.searchParams.get("category");
-  const typeParam = url.searchParams.get("status");
-
+  const typeParam = url.searchParams.get("status")?.toUpperCase();
+  
   let postQuery: {
     where: {
       categoryId?: string; // Optional category filter
@@ -36,7 +36,7 @@ export async function GET(req: Request) {
   }
 
   // If both category and type are provided
-  if (categoryName && categoryName !== "all") {
+  if (categoryName) {
     const category = await db.category.findFirst({
       where: {
         name: categoryName,
@@ -48,7 +48,7 @@ export async function GET(req: Request) {
     }
   }
   // If only category is provided
-  else if (categoryName && categoryName !== "all") {
+  else if (categoryName) {
     const category = await db.category.findFirst({
       where: {
         name: categoryName,

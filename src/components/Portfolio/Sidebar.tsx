@@ -1,21 +1,50 @@
 "use client";
 
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Label } from "../ui/Label";
 import { RadioGroup, RadioGroupItem } from "../ui/RadioGroup";
 
 import { cn } from "@/lib/utils";
 import { Category } from "@prisma/client";
 import { MessagesSquare } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { FC } from "react";
 import { Button } from "../ui/Button";
-import { PortfolioContext } from "./PortfolioContainer";
 
 interface SidebarProps {
   categories: Category[];
 }
 
 const Sidebar: FC<SidebarProps> = ({ categories }) => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const handleCategoryChange = async (category: string) => {
+    const searchParams = new URLSearchParams(window.location.search);
+
+    if (category === "all") {
+      searchParams.delete("category");
+    } else {
+      searchParams.set("category", category);
+    }
+
+    const newUrl = `${window.location.pathname}?${searchParams.toString()}`;
+    router.push(newUrl);
+  };
+
+  const handleStatusChange = (status: string) => {
+    const searchParams = new URLSearchParams(window.location.search);
+
+    if (status === "all") {
+      searchParams.delete("status");
+    } else {
+      searchParams.set("status", status);
+    }
+
+    const newUrl = `${window.location.pathname}?${searchParams.toString()}`;
+    router.push(newUrl);
+  };
+
   const [scroll, setScroll] = useState(false);
   const [contact, setContact] = useState(false);
 
@@ -25,15 +54,6 @@ const Sidebar: FC<SidebarProps> = ({ categories }) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  const portfolioContext = useContext(PortfolioContext);
-
-  if (!portfolioContext) {
-    // Handle the case when the context is null
-    return null; // Or return some default value or component
-  }
-
-  const { category, setCategory, status, setStatus } = portfolioContext;
 
   const scrollThreshold = 100;
 
@@ -61,15 +81,15 @@ const Sidebar: FC<SidebarProps> = ({ categories }) => {
     <div
       className={cn(
         "space-y-8 lg:fixed lg:w-1/4 px-4 lg:px-16 transition-transform ease-in-out duration-300",
-        scroll && "transform translate-y-0 lg:-translate-y-48"
+        scroll && "transform translate-y-0 lg:-translate-y-56"
       )}
     >
-      <div className="bg-white border border-gray shadow p-8 space-y-8 rounded-xl">
+      <div className="bg-white border border-gray shadow p-8 space-y-4 rounded-xl">
         <h1 className="text-3xl font-bold">Status</h1>
         <RadioGroup
-          defaultValue="all"
-          onValueChange={(value) => setStatus(value)}
-          className="space-y-4"
+          defaultValue={searchParams.get("status") || "all"}
+          onValueChange={(value) => handleStatusChange(value)}
+          className="space-y-2"
         >
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="all" id="all" />
@@ -78,7 +98,7 @@ const Sidebar: FC<SidebarProps> = ({ categories }) => {
             </Label>
           </div>
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="CONSTRUCTION" id="FINISHED" />
+            <RadioGroupItem value="FINISHED" id="FINISHED" />
             <Label htmlFor="FINISHED" className="text-lg font-semibold">
               Finished Projects
             </Label>
@@ -91,14 +111,12 @@ const Sidebar: FC<SidebarProps> = ({ categories }) => {
           </div>
         </RadioGroup>
       </div>
-      <div className="bg-white border border-gray shadow p-8 space-y-8 rounded-xl">
+      <div className="bg-white border border-gray shadow p-8 space-y-4 rounded-xl">
         <h1 className="text-3xl font-bold">Categories</h1>
         <RadioGroup
-          defaultValue="all"
-          onValueChange={(value) => {
-            setCategory(value);
-          }}
-          className="space-y-4"
+          defaultValue={searchParams.get("category") || "all"}
+          onValueChange={(value) => handleCategoryChange(value)}
+          className="space-y-2 max-h-40 overflow-y-auto"
         >
           <div className="flex items-center space-x-2">
             <RadioGroupItem value={"all"} id={"all"} />
