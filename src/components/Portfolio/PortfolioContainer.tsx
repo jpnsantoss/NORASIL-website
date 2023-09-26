@@ -22,61 +22,61 @@ const PortfolioContainer: FC<PortfolioContainerProps> = ({ categories }) => {
   const category = searchParams.get("category");
   const status = searchParams.get("status");
 
-  // const lastPostRef = useRef<HTMLElement>(null);
+  const lastPostRef = useRef<HTMLElement>(null);
 
-  // const { ref, entry } = useIntersection({
-  //   root: lastPostRef.current,
-  //   threshold: 1,
-  // });
+  const { ref, entry } = useIntersection({
+    root: lastPostRef.current,
+    threshold: 1,
+  });
 
   const { data: initialPosts, isLoading: loadingInitialData } = useQuery({
     queryFn: async () => {
       const { data } = await axios.get(
-        `/api/portfolio?category=${category}&status=${status}`
+        `/api/portfolio/initialData?category=${category}&status=${status}`
       );
       return data as ExtendedPost[];
     },
     queryKey: ["portfolio-query", category, status],
   });
 
-  // const { data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
-  //   ["infinite-query", initialPosts],
-  //   async ({ pageParam = 1 }) => {
-  //     const query = `/api/posts?limit=${INFINITE_SCROLLING_PAGINATION_RESULTS}&page=${pageParam}`;
+  const { data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
+    ["infinite-query", initialPosts],
+    async ({ pageParam = 1 }) => {
+      const query = `/api/portfolio?limit=${INFINITE_SCROLLING_PAGINATION_RESULTS}&page=${pageParam}&category=${category}&status=${status}`;
 
-  //     const { data } = await axios.get(query);
-  //     return data as ExtendedPost[];
-  //   },
-  //   {
-  //     getNextPageParam: (_, pages) => {
-  //       if (!pages[pages.length - 1]?.length) {
-  //         return undefined; // No more pages to fetch
-  //       }
-  //       return pages.length + 1;
-  //     },
-  //     initialData: {
-  //       pages: [initialPosts],
-  //       pageParams: [1],
-  //     },
-  //   }
-  // );
+      const { data } = await axios.get(query);
+      return data as Post[];
+    },
+    {
+      getNextPageParam: (_, pages) => {
+        if (!pages[pages.length - 1]?.length) {
+          return undefined; // No more pages to fetch
+        }
+        return pages.length + 1;
+      },
+      initialData: {
+        pages: [initialPosts],
+        pageParams: [1],
+      },
+    }
+  );
 
-  // let hasNextPage = false;
+  let hasNextPage = false;
 
-  // if (data && data.pages && data.pages.length > 0) {
-  //   const lastPage = data.pages[data.pages.length - 1];
-  //   if (lastPage && lastPage.length > 0) {
-  //     hasNextPage = true;
-  //   }
-  // }
+  if (data && data.pages && data.pages.length > 0) {
+    const lastPage = data.pages[data.pages.length - 1];
+    if (lastPage && lastPage.length > 0) {
+      hasNextPage = true;
+    }
+  }
 
-  // useEffect(() => {
-  //   if (entry?.isIntersecting && !isFetchingNextPage && hasNextPage) {
-  //     fetchNextPage();
-  //   }
-  // }, [entry, fetchNextPage, isFetchingNextPage, hasNextPage]);
+  useEffect(() => {
+    if (entry?.isIntersecting && !isFetchingNextPage && hasNextPage) {
+      fetchNextPage();
+    }
+  }, [entry, fetchNextPage, isFetchingNextPage, hasNextPage]);
 
-  // const posts = data?.pages.flatMap((page) => page) ?? initialPosts;
+  const posts = data?.pages.flatMap((page) => page) ?? initialPosts ?? [];
 
   return (
     <div className="mx-auto w-full lg:px-16 grid lg:grid-cols-4 gap-16 my-16">
@@ -92,9 +92,17 @@ const PortfolioContainer: FC<PortfolioContainerProps> = ({ categories }) => {
             </div>
           )}
           {initialPosts && initialPosts.length > 0 ? (
-            initialPosts.map((post) => (
-              <PortfolioPost key={post?.id} post={post} />
-            ))
+            initialPosts.map((post, index) => {
+              if (index === posts.length - 1) {
+                return (
+                  <div key={post.id} ref={ref}>
+                    <PortfolioPost post={post} />;
+                  </div>
+                );
+              } else {
+                return <PortfolioPost key={post.id} post={post} />;
+              }
+            })
           ) : (
             <div className=" w-full h-[60vh] text-center flex justify-center">
               <h2 className="text-2xl">No posts to display.</h2>

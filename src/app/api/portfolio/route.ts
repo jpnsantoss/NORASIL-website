@@ -1,41 +1,48 @@
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
 import { db } from "@/lib/db";
+import { z } from "zod";
 
-export async function GET(req: Request) {
+interface PostQuery {
+  take: number;
+  skip: number;
+  orderBy: {
+    createdAt: "asc" | "desc" | undefined;
+  };
+  include: {
+    category: boolean;
+    images: boolean;
+  };
+  where?: {
+    categoryId?: string;
+    type?: "CONSTRUCTION" | "FINISHED";
+  };
+}
+
+// Shared function to handle infinite scrolling with filters
+async function handleInfiniteScroll(req: Request, categoryName: string, typeParam: string) {
   const url = new URL(req.url);
 
-  const categoryName = url.searchParams.get("category");
-  const typeParam = url.searchParams.get("status")?.toUpperCase();
-  
-  let postQuery: {
-    where: {
-      categoryId?: string; // Optional category filter
-      type?: "CONSTRUCTION" | "FINISHED"; // Optional type filter
-    };
-    include: {
-      category: boolean;
-    };
+  const { limit, page } = z.object({
+    limit: z.string(),
+    page: z.string(),
+  }).parse({
+    limit: url.searchParams.get('limit'),
+    page: url.searchParams.get('page')
+  });
+
+  let postQuery: PostQuery = {
+    take: parseInt(limit),
+    skip: (parseInt(page) - 1) * parseInt(limit),
     orderBy: {
-      createdAt: "asc" | "desc" | undefined; // Make sure it matches the type expected by db.post.findMany
-    };
-    take: number;
-  } = {
-    where: {},
+      createdAt: "desc"
+    },
     include: {
       category: true,
+      images: true,
     },
-    orderBy: {
-      createdAt: "desc",
-    },
-    take: INFINITE_SCROLLING_PAGINATION_RESULTS
   };
 
-  // Validate and convert the type parameter if provided
-  if (typeParam && (typeParam === "CONSTRUCTION" || typeParam === "FINISHED")) {
-    postQuery.where.type = typeParam;
-  }
-
-  // If both category and type are provided
+  // Apply filters
   if (categoryName) {
     const category = await db.category.findFirst({
       where: {
@@ -44,22 +51,44 @@ export async function GET(req: Request) {
     });
 
     if (category) {
-      postQuery.where.categoryId = category.id;
+      postQuery.where = {
+        categoryId: category.id,
+      };
     }
   }
-  // If only category is provided
-  else if (categoryName) {
-    const category = await db.category.findFirst({
-      where: {
-        name: categoryName,
-      },
+
+  if (typeParam && (typeParam === "CONSTRUCTION" || typeParam === "FINISHED")) {
+    postQuery.where = {
+      ...postQuery.where,
+      type: typeParam,
+    };
+  }
+
+  const posts = await db.post.findMany(postQuery);
+  return new Response(JSON.stringify(posts));
+}
+
+// Route for infinite scrolling with filters
+export async function GET(req: Request) {
+  const url = new URL(req.url);
+
+  const { categoryName, typeParam } = z.object({
+    categoryName: z.string(),
+    typeParam: z.string(),
+  }).parse({
+    categoryName: url.searchParams.get("category"),
+    typeParam: url.searchParams.get("status")
+  });
+
+  try {
+    return await handleInfiniteScroll(req, categoryName, typeParam);
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return new Response("Invalid request data passed", { status: 422 });
+    }
+
+    return new Response("Could not fetch more posts", {
+      status: 500,
     });
-
-    if (category) {
-      postQuery.where.categoryId = category.id;
-    }
   }
-
-  const results = await db.post.findMany(postQuery);
-  return new Response(JSON.stringify(results));
 }
