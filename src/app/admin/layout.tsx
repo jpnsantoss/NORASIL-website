@@ -1,11 +1,20 @@
 import { getAuthSession } from "@/lib/auth";
 import "@/styles/globals.css";
-import { redirect, useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
 export const metadata = {
-  title: "Norasil",
+  title: "Norasil - Dashboard",
   description:
-    "Fundada em Maio de 1983, a Norasil – Sociedade de Construção Civil, S.A., (com Sede e Estaleiro Central em Matosinhos) tem como objecto principal a execução de empreitadas de obras públicas e de obras particulares.",
+    "This is where you can manage Norasil website, by adding/editing/deliting posts, categories and users.",
+  openGraph: {
+    description:
+      "This is where you can manage Norasil website, by adding/editing/deliting posts, categories and users.",
+    emails: ["norasil@norasil.pt"],
+    title: "Norasil",
+    url: "https://norasil.pt",
+    phoneNumbers: ["(+351) 229 399 250"],
+    images: ["/assets/images/icon.svg"],
+  },
 };
 export default async function RootLayout({
   children,

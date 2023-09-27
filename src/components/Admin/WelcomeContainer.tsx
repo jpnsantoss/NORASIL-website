@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { LogOut, Router } from "lucide-react";
+import { LogOut } from "lucide-react";
 import { User } from "next-auth";
 import { signOut } from "next-auth/react";
 import { Inter } from "next/font/google";
