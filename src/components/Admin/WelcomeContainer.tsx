@@ -1,10 +1,14 @@
+"use client";
 import { cn } from "@/lib/utils";
+import { LogOut, Router } from "lucide-react";
 import { User } from "next-auth";
+import { signOut } from "next-auth/react";
 import { Inter } from "next/font/google";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { FC } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/Avatar";
-import { buttonVariants } from "../ui/Button";
+import { Button, buttonVariants } from "../ui/Button";
 import { Card } from "../ui/Card";
 
 interface WelcomeContainerProps {
@@ -12,6 +16,7 @@ interface WelcomeContainerProps {
 }
 const inter = Inter({ subsets: ["latin"] });
 const WelcomeContainer: FC<WelcomeContainerProps> = ({ user }) => {
+  const router = useRouter();
   return (
     <Card>
       <div className="grid lg:grid-cols-3 gap-8 p-12 items-center h-fit">
@@ -24,6 +29,18 @@ const WelcomeContainer: FC<WelcomeContainerProps> = ({ user }) => {
             Welcome back, <br />
             <span className="text-2xl font-bold">{user?.name || "User"}</span>.
           </h1>
+          <Button
+            size={"xs"}
+            variant={"link"}
+            className="gap-2"
+            onClick={() => {
+              signOut();
+              router.push("/");
+            }}
+          >
+            <LogOut />
+            Logout
+          </Button>
         </div>
         <div className="flex flex-col gap-2">
           <span className="text-lg font-semibold">New dashboard</span>

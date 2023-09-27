@@ -13,7 +13,7 @@ const buttonVariants = cva(
         outline: "text-darkGray outline outline-3 font-bold outline-primary",
         subtle: "hover:bg-zinc-200 border-2 border-gray",
         ghost:
-          "bg-transparent hover:bg-zinc-100 text-zinc-800 data-[state=open]:bg-transparent data-[state=open]:bg-transparent",
+          "bg-transparent text-black data-[state=open]:bg-transparent data-[state=open]:bg-transparent",
         link: "bg-transparent dark:bg-transparent underline-offset-4 hover:underline text-slate-900 dark:text-slate-100 hover:bg-transparent dark:hover:bg-transparent",
       },
       size: {
