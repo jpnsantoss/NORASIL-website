@@ -21,6 +21,7 @@ const PortfolioContainer: FC<PortfolioContainerProps> = ({ categories }) => {
   const searchParams = useSearchParams();
   const category = searchParams.get("category");
   const status = searchParams.get("status");
+  const [initialDataFetch, setInitialDataFetch] = useState(true);
 
   const lastPostRef = useRef<HTMLElement>(null);
 
@@ -37,6 +38,7 @@ const PortfolioContainer: FC<PortfolioContainerProps> = ({ categories }) => {
       return data as ExtendedPost[];
     },
     queryKey: ["portfolio-query", category, status],
+    enabled: initialDataFetch,
   });
 
   const { data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
@@ -45,7 +47,7 @@ const PortfolioContainer: FC<PortfolioContainerProps> = ({ categories }) => {
       const query = `/api/portfolio?limit=${INFINITE_SCROLLING_PAGINATION_RESULTS}&page=${pageParam}&category=${category}&status=${status}`;
 
       const { data } = await axios.get(query);
-      return data as Post[];
+      return data as ExtendedPost[];
     },
     {
       getNextPageParam: (_, pages) => {
@@ -72,6 +74,7 @@ const PortfolioContainer: FC<PortfolioContainerProps> = ({ categories }) => {
 
   useEffect(() => {
     if (entry?.isIntersecting && !isFetchingNextPage && hasNextPage) {
+      setInitialDataFetch(false);
       fetchNextPage();
     }
   }, [entry, fetchNextPage, isFetchingNextPage, hasNextPage]);
@@ -91,16 +94,18 @@ const PortfolioContainer: FC<PortfolioContainerProps> = ({ categories }) => {
               <Loader2 className="w-16 h-16 animate-spin" />
             </div>
           )}
-          {initialPosts && initialPosts.length > 0 ? (
-            initialPosts.map((post, index) => {
-              if (index === posts.length - 1) {
-                return (
-                  <div key={post.id} ref={ref}>
-                    <PortfolioPost post={post} />;
-                  </div>
-                );
-              } else {
-                return <PortfolioPost key={post.id} post={post} />;
+          {posts && posts.length > 0 ? (
+            posts.map((post, index) => {
+              if (post) {
+                if (index === posts.length - 1) {
+                  return (
+                    <div key={post.id} ref={ref}>
+                      <PortfolioPost post={post} />;
+                    </div>
+                  );
+                } else {
+                  return <PortfolioPost key={post.id} post={post} />;
+                }
               }
             })
           ) : (

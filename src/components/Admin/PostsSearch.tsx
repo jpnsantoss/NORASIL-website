@@ -20,6 +20,7 @@ interface PostsSearchProps {}
 
 const PostsSearch: FC<PostsSearchProps> = ({}) => {
   const [input, setInput] = useState<string>("");
+
   const router = useRouter();
   const {
     data: queryResults,
