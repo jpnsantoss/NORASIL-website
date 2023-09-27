@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 import { ExtendedPost } from "@/types/db";
-import { Category, Post } from "@prisma/client";
 import Link from "next/link";
 import { FC } from "react";
 import { buttonVariants } from "../ui/Button";

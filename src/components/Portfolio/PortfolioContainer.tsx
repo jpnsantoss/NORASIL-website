@@ -2,12 +2,12 @@
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
 import { ExtendedPost } from "@/types/db";
 import { useIntersection } from "@mantine/hooks";
-import { Category, Post } from "@prisma/client";
+import { Category } from "@prisma/client";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Loader2 } from "lucide-react";
 import { useSearchParams } from "next/navigation";
-import { FC, createContext, useEffect, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import PostsSearch from "../Admin/PostsSearch";
 import PortfolioPost from "./PortfolioPost";
 import Sidebar from "./Sidebar";

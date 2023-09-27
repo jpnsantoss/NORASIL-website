@@ -1,9 +1,7 @@
 import { db } from "@/lib/db";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
-import { AspectRatio } from "../ui/AspectRatio";
 import { buttonVariants } from "../ui/Button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/Tabs";
+import { Tabs, TabsList, TabsTrigger } from "../ui/Tabs";
 import InterventionImages from "./InterventionImages";
 
 const InterventionAreas = async () => {

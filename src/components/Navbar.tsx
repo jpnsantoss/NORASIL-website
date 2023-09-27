@@ -5,10 +5,8 @@ import {
   FileSearch,
   Home,
   ImageIcon,
-  LogOut,
   Menu,
   Paperclip,
-  Phone,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";

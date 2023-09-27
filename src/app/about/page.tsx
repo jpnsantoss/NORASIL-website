@@ -7,7 +7,6 @@ import ValueOffer from "@/components/About/ValueOffer";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 
-import Image from "next/image";
 import { FC } from "react";
 
 interface pageProps {}

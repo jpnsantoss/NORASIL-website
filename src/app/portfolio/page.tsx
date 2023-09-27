@@ -1,9 +1,6 @@
-import PostsSearch from "@/components/Admin/PostsSearch";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import PortfolioContainer from "@/components/Portfolio/PortfolioContainer";
-import PortfolioPost from "@/components/Portfolio/PortfolioPost";
-import Sidebar from "@/components/Portfolio/Sidebar";
 import { db } from "@/lib/db";
 
 const Page = async () => {

@@ -4,7 +4,6 @@ import Navbar from "@/components/Navbar";
 import PostDetails from "@/components/Portfolio/PostDetails";
 import PostImage from "@/components/Portfolio/PostImage";
 import { db } from "@/lib/db";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 
 interface pageProps {

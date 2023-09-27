@@ -2,10 +2,8 @@
 import { AuthorizedEmail, User } from "@prisma/client";
 import { Loader2, X } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/Avatar";
-import { buttonVariants } from "../ui/Button";
 
 import { toast } from "@/hooks/use-toast";
-import { cn } from "@/lib/utils";
 import { EmailRequest } from "@/lib/validators/email";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
@@ -64,7 +62,7 @@ const UsersList: FC<UsersListProps> = ({ authorizedEmails }) => {
             return (
               <div
                 key={index}
-                className="flex items-center justify-between space-x-4"
+                className="flex items-center justify-between space-x-4 overflow-x-hidden"
               >
                 <div className="flex items-center space-x-4">
                   <Avatar className="hidden lg:block">
@@ -83,7 +81,7 @@ const UsersList: FC<UsersListProps> = ({ authorizedEmails }) => {
                   </div>
                 </div>
                 <AlertDialog>
-                  <AlertDialogTrigger>
+                  <AlertDialogTrigger className="overflow-hidden">
                     <div className="p-2 hover:scale-125 hover:text-destructive transition duration-300 ease-in-out">
                       <X className="w-5 h-5" />
                     </div>

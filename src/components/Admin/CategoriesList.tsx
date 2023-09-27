@@ -1,10 +1,9 @@
 "use client";
 
 import { Loader2, X } from "lucide-react";
-import { Button, buttonVariants } from "../ui/Button";
+import { Button } from "../ui/Button";
 
 import { toast } from "@/hooks/use-toast";
-import { cn } from "@/lib/utils";
 import { DeleteCategoryRequest } from "@/lib/validators/category";
 import { Category } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
