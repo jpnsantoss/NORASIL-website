@@ -46,7 +46,7 @@ const Sqa = () => {
           </p>
         </div>
 
-        <Circle className="h-[600px] w-[600px] hidder lg:block text-primary absolute top-0 -left-[600px]" />
+        <div className="h-[600px] w-[600px] hidder lg:block text-primary absolute -top-10 -left-[600px] border-[20px] border-primary rounded-full" />
       </div>
     </div>
   );

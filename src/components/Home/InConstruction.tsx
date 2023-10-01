@@ -1,8 +1,8 @@
 import { db } from "@/lib/db";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import PostCard from "../PostCard";
 import { buttonVariants } from "../ui/Button";
-import PostCard from "./PostCard";
 
 const InConstruction = async () => {
   const posts = await db.post.findMany({

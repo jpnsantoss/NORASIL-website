@@ -51,7 +51,7 @@ const QualityPolicy = () => {
           </p>
         </div>
       </div>
-      <Circle className="h-[600px] w-[600px] text-primary absolute -bottom-48 -left-48" />
+      <div className="h-[600px] w-[600px] text-primary absolute -bottom-48 -left-48 border-[20px] border-primary rounded-full" />
     </div>
   );
 };

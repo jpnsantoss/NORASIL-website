@@ -59,8 +59,8 @@ const Company = () => {
           </h3>
         </div>
 
-        <div className="z-10 flex flex-col items-center gap-8">
-          <div className="relative h-[25vh] md:h-[35vh] p-4 w-full flex justify-center">
+        <div className="z-10 flex flex-col items-center gap-8 mx-4">
+          <div className="relative h-[25vh] sm:h-[35vh] max-w-[600px] p-4 w-full flex justify-center">
             <div
               ref={firstDivRef}
               className={cn(
@@ -159,7 +159,7 @@ const Company = () => {
           </div>
         </div>
       </div>
-      <Circle className="h-[600px] w-[600px] text-primary hidden lg:block absolute -top-48 -right-48" />
+      <div className="h-[600px] w-[600px] text-primary hidden lg:block absolute -top-48 -right-48 border-[20px] border-primary rounded-full" />
     </div>
   );
 };
