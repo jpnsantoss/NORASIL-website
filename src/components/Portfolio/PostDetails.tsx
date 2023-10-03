@@ -5,14 +5,14 @@ import { format } from "date-fns";
 import { Calendar, Clock, Hammer, X } from "lucide-react";
 import Image from "next/image";
 import { FC, useRef, useState } from "react";
-import Lightbox from "yet-another-react-lightbox";
-import Counter from "yet-another-react-lightbox/plugins/counter";
-import "yet-another-react-lightbox/plugins/counter.css";
-import Download from "yet-another-react-lightbox/plugins/download";
-import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
-import "yet-another-react-lightbox/plugins/thumbnails.css";
-import "yet-another-react-lightbox/styles.css";
-import NextJsImage from "../NextJsImage";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/Dialog";
 import { Separator } from "../ui/Separator";
 
 interface PostDetailsProps {
@@ -21,98 +21,95 @@ interface PostDetailsProps {
 }
 
 const PostDetails: FC<PostDetailsProps> = ({ images, post }) => {
-  const [showImages, setShowImages] = useState(false);
-  const [open, setOpen] = useState(false);
-  const thumbnailsRef = useRef(null);
-
   return (
     <>
-      <Lightbox
-        open={open}
-        plugins={[Counter, Thumbnails, Download]}
-        thumbnails={{ ref: thumbnailsRef }}
-        counter={{ container: { style: { top: 0, bottom: "unset" } } }}
-        close={() => setOpen(false)}
-        slides={images.map((image) => ({ src: image.url }))}
-        render={{ slide: NextJsImage, thumbnail: NextJsImage }}
-      />
       <div className="grid grid-cols-2 gap-8">
-        <div className="grid grid-cols-3 gap-2">
-          {images.length <= 3 ? (
-            images.map((image, index) => (
-              <button
-                key={image.id}
-                onClick={() => setOpen(true)}
-                className="h-64 relative rounded-xl bg-lightGray overflow-hidden group"
-              >
-                <Image
-                  src={image.url}
-                  fill
-                  alt={`Image n${index}`}
-                  loading="lazy"
-                  className="rounded-md object-cover transition opacity-0 duration-500 object-center  group-hover:scale-105 ease-in-out "
-                  onLoadingComplete={(image) =>
-                    image.classList.remove("opacity-0")
-                  }
-                />
-              </button>
-            ))
-          ) : (
-            <>
-              <div className="h-64 relative rounded-xl bg-lightGray overflow-hidden group">
-                <Image
-                  src={images[0].url}
-                  fill
-                  alt={`Image n0`}
-                  loading="lazy"
-                  className="rounded-md object-cover transition opacity-0 duration-500 object-center  group-hover:scale-105 ease-in-out "
-                  onLoadingComplete={(image) =>
-                    image.classList.remove("opacity-0")
-                  }
-                />
-              </div>
-              <div className="h-64 relative rounded-xl bg-lightGray overflow-hidden group">
-                <Image
-                  src={images[1].url}
-                  fill
-                  alt={`Image n0`}
-                  loading="lazy"
-                  className="rounded-md object-cover transition opacity-0 duration-500 object-center  group-hover:scale-105 ease-in-out "
-                  onLoadingComplete={(image) =>
-                    image.classList.remove("opacity-0")
-                  }
-                />
-              </div>
-              <button
-                onClick={() => setShowImages((prev) => !prev)}
-                className="h-64 relative rounded-xl bg-lightGray overflow-hidden group"
-              >
-                <Image
-                  src={images[2].url}
-                  fill
-                  alt={`Image n0`}
-                  loading="lazy"
-                  className="rounded-md object-cover transition opacity-0 duration-500 object-center  group-hover:scale-105 ease-in-out "
-                  onLoadingComplete={(image) =>
-                    image.classList.remove("opacity-0")
-                  }
-                />
-                <div className="w-full h-full bg-black opacity-75 absolute top-0 left-0" />
-                <div className="w-full h-full flex items-center justify-center">
-                  <h1 className="text-white text-5xl font-bold z-20">
-                    {showImages ? (
-                      <>
-                        <X className="w-12 h-12" />
-                      </>
-                    ) : (
-                      <>+{images.length - 2}</>
-                    )}
-                  </h1>
+        <Dialog>
+          <div className="grid grid-cols-3 gap-2">
+            {images.length <= 3 ? (
+              images.map((image, index) => (
+                <div
+                  key={image.id}
+                  className="h-64 relative rounded-xl bg-lightGray overflow-hidden group cursor-pointer"
+                >
+                  <DialogTrigger asChild>
+                    <Image
+                      src={image.url}
+                      fill
+                      alt={`Image n${index}`}
+                      loading="lazy"
+                      className="rounded-md object-cover transition opacity-0 duration-500 object-center  group-hover:scale-105 ease-in-out "
+                      onLoadingComplete={(image) =>
+                        image.classList.remove("opacity-0")
+                      }
+                    />
+                  </DialogTrigger>
                 </div>
-              </button>
-            </>
-          )}
-        </div>
+              ))
+            ) : (
+              <>
+                <div className="h-64 relative rounded-xl bg-lightGray overflow-hidden group cursor-pointer">
+                  <DialogTrigger asChild>
+                    <Image
+                      src={images[0].url}
+                      fill
+                      alt={`Image n0`}
+                      loading="lazy"
+                      className="rounded-md object-cover transition opacity-0 duration-500 object-center  group-hover:scale-105 ease-in-out "
+                      onLoadingComplete={(image) =>
+                        image.classList.remove("opacity-0")
+                      }
+                    />
+                  </DialogTrigger>
+                </div>
+                <div className="h-64 relative rounded-xl bg-lightGray overflow-hidden group cursor-pointer">
+                  <DialogTrigger asChild>
+                    <Image
+                      src={images[1].url}
+                      fill
+                      alt={`Image n0`}
+                      loading="lazy"
+                      className="rounded-md object-cover transition opacity-0 duration-500 object-center  group-hover:scale-105 ease-in-out "
+                      onLoadingComplete={(image) =>
+                        image.classList.remove("opacity-0")
+                      }
+                    />
+                  </DialogTrigger>
+                </div>
+                <div className="h-64 relative rounded-xl bg-lightGray overflow-hidden group cursor-pointer">
+                  <DialogTrigger asChild>
+                    <Image
+                      src={images[2].url}
+                      fill
+                      alt={`Image n0`}
+                      loading="lazy"
+                      className="rounded-md object-cover transition opacity-0 duration-500 object-center  group-hover:scale-105 ease-in-out "
+                      onLoadingComplete={(image) =>
+                        image.classList.remove("opacity-0")
+                      }
+                    />
+                    <div className="w-full h-full bg-black opacity-75 absolute top-0 left-0" />
+                    <div className="w-full h-full flex items-center justify-center">
+                      <h1 className="text-white text-5xl font-bold z-20">
+                        <>+{images.length - 2}</>
+                      </h1>
+                    </div>
+                  </DialogTrigger>
+                </div>
+              </>
+            )}
+          </div>
+
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Are you sure absolutely sure?</DialogTitle>
+              <DialogDescription>
+                This action cannot be undone. This will permanently delete your
+                account and remove your data from our servers.
+              </DialogDescription>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
         <div className="border border-gray h-64 rounded-xl py-8 flex justify-center items-center gap-8">
           <div className="px-8 space-y-4 flex flex-col items-center justify-center">
             <Clock className="w-10 h-10 text-primary" />
@@ -135,29 +132,6 @@ const PostDetails: FC<PostDetailsProps> = ({ images, post }) => {
               {post.type === "FINISHED" ? "Terminado" : "Em Construção"}
             </h2>
           </div>
-        </div>
-      </div>
-      <div className="overflow-hidden">
-        <div
-          className={`grid grid-cols-3 gap-8 transition-all transform ease-in-out duration-300 ${
-            showImages
-              ? "opacity-100 max-h-full scale-100"
-              : "opacity-0 max-h-0 scale-95"
-          }`}
-        >
-          {images.slice(2).map((image) => (
-            <div
-              key={image.id}
-              className="h-64 relative rounded-xl bg-lightGray overflow-hidden group"
-            >
-              <Image
-                src={image.url}
-                fill
-                alt={`Image ${image.id}`}
-                className="object-center object-cover group-hover:scale-110 transition ease-in-out duration-300"
-              />
-            </div>
-          ))}
         </div>
       </div>
     </>
