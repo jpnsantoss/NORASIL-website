@@ -14,6 +14,7 @@ import {
   DialogTrigger,
 } from "../ui/Dialog";
 import { Separator } from "../ui/Separator";
+import PostDialog from "./PostDialog";
 
 interface PostDetailsProps {
   images: PrismaImage[];
@@ -100,15 +101,7 @@ const PostDetails: FC<PostDetailsProps> = ({ images, post }) => {
             )}
           </div>
 
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Are you sure absolutely sure?</DialogTitle>
-              <DialogDescription>
-                This action cannot be undone. This will permanently delete your
-                account and remove your data from our servers.
-              </DialogDescription>
-            </DialogHeader>
-          </DialogContent>
+          <PostDialog images={images} post={post} />
         </Dialog>
         <div className="border border-gray h-64 rounded-xl py-8 flex justify-center items-center gap-8">
           <div className="px-8 space-y-4 flex flex-col items-center justify-center">
