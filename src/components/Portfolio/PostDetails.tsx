@@ -100,8 +100,7 @@ const PostDetails: FC<PostDetailsProps> = ({ images, post }) => {
               </>
             )}
           </div>
-
-          <PostDialog images={images} post={post} />
+          {images.length > 0 && <PostDialog images={images} post={post} />}
         </Dialog>
         <div className="border border-gray h-64 rounded-xl py-8 flex justify-center items-center gap-8">
           <div className="px-8 space-y-4 flex flex-col items-center justify-center">
