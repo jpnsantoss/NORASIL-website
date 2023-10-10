@@ -14,6 +14,14 @@ export async function PATCH(req: Request) {
     const body = await req.json();
     const {id, imageKey} = DeleteCategoryValidator.parse(body);
 
+    const posts = await db.post.findFirst({where: {
+      categoryId: id
+    }});
+
+    if (posts) {
+      return new Response("Category has posts, cannot delete.", { status: 400 });
+    }
+
     await db.category.delete({
       where: {
         id
