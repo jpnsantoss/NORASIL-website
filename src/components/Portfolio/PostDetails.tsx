@@ -2,17 +2,10 @@
 import { ExtendedPost } from "@/types/db";
 import { Image as PrismaImage } from "@prisma/client";
 import { format } from "date-fns";
-import { Calendar, Clock, Hammer, X } from "lucide-react";
+import { Calendar, Clock, Hammer } from "lucide-react";
 import Image from "next/image";
-import { FC, useRef, useState } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "../ui/Dialog";
+import { FC } from "react";
+import { Dialog, DialogTrigger } from "../ui/Dialog";
 import { Separator } from "../ui/Separator";
 import PostDialog from "./PostDialog";
 

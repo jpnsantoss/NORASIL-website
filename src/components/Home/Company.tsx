@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { Circle, Dot } from "lucide-react";
+import { Dot } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";

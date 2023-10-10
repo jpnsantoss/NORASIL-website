@@ -7,7 +7,7 @@ import { toast } from "@/hooks/use-toast";
 import { DeleteCategoryRequest } from "@/lib/validators/category";
 import { Category } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { FC } from "react";
 import {
@@ -39,7 +39,17 @@ const CategoriesList: FC<CategoriesListProps> = ({ categories }) => {
       const { data } = await axios.patch("/api/category/delete", payload);
       return data;
     },
-    onError: () => {
+    onError: (err) => {
+      if (err instanceof AxiosError) {
+        if (err.response?.status === 400) {
+          return toast({
+            title: "Category still has posts.",
+            description:
+              "Please delete all posts before deleting this category.",
+            variant: "destructive",
+          });
+        }
+      }
       return toast({
         title: "Something went wrong",
         description: "Category wasn't removed successfully, please try again.",

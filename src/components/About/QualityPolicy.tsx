@@ -1,4 +1,4 @@
-import { Circle, Eye, Lightbulb, PieChart, Target } from "lucide-react";
+import { Eye, Lightbulb, PieChart, Target } from "lucide-react";
 
 const QualityPolicy = () => {
   return (

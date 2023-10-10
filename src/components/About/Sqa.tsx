@@ -1,4 +1,4 @@
-import { Award, Circle, HardHat, Leaf } from "lucide-react";
+import { Award, HardHat, Leaf } from "lucide-react";
 
 const Sqa = () => {
   return (
