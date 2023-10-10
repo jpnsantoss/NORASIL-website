@@ -98,8 +98,12 @@ const PostMainImageForm: FC<PostMainImageFormProps> = ({ post }) => {
               </FormItem>
             )}
           />
-          <Button type="submit" isLoading={isLoading}>
-            Submit
+          <Button
+            type="submit"
+            isLoading={isLoading}
+            disabled={!form.formState.dirtyFields.newImage}
+          >
+            Change
           </Button>
         </form>
       </Form>

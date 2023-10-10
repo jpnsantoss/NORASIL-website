@@ -145,7 +145,11 @@ const PostImagesForm: FC<PostImagesFormProps> = ({ post }) => {
               </FormItem>
             )}
           />
-          <Button type="submit" isLoading={isLoading}>
+          <Button
+            type="submit"
+            isLoading={isLoading}
+            disabled={!form.formState.dirtyFields.newImages}
+          >
             Add
           </Button>
         </form>
