@@ -49,7 +49,9 @@ const Header = () => {
                 <span className="font-bold text-4xl text-black">7</span>
                 Distinções
               </div>
-              <Separator orientation="vertical" className="bg-gray h-2/3" />
+              <div className="bg-white h-full flex items-center">
+                <Separator orientation="vertical" className="bg-gray h-2/3" />
+              </div>
               <div className="bg-white flex w-full items-center justify-center text-darkGray flex-col gap-2 py-4">
                 <span className="font-bold text-4xl text-black">66</span>
                 Colaboradores
