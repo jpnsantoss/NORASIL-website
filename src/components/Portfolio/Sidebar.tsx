@@ -80,12 +80,12 @@ const Sidebar: FC<SidebarProps> = ({ categories }) => {
   return (
     <div
       className={cn(
-        "space-y-8 lg:fixed lg:w-1/4 px-4 lg:px-16 transition-transform ease-in-out duration-300",
+        "space-y-8 lg:fixed lg:w-1/4 px-4 lg:px-12 transition-transform ease-in-out duration-300",
         scroll && "transform translate-y-0 lg:-translate-y-56"
       )}
     >
       <div className="bg-white border border-gray shadow p-8 space-y-4 rounded-xl">
-        <h1 className="text-3xl font-bold">Status</h1>
+        <h1 className="text-xl font-bold">Tipo de Obras</h1>
         <RadioGroup
           defaultValue={searchParams.get("status") || "all"}
           onValueChange={(value) => handleStatusChange(value)}
@@ -94,29 +94,29 @@ const Sidebar: FC<SidebarProps> = ({ categories }) => {
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="all" id="all" />
             <Label htmlFor="all" className="text-lg font-semibold">
-              All
+              Todas
             </Label>
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="FINISHED" id="FINISHED" />
             <Label htmlFor="FINISHED" className="text-lg font-semibold">
-              Finished Projects
+              Terminadas
             </Label>
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="CONSTRUCTION" id="CONSTRUCTION" />
             <Label htmlFor="CONSTRUCTION" className="text-lg font-semibold">
-              Under Construction
+              Em Construção
             </Label>
           </div>
         </RadioGroup>
       </div>
       <div className="bg-white border border-gray shadow p-8 space-y-4 rounded-xl">
-        <h1 className="text-3xl font-bold">Categories</h1>
+        <h1 className="text-xl font-bold">Áreas de Intervenção</h1>
         <RadioGroup
           defaultValue={searchParams.get("category") || "all"}
           onValueChange={(value) => handleCategoryChange(value)}
-          className="space-y-2 max-h-40 overflow-y-auto"
+          className="space-y-2 max-h-40 overflow-y-auto truncate"
         >
           <div className="flex items-center space-x-2">
             <RadioGroupItem value={"all"} id={"all"} />
@@ -145,12 +145,12 @@ const Sidebar: FC<SidebarProps> = ({ categories }) => {
         <div className="flex gap-4 items-center">
           <MessagesSquare className="text-primary w-8 h-8" />
 
-          <h1 className="text-2xl font-bold">Contact Us</h1>
+          <h1 className="text-2xl font-bold">Contacte-nos</h1>
         </div>
         <p className="text-darkGray font-bold text-lg">
-          You like what we are doing?{" "}
+          Gostou do nosso trabalho?{" "}
           <Button variant={"link"} className="text-primary p-0 font-bold w-fit">
-            Contact us
+            Contacte-nos.
           </Button>
         </p>
       </div>

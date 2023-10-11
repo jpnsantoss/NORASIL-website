@@ -9,7 +9,7 @@ const Sqa = () => {
       <div className="container pt-16 space-y-16 relative">
         <div>
           <div className="flex gap-2 items-center text-4xl font-bold">
-            <h1>Safety</h1>
+            <h1>Segurança</h1>
             <HardHat className="w-12 h-12 text-primary" />
           </div>
           <p className="text-2xl text-darkGray ml-8 my-4">
@@ -20,19 +20,7 @@ const Sqa = () => {
         </div>
         <div className="lg:ml-16">
           <div className="flex gap-2 items-center text-4xl font-bold">
-            <h1>Environment</h1>
-            <Leaf className="w-12 h-12 text-primary" />
-          </div>
-          <p className="text-2xl text-darkGray ml-8 my-4">
-            Due to the importance we attach to it, we have long developed, on a
-            case-by-case basis, an environmental management plan with the
-            concrete objective of minimizing negative and harmful effects on the
-            environment.
-          </p>
-        </div>
-        <div>
-          <div className="flex gap-2 items-center text-4xl font-bold">
-            <h1>Quality</h1>
+            <h1>Qualidade</h1>
             <Award className="w-12 h-12 text-primary" />
           </div>
           <p className="text-2xl text-darkGray ml-8 my-4">
@@ -43,6 +31,18 @@ const Sqa = () => {
             careful construction, with quality and security. It was later
             certified in accordance with NP EN ISO 9001:2000 and then by NP EN
             ISO 9001:2008.
+          </p>
+        </div>
+        <div>
+          <div className="flex gap-2 items-center text-4xl font-bold">
+            <h1>Ambiente</h1>
+            <Leaf className="w-12 h-12 text-primary" />
+          </div>
+          <p className="text-2xl text-darkGray ml-8 my-4">
+            Due to the importance we attach to it, we have long developed, on a
+            case-by-case basis, an environmental management plan with the
+            concrete objective of minimizing negative and harmful effects on the
+            environment.
           </p>
         </div>
 

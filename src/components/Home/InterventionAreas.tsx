@@ -17,7 +17,7 @@ const InterventionAreas = async () => {
         Áreas de <span className=" bg-secondary">Intervenção</span>
       </h1>
       <Tabs defaultValue={categories[0].name} className="pt-16">
-        <TabsList className="h-full flex flex-col xl:flex-row w-full gap-8 bg-transparent">
+        <TabsList className="h-full flex flex-col xl:flex-row gap-8 bg-transparent container overflow-x-autoc">
           {categories.map((category) => (
             <TabsTrigger
               key={category.id}

@@ -10,7 +10,7 @@ const ValueOffer: FC = () => {
       <div className="w-full flex items-center">
         <div className="w-full relative rounded-xl h-[40vh] lg:h-[60vh] overflow-hidden group">
           <Image
-            src="/assets/images/valueoffer/pic2.jpg"
+            src="/assets/images/valueoffer/pic2.webp"
             alt="Competência"
             fill
             className="object-center object-cover group-hover:scale-105 transition ease-in-out duration-500"
@@ -56,7 +56,7 @@ const ValueOffer: FC = () => {
         </div>
         <div className="w-full relative rounded-xl h-[40vh] overflow-hidden group">
           <Image
-            src="/assets/images/valueoffer/pic1.jpg"
+            src="/assets/images/valueoffer/pic1.webp"
             alt="Competência"
             fill
             className="object-center object-cover group-hover:scale-105 transition ease-in-out duration-500"

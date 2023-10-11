@@ -10,8 +10,8 @@ const Contact = () => {
           <Image
             src={"/assets/images/icon.svg"}
             alt="Norasil"
-            width={150}
-            height={150}
+            width={120}
+            height={120}
           />
         </div>
         <div className="text-center">

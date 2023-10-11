@@ -14,21 +14,21 @@ const Story = () => {
             value="creation"
             className="font-bold text-2xl bg-transparent data-[state=active]:bg-transparent"
           >
-            [ Creation ]
+            [ Passado ]
           </TabsTrigger>
           <Separator className="bg-gray w-full h-px" />
           <TabsTrigger
             value="growing"
             className="font-bold text-2xl text-darkGray"
           >
-            [ Growing ]
+            [ Presente ]
           </TabsTrigger>
           <Separator className="bg-gray w-full h-px" />
           <TabsTrigger
             value="future"
             className="font-bold text-2xl text-darkGray"
           >
-            [ Future ]
+            [ Futuro ]
           </TabsTrigger>
           <Separator className="bg-gray w-full h-px" />
         </TabsList>

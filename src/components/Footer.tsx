@@ -64,7 +64,7 @@ const Footer = () => {
         </div>
         <div className="lg:mx-auto space-y-4 col-span-2 py-8 px-8 lg:py-16">
           <h1 className="uppercase text-2xl text-white font-bold">
-            Informações Adicionais
+            Informações
           </h1>
           <ul>
             <li>

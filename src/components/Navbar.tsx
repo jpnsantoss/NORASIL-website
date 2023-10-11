@@ -37,7 +37,7 @@ interface NavbarProps {
 const Navbar: FC<NavbarProps> = ({ dark }) => {
   const pathname = usePathname();
   return (
-    <div className="flex justify-between items-center py-16 px-4 lg:px-48">
+    <div className="flex justify-between items-center py-16 px-4 container">
       <Link href={"/"}>
         <Image
           src="/assets/images/Logo.svg"
@@ -46,7 +46,7 @@ const Navbar: FC<NavbarProps> = ({ dark }) => {
           alt="Logo"
         />
       </Link>
-      <ul className="2xl:flex gap-8 items-center text-xl font-bold text-darkGray 2xl:text-white hidden">
+      <ul className="2xl:flex gap-6 items-center text-xl font-bold text-darkGray 2xl:text-white hidden">
         <li>
           <Link
             href="/"
@@ -65,7 +65,7 @@ const Navbar: FC<NavbarProps> = ({ dark }) => {
               })
             )}
           >
-            Home
+            Início
           </Link>
         </li>
         <li>

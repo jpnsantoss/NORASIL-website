@@ -4,8 +4,9 @@ import WelcomeContainer from "@/components/Admin/WelcomeContainer";
 import { buttonVariants } from "@/components/ui/Button";
 import { getAuthSession } from "@/lib/auth";
 import { cn } from "@/lib/utils";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, Loader2 } from "lucide-react";
 import Link from "next/link";
+import { Suspense } from "react";
 
 const Page = async () => {
   const session = await getAuthSession();
@@ -26,11 +27,27 @@ const Page = async () => {
       <div className="grid lg:grid-cols-3 w-full gap-4">
         <div className="lg:col-span-2 flex flex-col gap-4">
           <WelcomeContainer user={session?.user} />
-          {/* @ts-expect-error server component */}
-          <CategoriesContainer />
+          <Suspense
+            fallback={
+              <div className="w-full flex justify-center py-32">
+                <Loader2 className="animate-spin w-12 h-12 text-center" />
+              </div>
+            }
+          >
+            {/* @ts-expect-error server component */}
+            <CategoriesContainer />
+          </Suspense>
         </div>
-        {/* @ts-expect-error server component */}
-        <UsersContainer />
+        <Suspense
+          fallback={
+            <div className="w-full flex justify-center py-32">
+              <Loader2 className="animate-spin w-12 h-12 text-center" />
+            </div>
+          }
+        >
+          {/* @ts-expect-error server component */}
+          <UsersContainer />
+        </Suspense>
       </div>
     </div>
   );

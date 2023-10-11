@@ -6,17 +6,36 @@ import InConstruction from "@/components/Home/InConstruction";
 import InterventionAreas from "@/components/Home/InterventionAreas";
 import QualityPolicy from "@/components/Home/QualityPolicy";
 import ValueOffer from "@/components/Home/ValueOffer";
+import { Loader2 } from "lucide-react";
+import { Suspense } from "react";
 
 const page = () => {
   return (
     <div className="w-full h-full m-0">
       <Header />
-      {/* @ts-expect-error server component */}
-      <InConstruction />
+
+      <Suspense
+        fallback={
+          <div className="w-full flex justify-center py-32">
+            <Loader2 className="animate-spin w-12 h-12 text-center" />
+          </div>
+        }
+      >
+        {/* @ts-expect-error server component */}
+        <InConstruction />
+      </Suspense>
       <ValueOffer />
       <Company />
-      {/* @ts-expect-error server component */}
-      <InterventionAreas />
+      <Suspense
+        fallback={
+          <div className="w-full flex justify-center py-32">
+            <Loader2 className="animate-spin w-12 h-12 text-center" />
+          </div>
+        }
+      >
+        {/* @ts-expect-error server component */}
+        <InterventionAreas />
+      </Suspense>
       <QualityPolicy />
       <FindUs />
       <Footer />

@@ -14,7 +14,6 @@ import Sidebar from "./Sidebar";
 
 interface PortfolioContainerProps {
   categories: Category[];
-  posts: ExtendedPost[];
 }
 
 const PortfolioContainer: FC<PortfolioContainerProps> = ({ categories }) => {
@@ -111,6 +110,11 @@ const PortfolioContainer: FC<PortfolioContainerProps> = ({ categories }) => {
           ) : (
             <div className=" w-full h-[60vh] text-center flex justify-center">
               <h2 className="text-2xl">No posts to display.</h2>
+            </div>
+          )}
+          {isFetchingNextPage && (
+            <div className="w-full text-center flex justify-center py-8">
+              <Loader2 className="w-6 h-6 text-darkGray animate-spin" />
             </div>
           )}
         </div>
