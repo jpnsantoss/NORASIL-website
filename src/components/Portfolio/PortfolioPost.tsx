@@ -19,7 +19,7 @@ const PortfolioPost: FC<PortfolioPostProps> = ({ post }) => {
           <h2 className="text-darkGray text-2xl">#{post.category.title}</h2>
         </div>
         <Link
-          href={`/posts/${post.name}`}
+          href={`/obras/${post.name}`}
           className={cn(
             buttonVariants({ variant: "link" }),
             "text-primary p-0 text-2xl font-bold w-fit"

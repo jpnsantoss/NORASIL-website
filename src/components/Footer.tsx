@@ -45,19 +45,19 @@ const Footer = () => {
                   "p-0 text-gray font-bold"
                 )}
               >
-                Portfólio
+                Empresa
               </Link>
             </li>
 
             <li>
               <Link
-                href="/localizacao"
+                href="/portfolio"
                 className={cn(
                   buttonVariants({ variant: "link" }),
                   "p-0 text-gray font-bold"
                 )}
               >
-                Localização
+                Portfólio
               </Link>
             </li>
           </ul>
@@ -69,7 +69,7 @@ const Footer = () => {
           <ul>
             <li>
               <Link
-                href="/"
+                href="/privacidade"
                 className={cn(
                   buttonVariants({ variant: "link" }),
                   "p-0 text-gray font-bold"
@@ -80,19 +80,23 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                href="/portfolio"
+                href="https://norasil.portaldedenuncias.pt/"
+                target="_blank"
+                referrerPolicy="no-referrer"
                 className={cn(
                   buttonVariants({ variant: "link" }),
                   "p-0 text-gray font-bold"
                 )}
               >
-                Política de Cookies
+                Canal de Denúncias
               </Link>
             </li>
 
             <li>
               <Link
-                href="/localizacao"
+                href="https://www.livroreclamacoes.pt/Inicio/"
+                target="_blank"
+                referrerPolicy="no-referrer"
                 className={cn(
                   buttonVariants({ variant: "link" }),
                   "p-0 text-gray font-bold"

@@ -70,14 +70,14 @@ const Navbar: FC<NavbarProps> = ({ dark }) => {
         </li>
         <li>
           <Link
-            href="/about"
+            href="/empresa"
             className={cn(
               buttonVariants({
                 variant: "link",
                 size: "sm",
                 className: cn(
                   "text-xl font-bold",
-                  pathname == "/about"
+                  pathname == "/empresa"
                     ? "text-primary underline"
                     : dark
                     ? "text-darkGray"
@@ -190,7 +190,7 @@ const Navbar: FC<NavbarProps> = ({ dark }) => {
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Link href={"/about"} className="flex gap-2 items-center">
+              <Link href={"/empresa"} className="flex gap-2 items-center">
                 <Building className="mr-2 h-4 w-4" />
                 <span>Empresa</span>
               </Link>

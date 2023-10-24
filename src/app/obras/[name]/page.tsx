@@ -3,6 +3,7 @@ import InConstruction from "@/components/Home/InConstruction";
 import Navbar from "@/components/Navbar";
 import PostDetails from "@/components/Portfolio/PostDetails";
 import PostImage from "@/components/Portfolio/PostImage";
+import SimilarPosts from "@/components/Portfolio/SimilarPosts";
 import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
 
@@ -47,7 +48,7 @@ const Page = async ({ params }: pageProps) => {
       </div>
 
       {/* @ts-expect-error server component */}
-      <InConstruction />
+      <SimilarPosts post={post} />
       <Footer />
     </div>
   );

@@ -30,15 +30,12 @@ const AboutHeader: FC<AboutHeaderProps> = ({}) => {
         </div>
         <div className="space-y-4 texl-xl lg:text-2xl mt-4">
           <h2 className="font-bold">
-            Norasil&apos;s mission is to offer high quality construction
-            services, with a focus on constantly valuing the quality of the
-            built work.
+            A Norasil com mais de 40 anos de atividade. Somos uma empresa de
+            referência no mercado de construção em Portugal Continental.
           </h2>
           <p className="text-darkGray">
-            We seek the full satisfaction of our customers through the
-            systematic validation of rules and innovative practices. In
-            addition, we encourage technological and management development to
-            ensure speed and security in the execution of our projects.
+            É a nossa ambição e empreendedorismo que nos tem permitido um
+            crescimento constante, consolidado e sustentado.
           </p>
         </div>
       </div>

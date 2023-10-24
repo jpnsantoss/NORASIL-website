@@ -13,9 +13,8 @@ const Sqa = () => {
             <HardHat className="w-12 h-12 text-primary" />
           </div>
           <p className="text-2xl text-darkGray ml-8 my-4">
-            One of our priority objectives is the implementation of prevention
-            and protection measures aimed at avoiding risks and ensuring the
-            safety and health of workers.
+            A Norasil honra os compromissos assumidos com os seus clientes e
+            cumpre rigorosamente todas as obrigações legais.
           </p>
         </div>
         <div className="lg:ml-16">
@@ -24,13 +23,10 @@ const Sqa = () => {
             <Award className="w-12 h-12 text-primary" />
           </div>
           <p className="text-2xl text-darkGray ml-8 my-4">
-            In 2001, NORASIL obtained the Quality Management System
-            certification according to NP EN ISO 9001. In this context, a set of
-            procedures, normalization, parameterization and periodic performance
-            evaluation is naturally institutionalized, which are guarantees of a
-            careful construction, with quality and security. It was later
-            certified in accordance with NP EN ISO 9001:2000 and then by NP EN
-            ISO 9001:2008.
+            Neste contexto, está naturalmente institucionalizado um conjunto de
+            procedimentos, normalização, parametrização, e avaliações periódicas
+            de desempenho, que são garantes de uma construção cuidada, com a
+            qualidade e segurança.
           </p>
         </div>
         <div>
@@ -39,10 +35,8 @@ const Sqa = () => {
             <Leaf className="w-12 h-12 text-primary" />
           </div>
           <p className="text-2xl text-darkGray ml-8 my-4">
-            Due to the importance we attach to it, we have long developed, on a
-            case-by-case basis, an environmental management plan with the
-            concrete objective of minimizing negative and harmful effects on the
-            environment.
+            A Norasil também cumpre a legislação aplicável nas áreas de
+            segurança, saúde, higiene e ambiente.
           </p>
         </div>
 

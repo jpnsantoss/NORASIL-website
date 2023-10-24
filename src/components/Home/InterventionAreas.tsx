@@ -7,7 +7,7 @@ import InterventionImages from "./InterventionImages";
 const InterventionAreas = async () => {
   const categories = await db.category.findMany({
     orderBy: {
-      createdAt: "desc",
+      createdAt: "asc",
     },
   });
 
@@ -17,7 +17,7 @@ const InterventionAreas = async () => {
         Áreas de <span className=" bg-secondary">Intervenção</span>
       </h1>
       <Tabs defaultValue={categories[0].name} className="pt-16">
-        <TabsList className="h-full flex flex-col xl:flex-row gap-8 bg-transparent container overflow-x-autoc">
+        <TabsList className="h-full grid xl:grid-cols-6 gap-8 bg-transparent container">
           {categories.map((category) => (
             <TabsTrigger
               key={category.id}
@@ -25,7 +25,7 @@ const InterventionAreas = async () => {
               // className="font-bold text-2xl text-darkGray"
               className={cn(
                 buttonVariants({ variant: "outline" }),
-                "data-[state=active]:bg-secondary data-[state=active]:outline-secondary data-[state=active]:text-darkGray"
+                "data-[state=active]:bg-secondary data-[state=active]:outline-secondary data-[state=active]:text-darkGray truncate"
               )}
             >
               {category.title}

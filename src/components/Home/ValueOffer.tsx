@@ -24,7 +24,7 @@ const ValueOffer: FC = () => {
               </p>
             </div>
             <Link
-              href="/about"
+              href="/empresa"
               className={cn(
                 buttonVariants({ variant: "link" }),
                 "text-primary p-0 text-2xl"
@@ -47,7 +47,7 @@ const ValueOffer: FC = () => {
               compromisso com o prazo e orçamento.
             </p>
             <Link
-              href={"/about"}
+              href={"/empresa"}
               className={cn(buttonVariants(), "shadow-btn")}
             >
               Ver Tudo
@@ -70,7 +70,7 @@ const ValueOffer: FC = () => {
               </p>
             </div>
             <Link
-              href="/about"
+              href="/empresa"
               className={cn(
                 buttonVariants({ variant: "link" }),
                 "text-primary p-0 text-2xl"

@@ -25,26 +25,26 @@ const PostCard: FC<PostCardProps> = ({ post }) => {
         <div className="absolute -top-8 w-full bg-white rounded-t-3xl h-full overflow-hidden">
           <div className="relative h-full w-full p-8">
             <h1 className="font-bold text-2xl text-center truncate">
-              <Link className="hover:underline" href={`/posts/${post.name}`}>
+              <Link className="hover:underline" href={`/obras/${post.name}`}>
                 {post.title}
               </Link>
             </h1>
             <Separator className="my-8 bg-black" />
             <ul className="px-4 text-darkGray space-y-2">
-              <li className="flex gap-2 items-center">
+              <li className="flex gap-2 items-center truncate">
                 <Contact className="w-5 h-5 text-primary" />
                 {post.client}
               </li>
-              <li className="flex gap-2 items-center">
+              <li className="flex gap-2 items-center truncate">
                 <Calendar className="w-5 h-5 text-primary" />
                 {format(post.date, "dd/MM/yyyy")}
               </li>
               <li>
                 <Link
                   href="#"
-                  className="flex w-fit gap-2 items-center hover:underline"
+                  className="flex w-fit gap-2 items-center hover:underline truncate"
                 >
-                  <Link2 className="w-5 h-5 text-primary" />
+                  <Link2 className="w-5 h-5 text-primary " />
                   {post.category.title}
                 </Link>
               </li>

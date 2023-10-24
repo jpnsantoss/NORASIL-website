@@ -4,10 +4,19 @@ import Link from "next/link";
 import PostCard from "../PostCard";
 import { buttonVariants } from "../ui/Button";
 
-const InConstruction = async () => {
+import { ExtendedPost } from "@/types/db";
+
+interface SimilarPostsProps {
+  post: ExtendedPost;
+}
+
+const SimilarPosts = async ({ post }: SimilarPostsProps) => {
   const posts = await db.post.findMany({
     where: {
-      type: "CONSTRUCTION",
+      categoryId: post.categoryId,
+      id: {
+        not: post.id,
+      },
     },
     take: 3,
     orderBy: {
@@ -22,7 +31,7 @@ const InConstruction = async () => {
     return (
       <div className="py-16 lg:pt-32">
         <h1 className="text-5xl font-bold text-center leading-[4.5rem]">
-          Obras em <span className=" bg-secondary">Construção</span>
+          Obras <span className=" bg-secondary">Semelhantes</span>
         </h1>
 
         <div className="container lg:px-24 grid lg:grid-cols-3 gap-8 lg:gap-24 py-16 mx-auto">
@@ -32,7 +41,7 @@ const InConstruction = async () => {
         </div>
         <div className="w-full flex justify-center">
           <Link
-            href={"/portfolio"}
+            href={`/portfolio?category=${post.category.name}`}
             className={cn(buttonVariants({ size: "lg" }), "shadow-btn")}
           >
             Ver Obras
@@ -43,4 +52,4 @@ const InConstruction = async () => {
   }
 };
 
-export default InConstruction;
+export default SimilarPosts;

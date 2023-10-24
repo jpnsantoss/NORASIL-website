@@ -48,7 +48,7 @@ const Company = () => {
           <h3 className="text-lightGray text-lg">
             Para continuar a ler ...{" "}
             <Link
-              href="/about"
+              href="/empresa"
               className={cn(
                 buttonVariants({ variant: "link" }),
                 "text-primary font-semibold p-2"

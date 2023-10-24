@@ -20,7 +20,7 @@ interface PostDialogProps {
 const PostDialog: FC<PostDialogProps> = ({ images, post }) => {
   const [selectedImage, setSelectedImage] = useState(images[0]);
   return (
-    <DialogContent className="max-w-screen-2xl">
+    <DialogContent className="max-w-[95%] lg:max-w-screen-2xl">
       <DialogHeader>
         <DialogTitle>{post.title}</DialogTitle>
         <DialogDescription>
@@ -35,7 +35,7 @@ const PostDialog: FC<PostDialogProps> = ({ images, post }) => {
           >
             <Image
               src={selectedImage.url}
-              alt={`${post.title} Image ${images[1].id}`}
+              alt={`${post.title} Image ${images[0].id}`}
               fill
               loading="lazy"
               className="rounded-md object-cover transition opacity-0 duration-500 object-center  group-hover:scale-105 ease-in-out "
