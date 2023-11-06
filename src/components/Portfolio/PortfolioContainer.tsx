@@ -8,7 +8,7 @@ import axios from "axios";
 import { Loader2 } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { FC, useEffect, useRef, useState } from "react";
-import PostsSearch from "../Admin/PostsSearch";
+import PostsSearch from "../PostsSearch";
 import PortfolioPost from "./PortfolioPost";
 import Sidebar from "./Sidebar";
 

@@ -14,7 +14,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "../ui/Command";
+} from "./ui/Command";
 
 interface PostsSearchProps {}
 
@@ -82,12 +82,25 @@ const PostsSearch: FC<PostsSearchProps> = ({}) => {
                   key={post.id}
                   value={post.name}
                   onSelect={(e) => {
-                    router.push(`/admin/posts/${e}`);
+                    router.push(
+                      pathname == "/admin/posts"
+                        ? `/admin/posts/${e}`
+                        : `/obras/${e}`
+                    );
                     router.refresh();
                   }}
                 >
                   <Dot className="mr-2 w-4 h-4" />
-                  <a href={`/admin/posts/${post.name}`}>{post.title}</a>
+                  <a
+                    className="w-full h-full"
+                    href={
+                      pathname == "/admin/posts"
+                        ? `/admin/posts/${post.name}`
+                        : `/obras/${post.name}`
+                    }
+                  >
+                    {post.title}
+                  </a>
                 </CommandItem>
               ))}
             </CommandGroup>
