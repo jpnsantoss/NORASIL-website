@@ -72,21 +72,23 @@ const PostDetails: FC<PostDetailsProps> = ({ images, post }) => {
                   </div>
                   <div className="h-64 relative rounded-xl bg-lightGray overflow-hidden group cursor-pointer">
                     <DialogTrigger asChild>
-                      <Image
-                        src={images[2].url}
-                        fill
-                        alt={`Image n0`}
-                        loading="lazy"
-                        className="rounded-md object-cover transition opacity-0 duration-500 object-center  group-hover:scale-105 ease-in-out "
-                        onLoadingComplete={(image) =>
-                          image.classList.remove("opacity-0")
-                        }
-                      />
-                      <div className="w-full h-full bg-black opacity-75 absolute top-0 left-0" />
-                      <div className="w-full h-full flex items-center justify-center">
-                        <h1 className="text-white text-5xl font-bold z-20">
-                          <>+{images.length - 2}</>
-                        </h1>
+                      <div className="w-full h-full">
+                        <Image
+                          src={images[2].url}
+                          fill
+                          alt={`Image n0`}
+                          loading="lazy"
+                          className="rounded-md object-cover transition opacity-0 duration-500 object-center  group-hover:scale-105 ease-in-out "
+                          onLoadingComplete={(image) =>
+                            image.classList.remove("opacity-0")
+                          }
+                        />
+                        <div className="w-full h-full bg-black opacity-75 absolute top-0 left-0" />
+                        <div className="w-full h-full flex items-center justify-center">
+                          <h1 className="text-white text-5xl font-bold z-20">
+                            <>+{images.length - 2}</>
+                          </h1>
+                        </div>
                       </div>
                     </DialogTrigger>
                   </div>
