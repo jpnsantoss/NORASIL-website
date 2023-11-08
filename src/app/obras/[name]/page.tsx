@@ -1,5 +1,4 @@
 import Footer from "@/components/Footer";
-import InConstruction from "@/components/Home/InConstruction";
 import Navbar from "@/components/Navbar";
 import PostDetails from "@/components/Portfolio/PostDetails";
 import PostImage from "@/components/Portfolio/PostImage";

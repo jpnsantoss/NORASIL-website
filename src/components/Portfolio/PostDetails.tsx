@@ -6,7 +6,6 @@ import { Calendar, Clock, Hammer } from "lucide-react";
 import Image from "next/image";
 import { FC } from "react";
 import { Dialog, DialogTrigger } from "../ui/Dialog";
-import { Separator } from "../ui/Separator";
 import PostDialog from "./PostDialog";
 
 interface PostDetailsProps {

@@ -1,6 +1,6 @@
 import PostsForm from "@/components/Admin/PostsForm";
 import PostsList from "@/components/Admin/PostsList";
-import PostsSearch from "@/components/Admin/PostsSearch";
+import PostsSearch from "@/components/PostsSearch";
 import { buttonVariants } from "@/components/ui/Button";
 import {
   Card,
