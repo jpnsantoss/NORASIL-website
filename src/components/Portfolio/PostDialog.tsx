@@ -29,19 +29,16 @@ const PostDialog: FC<PostDialogProps> = ({ images, post }) => {
       </DialogHeader>
       <div className="grid lg:grid-cols-3 gap-16 lg:p-8">
         <div className="w-full lg:col-span-2">
-          <AspectRatio
-            ratio={16 / 9}
-            className="bg-lightGray shadow rounded-md group overflow-hidden"
-          >
+          <div className="rounded-md group overflow-hidden relative w-full h-[40vh] lg:h-[50vh]">
             <Image
               src={selectedImage.url}
               alt={`${post.title} Image ${images[0].id}`}
               fill
               loading="lazy"
-              className="rounded-md object-cover transition opacity-0 duration-500 object-center  group-hover:scale-105 ease-in-out "
+              className="object-contain transition opacity-0 duration-500 object-center group-hover:scale-105 ease-in-out"
               onLoadingComplete={(image) => image.classList.remove("opacity-0")}
             />
-          </AspectRatio>
+          </div>
         </div>
         <div className="space-y-4">
           <h2>Select an image:</h2>
