@@ -8,16 +8,24 @@ export const metadata = {
   title: "Norasil",
   description:
     "Fundada em Maio de 1983, a Norasil – Sociedade de Construção Civil, S.A., (com Sede e Estaleiro Central em Matosinhos) tem como objecto principal a execução de empreitadas de obras públicas e de obras particulares.",
+  alternates: {
+    languages: {
+      pt: "/",
+    },
+  },
   openGraph: {
+    siteName: "Norasil",
     description:
       "Fundada em Maio de 1983, a Norasil – Sociedade de Construção Civil, S.A., (com Sede e Estaleiro Central em Matosinhos) tem como objecto principal a execução de empreitadas de obras públicas e de obras particulares.",
     emails: ["norasil@norasil.pt"],
-    title: "Norasil",
+    title: "Norasil - Sociedade de Consturção Civil S.A.",
     url: "https://norasil.pt",
     phoneNumbers: ["(+351) 229 399 250"],
     images: ["/assets/images/icon.svg"],
     type: "website",
+    locale: "pt_PT",
   },
+  metadataBase: new URL("https://norasil.pt"),
 };
 
 const openSans = Open_Sans({ subsets: ["latin"] });

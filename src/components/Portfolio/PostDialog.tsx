@@ -4,7 +4,6 @@ import { ExtendedPost } from "@/types/db";
 import { Image as PrismaImage } from "@prisma/client";
 import Image from "next/image";
 import { FC, useState } from "react";
-import { AspectRatio } from "../ui/AspectRatio";
 import {
   DialogContent,
   DialogDescription,

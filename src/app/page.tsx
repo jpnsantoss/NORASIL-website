@@ -13,7 +13,16 @@ const page = () => {
   return (
     <div className="w-full h-full m-0">
       <Header />
-      <InConstruction />
+      <Suspense
+        fallback={
+          <div className="w-full flex justify-center py-32">
+            <Loader2 className="animate-spin w-12 h-12 text-center" />
+          </div>
+        }
+      >
+        {/* @ts-expect-error server component */}
+        <InConstruction />
+      </Suspense>
       <ValueOffer />
       <Company />
       <Suspense
