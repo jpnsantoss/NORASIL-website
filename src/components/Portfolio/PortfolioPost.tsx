@@ -15,7 +15,9 @@ const PortfolioPost: FC<PortfolioPostProps> = ({ post }) => {
       <PortfolioImage post={post} />
       <div className="h-full flex flex-col lg:justify-between">
         <div className="space-y-4">
-          <h1 className="text-3xl lg:text-5xl font-bold">{post.title}</h1>
+          <h1 className="text-3xl lg:text-5xl font-bold text-ellipsis">
+            {post.title}
+          </h1>
           <h2 className="text-darkGray text-2xl">#{post.category.title}</h2>
         </div>
         <Link

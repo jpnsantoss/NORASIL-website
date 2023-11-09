@@ -20,16 +20,16 @@ interface PostDialogProps {
 const PostDialog: FC<PostDialogProps> = ({ images, post }) => {
   const [selectedImage, setSelectedImage] = useState(images[0]);
   return (
-    <DialogContent className="max-w-[95%] lg:max-w-screen-2xl">
-      <DialogHeader>
+    <DialogContent className="max-w-[95%] p-4 lg:max-w-screen-2xl">
+      <DialogHeader className="hidden lg:block">
         <DialogTitle>{post.title}</DialogTitle>
         <DialogDescription>
           This is the set of images associated with this post.
         </DialogDescription>
       </DialogHeader>
-      <div className="grid lg:grid-cols-3 gap-16 lg:p-8">
+      <div className="grid lg:grid-cols-3 gap-4 lg:gap-16 lg:p-8">
         <div className="w-full lg:col-span-2">
-          <div className="rounded-md group overflow-hidden relative w-full h-[40vh] lg:h-[50vh]">
+          <div className="rounded-md group overflow-hidden relative w-full h-[60vh] md:h-[60vh] lg:h-[50vh]">
             <Image
               src={selectedImage.url}
               alt={`${post.title} Image ${images[0].id}`}
@@ -42,13 +42,13 @@ const PostDialog: FC<PostDialogProps> = ({ images, post }) => {
         </div>
         <div className="space-y-4">
           <h2>Select an image:</h2>
-          <div className="grid grid-cols-4 w-full gap-4">
+          <div className="grid grid-cols-6 md:grid-cols-10 lg:grid-cols-4 w-full gap-4">
             {images.map((image) => (
               <button
                 key={image.id}
                 onClick={() => setSelectedImage(image)}
                 className={cn(
-                  "bg-lightGray rounded-md group overflow-hidden relative h-20 focus-visible:border-2 focus-visible:border-primary",
+                  "bg-lightGray rounded-md group overflow-hidden relative h-10 lg:h-20 focus-visible:border-2 focus-visible:border-primary",
                   image.id == selectedImage.id && "border-2 border-black"
                 )}
               >

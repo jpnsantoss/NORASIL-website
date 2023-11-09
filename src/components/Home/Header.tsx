@@ -9,7 +9,7 @@ import { Separator } from "../ui/Separator";
 const inter = Inter({ subsets: ["latin"] });
 const Header = () => {
   return (
-    <div className="w-full h-full lg:min-h-[900px] overflow-hidden">
+    <div className="w-full h-full lg:min-h-[900px] min-h-[700px] overflow-hidden">
       <div className="w-full absolute left-0 top-0 z-20">
         <div className="relative w-full">
           <Navbar />
