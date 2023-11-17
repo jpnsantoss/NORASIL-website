@@ -37,7 +37,7 @@ const PostCard: FC<PostCardProps> = ({ post }) => {
               </li>
               <li className="flex gap-2 items-center truncate">
                 <Calendar className="w-5 h-5 text-primary" />
-                {format(post.date, "dd/MM/yyyy")}
+                {post.deadline}
               </li>
               <li>
                 <Link

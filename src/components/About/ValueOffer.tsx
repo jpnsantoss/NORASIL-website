@@ -1,5 +1,7 @@
+import { cn } from "@/lib/utils";
 import { HeartHandshake, Search, ShieldCheck, Wrench } from "lucide-react";
-import { Button } from "../ui/Button";
+import Link from "next/link";
+import { Button, buttonVariants } from "../ui/Button";
 
 const ValueOffer = () => {
   return (
@@ -34,9 +36,11 @@ const ValueOffer = () => {
           </div>
           <div className="bg-black shadow-lg shadow-gray rounded-xl w-full space-y-4 p-8">
             <h2 className="text-white font-bold text-xl">
-              Want to See these <br /> in Action?
+              Queres ver estes <br /> em Ação?
             </h2>
-            <Button className="font-bold">See our works</Button>
+            <Link href="/empresa" className={cn(buttonVariants())}>
+              Ver obras
+            </Link>
           </div>
           <div className="w-full shadow border border-lightGray rounded-xl space-y-6 p-8">
             <Wrench className="w-10 h-10 text-primary" />

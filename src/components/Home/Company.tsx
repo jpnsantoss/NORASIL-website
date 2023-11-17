@@ -42,7 +42,7 @@ const Company = () => {
           </p>
           <p className="text-lightGray text-lg">
             Este empresa especializou-se em diversas áreas e adquiriu os meios
-            necessários para atingir um volume de negócios anual superior a 20
+            necessários para atingir um volume de negócios anual superior a 22
             milhões de euros.
           </p>
           <h3 className="text-lightGray text-lg">

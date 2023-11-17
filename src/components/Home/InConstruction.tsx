@@ -22,7 +22,7 @@ const InConstruction = async () => {
     return (
       <div className="py-16 lg:pt-32">
         <h1 className="text-5xl font-bold text-center leading-[4.5rem]">
-          Obras em <span className=" bg-secondary">Construção</span>
+          Obras em <span className=" bg-secondary">Curso</span>
         </h1>
 
         <div className="container lg:px-24 grid lg:grid-cols-3 gap-8 lg:gap-24 py-16 mx-auto">
@@ -32,7 +32,7 @@ const InConstruction = async () => {
         </div>
         <div className="w-full flex justify-center">
           <Link
-            href={"/portfolio"}
+            href={"/portfolio?status=CONSTRUCTION"}
             className={cn(buttonVariants({ size: "lg" }), "shadow-btn")}
           >
             Ver Obras

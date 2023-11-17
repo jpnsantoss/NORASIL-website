@@ -30,7 +30,7 @@ const ValueOffer: FC = () => {
                 "text-primary p-0 text-2xl"
               )}
             >
-              See More
+              Ver mais
             </Link>
           </div>
         </div>
@@ -76,7 +76,7 @@ const ValueOffer: FC = () => {
                 "text-primary p-0 text-2xl"
               )}
             >
-              See More
+              Ver mais
             </Link>
           </div>
         </div>

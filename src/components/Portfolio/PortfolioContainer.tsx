@@ -109,7 +109,7 @@ const PortfolioContainer: FC<PortfolioContainerProps> = ({ categories }) => {
             })
           ) : (
             <div className=" w-full h-[60vh] text-center flex justify-center">
-              <h2 className="text-2xl">No posts to display.</h2>
+              <h2 className="text-2xl">Não existem obras disponíveis.</h2>
             </div>
           )}
           {isFetchingNextPage && (

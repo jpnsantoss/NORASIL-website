@@ -27,7 +27,7 @@ const PortfolioPost: FC<PortfolioPostProps> = ({ post }) => {
             "text-primary p-0 text-2xl font-bold w-fit"
           )}
         >
-          See More
+          Ver mais
         </Link>
       </div>
     </div>
