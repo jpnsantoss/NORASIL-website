@@ -30,11 +30,7 @@ import { FC } from "react";
 import Contact from "./Contact";
 import { Sheet, SheetTrigger } from "./ui/Sheet";
 
-interface NavbarProps {
-  dark?: boolean;
-}
-
-const Navbar: FC<NavbarProps> = ({ dark = true }) => {
+const Navbar = () => {
   const pathname = usePathname();
   return (
     <div className="py-6 px-4 bg-white">
@@ -56,12 +52,8 @@ const Navbar: FC<NavbarProps> = ({ dark = true }) => {
                   variant: "link",
                   size: "sm",
                   className: cn(
-                    "text-xl font-bold",
-                    pathname == "/"
-                      ? "text-primary underline"
-                      : dark
-                      ? "text-darkGray"
-                      : "2xl:text-white text-darkGray"
+                    "text-xl text-darkGray font-bold",
+                    pathname == "/" && "text-primary underline"
                   ),
                 })
               )}
@@ -77,12 +69,8 @@ const Navbar: FC<NavbarProps> = ({ dark = true }) => {
                   variant: "link",
                   size: "sm",
                   className: cn(
-                    "text-xl font-bold",
-                    pathname == "/empresa"
-                      ? "text-primary underline"
-                      : dark
-                      ? "text-darkGray"
-                      : "2xl:text-white text-darkGray"
+                    "text-xl text-darkGray font-bold",
+                    pathname == "/empresa" && "text-primary underline"
                   ),
                 })
               )}
@@ -96,10 +84,7 @@ const Navbar: FC<NavbarProps> = ({ dark = true }) => {
                 <Button
                   variant="link"
                   size="sm"
-                  className={cn(
-                    "text-xl font-bold focus:ring-0",
-                    dark ? "text-darkGray" : "2xl:text-white text-darkGray"
-                  )}
+                  className={cn("text-xl text-darkGray font-bold focus:ring-0")}
                 >
                   Documentos
                 </Button>
@@ -140,12 +125,8 @@ const Navbar: FC<NavbarProps> = ({ dark = true }) => {
                   variant: "link",
                   size: "sm",
                   className: cn(
-                    "text-xl font-bold",
-                    pathname == "/portfolio"
-                      ? "text-primary underline"
-                      : dark
-                      ? "text-darkGray"
-                      : "2xl:text-white text-darkGray"
+                    "text-xl text-darkGray font-bold",
+                    pathname == "/portfolio" && "text-primary underline"
                   ),
                 })
               )}
@@ -160,13 +141,7 @@ const Navbar: FC<NavbarProps> = ({ dark = true }) => {
                   variant={"link"}
                   size={"sm"}
                   className={cn(
-                    { "border-black": dark },
-                    "text-xl font-bold border-2 p-5",
-                    pathname == "/contacto"
-                      ? "text-primary underline"
-                      : dark
-                      ? "text-darkGray"
-                      : "2xl:text-white text-darkGray"
+                    "text-xl text-darkGray font-bold border-2 border-black p-5"
                   )}
                 >
                   Contacto
