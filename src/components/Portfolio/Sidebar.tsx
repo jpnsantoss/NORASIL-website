@@ -46,7 +46,6 @@ const Sidebar: FC<SidebarProps> = ({ categories }) => {
   };
 
   const [scroll, setScroll] = useState(false);
-  const [contact, setContact] = useState(false);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -67,13 +66,6 @@ const Sidebar: FC<SidebarProps> = ({ categories }) => {
       setScroll(true);
     } else {
       setScroll(false);
-    }
-
-    if (distanceFromBottom < scrollThreshold) {
-      setContact(true);
-      // Load more content or trigger an action here
-    } else {
-      setContact(false);
     }
   };
 
@@ -116,43 +108,28 @@ const Sidebar: FC<SidebarProps> = ({ categories }) => {
         <RadioGroup
           defaultValue={searchParams.get("category") || "all"}
           onValueChange={(value) => handleCategoryChange(value)}
-          className="space-y-2 max-h-40 overflow-y-auto truncate"
+          className="space-y-2 truncate"
         >
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value={"all"} id={"all"} />
-            <Label htmlFor={"all"} className="text-lg font-semibold">
-              Geral
-            </Label>
-          </div>
-          {categories.map((category) => (
-            <div key={category.id} className="flex items-center space-x-2">
-              <RadioGroupItem value={category.name} id={category.name} />
-              <Label htmlFor={category.name} className="text-lg font-semibold">
-                {category.title}
+          <div className="max-h-40 overflow-y-auto">
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value={"all"} id={"all"} />
+              <Label htmlFor={"all"} className="text-lg font-semibold">
+                Geral
               </Label>
             </div>
-          ))}
+            {categories.map((category) => (
+              <div key={category.id} className="flex items-center space-x-2">
+                <RadioGroupItem value={category.name} id={category.name} />
+                <Label
+                  htmlFor={category.name}
+                  className="text-lg font-semibold"
+                >
+                  {category.title}
+                </Label>
+              </div>
+            ))}
+          </div>
         </RadioGroup>
-      </div>
-      <div
-        className={cn(
-          "bg-white border hidden lg:flex border-gray shadow p-8 gap-4 rounded-xl flex-col transition-transform ease-in-out duration-300",
-          {
-            "scale-0": contact,
-          }
-        )}
-      >
-        <div className="flex gap-4 items-center">
-          <MessagesSquare className="text-primary w-8 h-8" />
-
-          <h1 className="text-2xl font-bold">Contacte-nos</h1>
-        </div>
-        <p className="text-darkGray font-bold text-lg">
-          Gostou do nosso trabalho?{" "}
-          <Button variant={"link"} className="text-primary p-0 font-bold w-fit">
-            Contacte-nos.
-          </Button>
-        </p>
       </div>
     </div>
   );

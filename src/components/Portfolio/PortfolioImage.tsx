@@ -2,6 +2,7 @@
 import { Post } from "@prisma/client";
 import Image from "next/image";
 import { FC } from "react";
+import { AspectRatio } from "../ui/AspectRatio";
 
 interface PortfolioImageProps {
   post: Post;
@@ -9,15 +10,26 @@ interface PortfolioImageProps {
 
 const PortfolioImage: FC<PortfolioImageProps> = ({ post }) => {
   return (
-    <div className="h-[25vh] lg:h-full relative bg-lightGray shadow rounded-lg overflow-hidden group">
-      <Image
-        src={post.mainImageUrl}
-        alt={post.title}
+    <div className="relative">
+      <AspectRatio
+        ratio={16 / 10}
+        className="bg-lightGray shadow group rounded-md overflow-hidden"
+      >
+        <Image
+          src={post.mainImageUrl}
+          alt={post.title}
+          fill
+          className="rounded-md object-cover transition opacity-0 duration-500 object-center  group-hover:scale-105 ease-in-out "
+          onLoadingComplete={(image) => image.classList.remove("opacity-0")}
+        />
+      </AspectRatio>
+      {/* <Image
+        
         fill
         loading="lazy"
         className="rounded-md object-cover transition opacity-0 duration-500 object-center  group-hover:scale-105 ease-in-out "
-        onLoadingComplete={(image) => image.classList.remove("opacity-0")}
-      />
+        
+      /> */}
     </div>
   );
 };
