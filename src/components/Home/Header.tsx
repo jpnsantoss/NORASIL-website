@@ -14,7 +14,7 @@ const Header = async () => {
       <div className="w-full absolute left-0 top-0 z-20">
         <div className="relative w-full">
           <Navbar />
-          <div className="lg:py-8 px-4 container ">
+          <div className="lg:py-16 px-4 container ">
             <div className="flex flex-col gap-4">
               <h1
                 className={cn(
