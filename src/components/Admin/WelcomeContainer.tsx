@@ -18,7 +18,7 @@ const inter = Inter({ subsets: ["latin"] });
 const WelcomeContainer: FC<WelcomeContainerProps> = ({ user }) => {
   const router = useRouter();
   return (
-    <Card>
+    <Card className="lg:h-64">
       <div className="grid lg:grid-cols-3 gap-8 p-12 items-center h-fit">
         <div className="space-y-2 flex flex-row-reverse lg:block gap-4 justify-end items-center">
           <Avatar>

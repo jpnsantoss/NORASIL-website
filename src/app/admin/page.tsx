@@ -1,4 +1,5 @@
 import CategoriesContainer from "@/components/Admin/CategoriesContainer";
+import CounterContainer from "@/components/Admin/CounterContainer";
 import UsersContainer from "@/components/Admin/UsersContainer";
 import WelcomeContainer from "@/components/Admin/WelcomeContainer";
 import { buttonVariants } from "@/components/ui/Button";
@@ -45,8 +46,12 @@ const Page = async () => {
             </div>
           }
         >
-          {/* @ts-expect-error server component */}
-          <UsersContainer />
+          <div className="space-y-4">
+            {/* @ts-expect-error server component */}
+            <CounterContainer />
+            {/* @ts-expect-error server component */}
+            <UsersContainer />
+          </div>
         </Suspense>
       </div>
     </div>

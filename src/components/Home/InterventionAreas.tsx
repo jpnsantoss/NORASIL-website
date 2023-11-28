@@ -17,7 +17,7 @@ const InterventionAreas = async () => {
         Áreas de <span className=" bg-secondary">Intervenção</span>
       </h1>
       <Tabs defaultValue={categories[0].name} className="pt-16">
-        <TabsList className="h-full grid xl:grid-cols-6 gap-8 bg-transparent container">
+        <TabsList className="h-full flex flex-wrap gap-8 bg-transparent container">
           {categories.map((category) => (
             <TabsTrigger
               key={category.id}
@@ -25,7 +25,7 @@ const InterventionAreas = async () => {
               // className="font-bold text-2xl text-darkGray"
               className={cn(
                 buttonVariants({ variant: "outline" }),
-                "data-[state=active]:bg-secondary data-[state=active]:outline-secondary data-[state=active]:text-darkGray truncate"
+                "data-[state=active]:bg-secondary data-[state=active]:outline-secondary data-[state=active]:text-darkGray truncate w-full sm:w-52"
               )}
             >
               {category.title}

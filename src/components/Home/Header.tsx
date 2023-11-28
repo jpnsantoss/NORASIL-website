@@ -1,4 +1,4 @@
-"use client";
+import { db } from "@/lib/db";
 import { cn } from "@/lib/utils";
 import { Inter } from "next/font/google";
 import Link from "next/link";
@@ -7,7 +7,8 @@ import { buttonVariants } from "../ui/Button";
 import { Separator } from "../ui/Separator";
 
 const inter = Inter({ subsets: ["latin"] });
-const Header = () => {
+const Header = async () => {
+  const counter = await db.counter.findFirst();
   return (
     <div className="w-full h-full lg:min-h-[900px] min-h-[700px] overflow-hidden">
       <div className="w-full absolute left-0 top-0 z-20">
@@ -42,19 +43,25 @@ const Header = () => {
           <div className="w-full flex 2xl:justify-center container px-4">
             <div className="flex justify-center items-center border border-darkGray rounded-xl overflow-hidden 2xl:ml-[20%] w-full lg:w-1/2 2xl:w-2/5 my-4">
               <div className="bg-black w-full flex items-center justify-center text-lightGray flex-col gap-2 py-4">
-                <span className="font-bold text-4xl text-primary">672</span>
-                Obras
+                <span className="font-bold text-4xl text-primary">
+                  {counter?.finishedBuilds}
+                </span>
+                Obras finalizadas
               </div>
               <div className="bg-white flex w-full items-center justify-center text-darkGray flex-col gap-2 py-4">
-                <span className="font-bold text-4xl text-black">7</span>
-                Distinções
+                <span className="font-bold text-4xl text-black">
+                  {counter?.constructionBuilds}
+                </span>
+                Obras em construção
               </div>
               <div className="bg-white h-full flex items-center">
                 <Separator orientation="vertical" className="bg-gray h-2/3" />
               </div>
               <div className="bg-white flex w-full items-center justify-center text-darkGray flex-col gap-2 py-4">
-                <span className="font-bold text-4xl text-black">66</span>
-                Colaboradores
+                <span className="font-bold text-4xl text-black">
+                  {counter?.awards}
+                </span>
+                Prémios
               </div>
             </div>
           </div>

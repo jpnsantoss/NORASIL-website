@@ -12,6 +12,7 @@ import { Suspense } from "react";
 const page = () => {
   return (
     <div className="w-full h-full m-0">
+      {/* @ts-expect-error server component */}
       <Header />
       <Suspense
         fallback={

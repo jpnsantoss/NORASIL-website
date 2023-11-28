@@ -83,6 +83,7 @@ model Post {
   title     String
   client    String
   date      DateTime
+  local     String   @default("")
   deadline  String
 
   category   Category @relation(fields: [categoryId], references: [id], onDelete: Restrict)
@@ -100,4 +101,11 @@ model Image {
   uploadedAt DateTime @default(now())
   Post       Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId     String
+}
+
+model Counter {
+  id                 String @id @default(cuid())
+  finishedBuilds     String @default("0")
+  constructionBuilds String @default("0")
+  awards             String @default("0")
 }
