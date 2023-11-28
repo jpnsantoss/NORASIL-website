@@ -20,7 +20,6 @@ const PortfolioContainer: FC<PortfolioContainerProps> = ({ categories }) => {
   const searchParams = useSearchParams();
   const category = searchParams.get("category");
   const status = searchParams.get("status");
-  const [initialDataFetch, setInitialDataFetch] = useState(true);
 
   const lastPostRef = useRef<HTMLElement>(null);
 
@@ -37,7 +36,6 @@ const PortfolioContainer: FC<PortfolioContainerProps> = ({ categories }) => {
       return data as ExtendedPost[];
     },
     queryKey: ["portfolio-query", category, status],
-    enabled: initialDataFetch,
   });
 
   const { data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
@@ -73,7 +71,6 @@ const PortfolioContainer: FC<PortfolioContainerProps> = ({ categories }) => {
 
   useEffect(() => {
     if (entry?.isIntersecting && !isFetchingNextPage && hasNextPage) {
-      setInitialDataFetch(false);
       fetchNextPage();
     }
   }, [entry, fetchNextPage, isFetchingNextPage, hasNextPage]);
@@ -81,8 +78,10 @@ const PortfolioContainer: FC<PortfolioContainerProps> = ({ categories }) => {
   const posts = data?.pages.flatMap((page) => page) ?? initialPosts ?? [];
 
   return (
-    <div className="mx-auto w-full lg:px-16 grid lg:grid-cols-4 gap-16 my-16">
-      <Sidebar categories={categories} />
+    <div className="grid lg:grid-cols-4 gap-16 container">
+      <div>
+        <Sidebar categories={categories} />
+      </div>
       <div className="lg:col-span-3 lg:col-start-2 w-full h-full space-y-16">
         <div className="px-4 lg:w-1/2">
           <PostsSearch />
@@ -99,7 +98,7 @@ const PortfolioContainer: FC<PortfolioContainerProps> = ({ categories }) => {
                 if (index === posts.length - 1) {
                   return (
                     <div key={post.id} ref={ref}>
-                      <PortfolioPost post={post} />;
+                      <PortfolioPost post={post} />
                     </div>
                   );
                 } else {
@@ -108,7 +107,7 @@ const PortfolioContainer: FC<PortfolioContainerProps> = ({ categories }) => {
               }
             })
           ) : (
-            <div className=" w-full h-[60vh] text-center flex justify-center">
+            <div className=" w-full text-center flex justify-center">
               <h2 className="text-2xl">Não existem obras disponíveis.</h2>
             </div>
           )}

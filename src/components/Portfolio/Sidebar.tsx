@@ -45,37 +45,8 @@ const Sidebar: FC<SidebarProps> = ({ categories }) => {
     router.push(newUrl);
   };
 
-  const [scroll, setScroll] = useState(false);
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  const scrollThreshold = 100;
-
-  const handleScroll = () => {
-    const distanceFromBottom =
-      document.documentElement.scrollHeight -
-      window.innerHeight -
-      window.scrollY;
-
-    if (window.scrollY > scrollThreshold) {
-      setScroll(true);
-    } else {
-      setScroll(false);
-    }
-  };
-
   return (
-    <div
-      className={cn(
-        "space-y-8 lg:fixed lg:w-1/4 px-4 lg:px-12 transition-transform ease-in-out duration-300",
-        scroll && "transform translate-y-0 lg:-translate-y-56"
-      )}
-    >
+    <div className="lg:sticky lg:top-10 space-y-8">
       <div className="bg-white border border-gray shadow p-8 space-y-4 rounded-xl">
         <h1 className="text-xl font-bold">Tipo de Obras</h1>
         <RadioGroup
@@ -110,25 +81,20 @@ const Sidebar: FC<SidebarProps> = ({ categories }) => {
           onValueChange={(value) => handleCategoryChange(value)}
           className="space-y-2 truncate"
         >
-          <div className="max-h-40 overflow-y-auto">
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value={"all"} id={"all"} />
-              <Label htmlFor={"all"} className="text-lg font-semibold">
-                Geral
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value={"all"} id={"all"} />
+            <Label htmlFor={"all"} className="text-lg font-semibold">
+              Geral
+            </Label>
+          </div>
+          {categories.map((category) => (
+            <div key={category.id} className="flex items-center space-x-2">
+              <RadioGroupItem value={category.name} id={category.name} />
+              <Label htmlFor={category.name} className="text-lg font-semibold">
+                {category.title}
               </Label>
             </div>
-            {categories.map((category) => (
-              <div key={category.id} className="flex items-center space-x-2">
-                <RadioGroupItem value={category.name} id={category.name} />
-                <Label
-                  htmlFor={category.name}
-                  className="text-lg font-semibold"
-                >
-                  {category.title}
-                </Label>
-              </div>
-            ))}
-          </div>
+          ))}
         </RadioGroup>
       </div>
     </div>

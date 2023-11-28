@@ -23,9 +23,7 @@ const Page = async () => {
       >
         <PortfolioContainer categories={categories} />
       </Suspense>
-      <div className="lg:pt-96x">
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 };
