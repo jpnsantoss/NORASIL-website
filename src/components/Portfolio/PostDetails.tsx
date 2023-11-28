@@ -1,8 +1,7 @@
 "use client";
 import { ExtendedPost } from "@/types/db";
 import { Image as PrismaImage } from "@prisma/client";
-import { format } from "date-fns";
-import { Calendar, Clock, Hammer } from "lucide-react";
+import { Calendar, Hammer, MapPin } from "lucide-react";
 import Image from "next/image";
 import { FC } from "react";
 import { Dialog, DialogTrigger } from "../ui/Dialog";
@@ -100,11 +99,9 @@ const PostDetails: FC<PostDetailsProps> = ({ images, post }) => {
         )}
         <div className="border border-gray min-h-64 rounded-xl py-8 grid md:grid-cols-3 gap-8 md:gap-0 overflow-x-auto">
           <div className="px-8 space-y-4 flex flex-col items-center justify-center lg:border-r border-gray">
-            <Clock className="w-10 h-10 text-primary" />
-            <h1 className="text-2xl font-bold">Data</h1>
-            <h2 className="text-darkGray text-lg">
-              {format(post.date, "dd/MM/yyyy")}
-            </h2>
+            <MapPin className="w-10 h-10 text-primary" />
+            <h1 className="text-2xl font-bold">Local</h1>
+            <h2 className="text-darkGray text-lg">{post.local}</h2>
           </div>
           <div className="px-8 space-y-4 flex flex-col items-center justify-center lg:border-r border-gray">
             <Calendar className="w-10 h-10 text-primary" />
