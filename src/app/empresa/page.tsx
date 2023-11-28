@@ -14,7 +14,7 @@ interface pageProps {}
 const Page: FC<pageProps> = ({}) => {
   return (
     <div>
-      <Navbar dark />
+      <Navbar />
       <AboutHeader />
       <AboutBanner />
       <Story />

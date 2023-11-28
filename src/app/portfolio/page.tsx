@@ -13,7 +13,7 @@ const Page = async () => {
   });
   return (
     <div>
-      <Navbar dark />
+      <Navbar />
       <Suspense
         fallback={
           <div className="w-full flex justify-center py-32">

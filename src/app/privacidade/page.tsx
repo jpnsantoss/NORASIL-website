@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar";
 const page = () => {
   return (
     <div>
-      <Navbar dark />
+      <Navbar />
       <div className="py-16">
         <h1 className="text-5xl font-bold text-center leading-[4.5rem]">
           Política de <span className=" bg-secondary">Privacidade</span>

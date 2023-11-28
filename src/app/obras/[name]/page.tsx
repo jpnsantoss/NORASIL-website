@@ -28,7 +28,7 @@ const Page = async ({ params }: pageProps) => {
 
   return (
     <div className="">
-      <Navbar dark />
+      <Navbar />
       <div className="container space-y-8">
         <PostImage post={post} />
 
