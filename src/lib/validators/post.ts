@@ -15,12 +15,10 @@ const fileSchema = z
   });
 
 export const PostFormValidator = z.object({
-  title: z.string().nonempty(
-    "Please provide a valid title."
-  ),
-  client: z.string().nonempty("Please provide the client's name."
-  ),
-  deadline: z.string().nonempty("Please provide a valid deadline."),
+  title: z.string().min(1),
+  client: z.string().min(1),
+  deadline: z.string().min(1),
+  local: z.string().min(1),
   type: z.enum(["CONSTRUCTION", "FINISHED"], {
     required_error: "Please select a valid type.",
   }),
@@ -40,6 +38,7 @@ export const PostValidator = z.object({
   title: z.string(),
   client: z.string(),
   deadline: z.string(),
+  local: z.string(),
   type: z.enum(["CONSTRUCTION", "FINISHED"]),
   category: z.string(),
   date: z.string().datetime(),
@@ -61,12 +60,10 @@ export const DeletePostValidator = z.object({
 })
 
 export const EditPostFormValidator = z.object({
-  title: z.string().nonempty(
-    "Please provide a valid title."
-  ),
-  client: z.string().nonempty("Please provide the client's name."
-  ),
-  deadline: z.string().nonempty("Please provide a valid deadline."),
+  title: z.string().min(1),
+  client: z.string().min(1),
+  deadline: z.string().min(1),
+  local: z.string().min(1),
   type: z.enum(["CONSTRUCTION", "FINISHED"], {
     required_error: "Please select a valid type.",
   }),
@@ -84,6 +81,7 @@ export const EditPostValidator = z.object({
   title: z.string(),
   client: z.string(),
   deadline: z.string(),
+  local: z.string(),
   type: z.enum(["CONSTRUCTION", "FINISHED"]),
   category: z.string(),
   date: z.string().datetime(),

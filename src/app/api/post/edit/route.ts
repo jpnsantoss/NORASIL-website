@@ -11,7 +11,7 @@ export async function PATCH(req: Request) {
       return new Response("Unauthorized", {status: 401});
     }
     const body = await req.json();
-    const {id, name, title, type, category, client, date, deadline} = EditPostValidator.parse(body);
+    const {id, name, title, type, category, client, date, deadline, local} = EditPostValidator.parse(body);
     
     await db.post.update({
       where: {
@@ -24,7 +24,8 @@ export async function PATCH(req: Request) {
         categoryId: category,
         client,
         date,
-        deadline
+        deadline,
+        local
       }
     })
 

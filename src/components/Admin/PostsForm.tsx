@@ -51,6 +51,7 @@ const PostsForm: FC<PostsFormProps> = ({ categories }) => {
       title: "",
       client: "",
       deadline: "",
+      local: "",
       type: undefined,
       category: undefined,
       date: undefined,
@@ -63,6 +64,7 @@ const PostsForm: FC<PostsFormProps> = ({ categories }) => {
     mutationFn: async ({
       title,
       deadline,
+      local,
       category,
       client,
       date,
@@ -90,6 +92,7 @@ const PostsForm: FC<PostsFormProps> = ({ categories }) => {
           .toLowerCase(),
         title,
         deadline,
+        local,
         category,
         type,
         client,
@@ -180,6 +183,20 @@ const PostsForm: FC<PostsFormProps> = ({ categories }) => {
                   <FormDescription>
                     This is the time taken to make the build.
                   </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="deadline"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Local</FormLabel>
+                  <FormControl>
+                    <Input placeholder="local" {...field} />
+                  </FormControl>
+                  <FormDescription>This is the build location.</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}

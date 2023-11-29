@@ -52,6 +52,7 @@ const EditPost: FC<EditPostProps> = ({ post, categories }) => {
       title: post.title,
       client: post.client,
       deadline: post.deadline,
+      local: post.local,
       type: post.type,
       category: post.categoryId,
       date: post.date,
@@ -63,6 +64,7 @@ const EditPost: FC<EditPostProps> = ({ post, categories }) => {
       title,
       category,
       deadline,
+      local,
       client,
       date,
       type,
@@ -76,6 +78,7 @@ const EditPost: FC<EditPostProps> = ({ post, categories }) => {
           .toLowerCase(),
         title,
         deadline,
+        local,
         category,
         type,
         client,
@@ -162,6 +165,22 @@ const EditPost: FC<EditPostProps> = ({ post, categories }) => {
                     </FormControl>
                     <FormDescription>
                       This is the time taken to make the build.
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="local"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Local</FormLabel>
+                    <FormControl>
+                      <Input placeholder="local" {...field} />
+                    </FormControl>
+                    <FormDescription>
+                      This is the build location.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
