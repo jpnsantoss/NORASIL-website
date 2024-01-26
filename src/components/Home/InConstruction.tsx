@@ -35,7 +35,7 @@ const InConstruction = async () => {
             href={"/portfolio?status=CONSTRUCTION"}
             className={cn(buttonVariants({ size: "lg" }), "shadow-btn")}
           >
-            Ver Obras
+            Ver Mais
           </Link>
         </div>
       </div>

@@ -63,6 +63,23 @@ const Navbar = () => {
           </li>
           <li>
             <Link
+              href="/portfolio"
+              className={cn(
+                buttonVariants({
+                  variant: "link",
+                  size: "sm",
+                  className: cn(
+                    "text-xl text-darkGray font-bold",
+                    pathname == "/portfolio" && "text-primary underline"
+                  ),
+                })
+              )}
+            >
+              Portfólio
+            </Link>
+          </li>
+          <li>
+            <Link
               href="/empresa"
               className={cn(
                 buttonVariants({
@@ -117,23 +134,7 @@ const Navbar = () => {
               </DropdownMenuContent>
             </DropdownMenu>
           </li>
-          <li>
-            <Link
-              href="/portfolio"
-              className={cn(
-                buttonVariants({
-                  variant: "link",
-                  size: "sm",
-                  className: cn(
-                    "text-xl text-darkGray font-bold",
-                    pathname == "/portfolio" && "text-primary underline"
-                  ),
-                })
-              )}
-            >
-              Portfólio
-            </Link>
-          </li>
+
           <li>
             <Sheet>
               <SheetTrigger asChild>

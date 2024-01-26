@@ -36,7 +36,7 @@ const Story = () => {
           value="creation"
           className="container py-8 text-darkGray text-xl px-4 lg:px-16"
         >
-          <p>
+          <p className="text-justify">
             Fundada em maio de 1983, a Norasil – Sociedade de Construção Civil,
             S.A., teve origem como uma consequência natural da trajetória
             profissional do seu Fundador, Joaquim António Nogueira da Hora, um
@@ -55,7 +55,7 @@ const Story = () => {
           value="growing"
           className="container py-8 text-darkGray text-xl px-4 lg:px-16"
         >
-          <p>
+          <p className="text-justify">
             Hoje em dia, a Norasil consolidou a sua posição no mercado de obras
             públicas e privadas. Através de um crescimento constante e
             estratégico, a empresa tornou-se uma figura de renome no setor da
@@ -75,7 +75,7 @@ const Story = () => {
           value="future"
           className="container py-8 text-darkGray text-xl px-4 lg:px-16"
         >
-          <p>
+          <p className="text-justify">
             Olhando para o futuro, a Norasil pretende fortalecer a sua posição
             no mercado, tanto a nível nacional como internacional. A empresa
             ambiciona expandir a sua presença geográfica e aumentar a sua

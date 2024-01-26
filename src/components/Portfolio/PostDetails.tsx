@@ -32,9 +32,10 @@ const PostDetails: FC<PostDetailsProps> = ({ images, post }) => {
                         alt={`Image n${index}`}
                         loading="lazy"
                         className="rounded-md object-cover transition opacity-0 duration-500 object-center  group-hover:scale-105 ease-in-out "
-                        onLoadingComplete={(image) =>
-                          image.classList.remove("opacity-0")
-                        }
+                        onLoad={(event) => {
+                          const image = event.target as HTMLImageElement;
+                          image.classList.remove("opacity-0");
+                        }}
                       />
                     </DialogTrigger>
                   </div>
@@ -49,9 +50,10 @@ const PostDetails: FC<PostDetailsProps> = ({ images, post }) => {
                         alt={`Image n0`}
                         loading="lazy"
                         className="rounded-md object-cover transition opacity-0 duration-500 object-center  group-hover:scale-105 ease-in-out "
-                        onLoadingComplete={(image) =>
-                          image.classList.remove("opacity-0")
-                        }
+                        onLoad={(event) => {
+                          const image = event.target as HTMLImageElement;
+                          image.classList.remove("opacity-0");
+                        }}
                       />
                     </DialogTrigger>
                   </div>
@@ -63,9 +65,10 @@ const PostDetails: FC<PostDetailsProps> = ({ images, post }) => {
                         alt={`Image n0`}
                         loading="lazy"
                         className="rounded-md object-cover transition opacity-0 duration-500 object-center  group-hover:scale-105 ease-in-out "
-                        onLoadingComplete={(image) =>
-                          image.classList.remove("opacity-0")
-                        }
+                        onLoad={(event) => {
+                          const image = event.target as HTMLImageElement;
+                          image.classList.remove("opacity-0");
+                        }}
                       />
                     </DialogTrigger>
                   </div>
@@ -78,9 +81,10 @@ const PostDetails: FC<PostDetailsProps> = ({ images, post }) => {
                           alt={`Image n0`}
                           loading="lazy"
                           className="rounded-md object-cover transition opacity-0 duration-500 object-center  group-hover:scale-105 ease-in-out "
-                          onLoadingComplete={(image) =>
-                            image.classList.remove("opacity-0")
-                          }
+                          onLoad={(event) => {
+                            const image = event.target as HTMLImageElement;
+                            image.classList.remove("opacity-0");
+                          }}
                         />
                         <div className="w-full h-full bg-black opacity-75 absolute top-0 left-0" />
                         <div className="w-full h-full flex items-center justify-center">

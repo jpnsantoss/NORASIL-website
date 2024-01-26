@@ -20,7 +20,10 @@ const PortfolioImage: FC<PortfolioImageProps> = ({ post }) => {
           alt={post.title}
           fill
           className="rounded-md object-cover transition opacity-0 duration-500 object-center  group-hover:scale-105 ease-in-out "
-          onLoadingComplete={(image) => image.classList.remove("opacity-0")}
+          onLoad={(event) => {
+            const image = event.target as HTMLImageElement;
+            image.classList.remove("opacity-0");
+          }}
         />
       </AspectRatio>
       {/* <Image

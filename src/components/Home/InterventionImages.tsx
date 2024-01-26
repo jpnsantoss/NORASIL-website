@@ -28,7 +28,10 @@ const InterventionImages: FC<InterventionImagesProps> = ({ category }) => {
           fill
           loading="lazy"
           className="rounded-md object-cover transition opacity-0 duration-300 object-center  group-hover:scale-105 ease-in-out "
-          onLoadingComplete={(image) => image.classList.remove("opacity-0")}
+          onLoad={(event) => {
+            const image = event.target as HTMLImageElement;
+            image.classList.remove("opacity-0");
+          }}
         />
         <Link
           href={`/portfolio?category=${category.name}`}

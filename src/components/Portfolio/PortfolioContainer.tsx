@@ -38,15 +38,15 @@ const PortfolioContainer: FC<PortfolioContainerProps> = ({ categories }) => {
     queryKey: ["portfolio-query", category, status],
   });
 
-  const { data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
-    ["infinite-query", initialPosts],
-    async ({ pageParam = 1 }) => {
-      const query = `/api/portfolio?limit=${INFINITE_SCROLLING_PAGINATION_RESULTS}&page=${pageParam}&category=${category}&status=${status}`;
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useInfiniteQuery({
+      queryKey: ["infinite-query", initialPosts],
+      queryFn: async ({ pageParam = 1 }) => {
+        const query = `/api/portfolio?limit=${INFINITE_SCROLLING_PAGINATION_RESULTS}&page=${pageParam}&category=${category}&status=${status}`;
 
-      const { data } = await axios.get(query);
-      return data as ExtendedPost[];
-    },
-    {
+        const { data } = await axios.get(query);
+        return data as ExtendedPost[];
+      },
       getNextPageParam: (_, pages) => {
         if (!pages[pages.length - 1]?.length) {
           return undefined; // No more pages to fetch
@@ -57,17 +57,8 @@ const PortfolioContainer: FC<PortfolioContainerProps> = ({ categories }) => {
         pages: [initialPosts],
         pageParams: [1],
       },
-    }
-  );
-
-  let hasNextPage = false;
-
-  if (data && data.pages && data.pages.length > 0) {
-    const lastPage = data.pages[data.pages.length - 1];
-    if (lastPage && lastPage.length > 0) {
-      hasNextPage = true;
-    }
-  }
+      initialPageParam: 1, // Add this line
+    });
 
   useEffect(() => {
     if (entry?.isIntersecting && !isFetchingNextPage && hasNextPage) {

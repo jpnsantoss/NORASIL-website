@@ -41,7 +41,7 @@ const PostCard: FC<PostCardProps> = ({ post }) => {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href={`/portfolio?category=${post.category.name}`}
                   className="flex w-fit gap-2 items-center hover:underline truncate"
                 >
                   <Link2 className="w-5 h-5 text-primary " />

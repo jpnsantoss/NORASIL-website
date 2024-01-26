@@ -38,7 +38,7 @@ const ValueOffer = () => {
             <h2 className="text-white font-bold text-xl">
               Queres ver estes <br /> em Ação?
             </h2>
-            <Link href="/empresa" className={cn(buttonVariants())}>
+            <Link href="/portfolio" className={cn(buttonVariants())}>
               Ver obras
             </Link>
           </div>

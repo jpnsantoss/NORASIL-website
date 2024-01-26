@@ -28,17 +28,17 @@ const PostsList: FC<PostsListProps> = ({ initialPosts }) => {
     threshold: 1,
   });
 
-  const { data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
-    ["infinite-query", initialPosts],
-    async ({ pageParam = 1 }) => {
-      const query = `/api/posts?limit=${INFINITE_SCROLLING_PAGINATION_RESULTS}&page=${pageParam}`;
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useInfiniteQuery({
+      queryKey: ["infinite-query", initialPosts],
+      queryFn: async ({ pageParam = 1 }) => {
+        const query = `/api/posts?limit=${INFINITE_SCROLLING_PAGINATION_RESULTS}&page=${pageParam}`;
 
-      const { data } = await axios.get(query);
-      return data as ExtendedPost[];
-    },
-    {
+        const { data } = await axios.get(query);
+        return data as ExtendedPost[];
+      },
       getNextPageParam: (_, pages) => {
-        if (!pages[pages.length - 1].length) {
+        if (!pages[pages.length - 1]?.length) {
           return undefined; // No more pages to fetch
         }
         return pages.length + 1;
@@ -47,11 +47,8 @@ const PostsList: FC<PostsListProps> = ({ initialPosts }) => {
         pages: [initialPosts],
         pageParams: [1],
       },
-    }
-  );
-
-  const hasNextPage =
-    data?.pages && data.pages[data.pages.length - 1].length > 0;
+      initialPageParam: 1, // Add this line
+    });
 
   useEffect(() => {
     if (entry?.isIntersecting && !isFetchingNextPage && hasNextPage) {
