@@ -10,7 +10,7 @@ const InterventionAreas = async () => {
       createdAt: "asc",
     },
   });
-
+  if (categories.length === 0) return null;
   return (
     <div className="w-full px-4 lg:px-48 py-16">
       <h1 className="text-5xl font-bold text-center leading-[4.5rem]">

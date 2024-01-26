@@ -10,13 +10,14 @@ async function main() {
       email: process.env.ADMIN_EMAIL! as string,
     }
   })
-  if(!user) { await db.authorizedEmail.create({
-    data: {
-      email: process.env.ADMIN_EMAIL! as string ,
-    },
-  })
-  console.log(`Added authorized user: ${process.env.ADMIN_EMAIL}`)
-}
+  if(!user) { 
+    await db.authorizedEmail.create({
+      data: {
+        email: process.env.ADMIN_EMAIL! as string ,
+      },
+    })
+    console.log(`Added authorized user: ${process.env.ADMIN_EMAIL}`)
+  }
   const counter = await db.counter.count();
   if(counter == 0) {
     await db.counter.create({data: {}})
