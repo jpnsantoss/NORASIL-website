@@ -4,7 +4,7 @@
 const nextConfig = {
   /* config options here */
   images: {
-    domains: ['uploadthing.com', 'lh3.googleusercontent.com'],
+    domains: ['jkiz29dbzkcwru3p.public.blob.vercel-storage.com'],
   },
 }
 

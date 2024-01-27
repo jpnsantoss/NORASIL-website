@@ -44,12 +44,14 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "cmdk": "^0.2.0",
+    "crypto": "^1.0.1",
     "date-fns": "^3.3.1",
     "dotenv": "^16.4.1",
     "eslint": "8.56.0",
     "eslint-config-next": "^14.1.0",
     "lodash.debounce": "^4.0.8",
     "lucide-react": "^0.316.0",
+    "nanoid": "^5.0.4",
     "next": "^14.1.0",
     "next-auth": "^4.24.5",
     "postcss": "8.4.33",
@@ -74,5 +76,8 @@
     "@types/react-slick": "^0.23.13",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
+  },
+  "browser": {
+    "crypto": false
   }
 }

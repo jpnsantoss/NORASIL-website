@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const imageMaxSize = 5 * 1024 * 1024; // 5MB
+const imageMaxSize = 50 * 1024 * 1024; // 5MB
 const allowedImageFormats = ["image/jpeg", "image/png", "image/webp"]; // Add more formats as needed
 
 const fileSchema = z
@@ -26,12 +26,10 @@ export const CategoryValidator = z.object({
   name: z.string(),
   title: z.string(),
   imageUrl: z.string().url(),
-  imageKey: z.string()
 })
 
 export const DeleteCategoryValidator = z.object({
   id: z.string(),
-  imageKey: z.string(),
 })
 
 export const EditCategoryFormValidator = z.object({
@@ -44,11 +42,9 @@ export const EditCategoryFormValidator = z.object({
 
 export const EditCategoryValidator = z.object({
   id: z.string(),
-  oldImageKey: z.string(),
   name: z.string(),
   title: z.string(),
   imageUrl: z.string().url(),
-  imageKey: z.string()
 })
 
 
