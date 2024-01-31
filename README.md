@@ -10,4 +10,4 @@ This project involved a fully custom made frontend design, an integrated admin d
  - TailwindCSS
 
 ### Live URL
-[norasil.pt](https://norasil.pt)
+[norasil.pt](https://norasil.vercel.app)
