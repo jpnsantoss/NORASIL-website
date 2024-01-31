@@ -8,3 +8,6 @@ This project involved a fully custom made frontend design, an integrated admin d
  - NextJS
  - Prisma
  - TailwindCSS
+
+### Live URl
+[norasil.pt](https://norasil.pt)
