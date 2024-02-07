@@ -1,7 +1,7 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { DeleteImageValidator, ImagesValidator } from "@/lib/validators/image";
-import { utapi } from "uploadthing/server";
+import { del } from "@vercel/blob";
 import { z } from "zod";
 
 //add images
@@ -21,7 +21,6 @@ export async function POST(req: Request) {
           data: {
             postId,
             url: image.url,
-            key: image.key,
           },
         });
       })
@@ -49,7 +48,7 @@ export async function PATCH(req: Request) {
       return new Response("Unauthorized", { status: 401 });
     }
     const body = await req.json();
-    const { id, imageKey } = DeleteImageValidator.parse(body);
+    const { id, imageUrl } = DeleteImageValidator.parse(body);
 
     await db.image.delete({
       where: {
@@ -57,7 +56,7 @@ export async function PATCH(req: Request) {
       }
     })
 
-    await utapi.deleteFiles(imageKey);
+    await del(imageUrl);
 
     return new Response("OK");
   } catch (error) {

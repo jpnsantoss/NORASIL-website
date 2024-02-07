@@ -24,7 +24,7 @@ const UsersForm = () => {
     },
   });
 
-  const { mutate: authorizeUser, isLoading } = useMutation({
+  const { mutate: authorizeUser, isPending } = useMutation({
     mutationFn: async ({ email }: EmailRequest) => {
       const payload: EmailRequest = {
         email,
@@ -65,7 +65,7 @@ const UsersForm = () => {
         })}
       >
         <Input type="email" placeholder="Email" {...register("email")} />
-        <Button className="shrink-0" isLoading={isLoading}>
+        <Button className="shrink-0" isLoading={isPending}>
           Add
         </Button>
       </form>

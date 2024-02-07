@@ -30,6 +30,7 @@ export const CategoryValidator = z.object({
 
 export const DeleteCategoryValidator = z.object({
   id: z.string(),
+  imageUrl: z.string().url(),
 })
 
 export const EditCategoryFormValidator = z.object({
@@ -45,6 +46,7 @@ export const EditCategoryValidator = z.object({
   name: z.string(),
   title: z.string(),
   imageUrl: z.string().url(),
+  oldImageUrl: z.string().url(),
 })
 
 

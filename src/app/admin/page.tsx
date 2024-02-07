@@ -35,7 +35,6 @@ const Page = async () => {
               </div>
             }
           >
-            {/* @ts-expect-error server component */}
             <CategoriesContainer />
           </Suspense>
         </div>
@@ -47,9 +46,7 @@ const Page = async () => {
           }
         >
           <div className="space-y-4">
-            {/* @ts-expect-error server component */}
             <CounterContainer />
-            {/* @ts-expect-error server component */}
             <UsersContainer />
           </div>
         </Suspense>

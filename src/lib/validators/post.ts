@@ -43,19 +43,16 @@ export const PostValidator = z.object({
   category: z.string(),
   date: z.string().datetime(),
   mainImageUrl: z.string().url(),
-  mainImageKey: z.string(),
   images: z.array(z.object({
     url: z.string().url(),
-    key: z.string()
   }))
 });
 
 export const DeletePostValidator = z.object({
   id: z.string(),
-  mainImageKey: z.string(),
+  mainImageUrl: z.string().url(),
   images: z.array(z.object({
     url: z.string().url(),
-    key: z.string()
   }))
 })
 

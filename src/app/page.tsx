@@ -12,7 +12,6 @@ import { Suspense } from "react";
 const page = () => {
   return (
     <div className="w-full h-full m-0">
-      {/* @ts-expect-error server component */}
       <Header />
       <Suspense
         fallback={
@@ -21,7 +20,6 @@ const page = () => {
           </div>
         }
       >
-        {/* @ts-expect-error server component */}
         <InConstruction />
       </Suspense>
       <ValueOffer />
@@ -33,7 +31,6 @@ const page = () => {
           </div>
         }
       >
-        {/* @ts-expect-error server component */}
         <InterventionAreas />
       </Suspense>
       <QualityPolicy />

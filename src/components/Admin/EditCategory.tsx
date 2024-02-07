@@ -1,7 +1,6 @@
 "use client";
 
 import { toast } from "@/hooks/use-toast";
-import { uploadFiles } from "@/lib/uploadthing";
 import {
   EditCategoryFormRequest,
   EditCategoryFormValidator,
@@ -10,6 +9,7 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Category } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
+import { upload } from "@vercel/blob/client";
 import axios, { AxiosError } from "axios";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -51,21 +51,18 @@ const EditCategory: FC<EditCategoryProps> = ({ category }) => {
     },
   });
 
-  const { mutate: editCategory, isLoading } = useMutation({
+  const { mutate: editCategory, isPending } = useMutation({
     mutationFn: async ({ title, image }: EditCategoryFormRequest) => {
-      let res: { fileUrl: string; fileKey: string } = {
-        fileUrl: "",
-        fileKey: "",
-      };
+      let imageUrl;
 
       if (image) {
-        const [uploadRes] = await uploadFiles([image], "imageUploader");
-        res = uploadRes;
+        const blob = await upload(image.name, image, {
+          access: "public",
+          handleUploadUrl: "/api/upload",
+        });
+        imageUrl = blob.url;
       } else {
-        res = {
-          fileUrl: category.imageUrl,
-          fileKey: category.imageKey,
-        };
+        imageUrl = category.imageUrl;
       }
 
       const payload: EditCategoryRequest = {
@@ -75,10 +72,9 @@ const EditCategory: FC<EditCategoryProps> = ({ category }) => {
           .replace(/\s/g, "")
           .toLowerCase(),
         title,
-        imageUrl: res.fileUrl,
-        imageKey: res.fileKey,
+        oldImageUrl: category.imageUrl,
+        imageUrl: imageUrl,
         id: category.id,
-        oldImageKey: category.imageKey,
       };
 
       const { data } = await axios.patch("/api/category/edit", payload);
@@ -180,7 +176,7 @@ const EditCategory: FC<EditCategoryProps> = ({ category }) => {
             />
           </div>
           <DialogFooter>
-            <Button type="submit" isLoading={isLoading}>
+            <Button type="submit" isLoading={isPending}>
               Save changes
             </Button>
           </DialogFooter>

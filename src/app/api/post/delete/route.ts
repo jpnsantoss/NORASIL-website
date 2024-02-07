@@ -1,7 +1,7 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { DeletePostValidator } from "@/lib/validators/post";
-import { utapi } from "uploadthing/server";
+import { del } from "@vercel/blob";
 import { z } from "zod";
 
 export async function PATCH(req: Request) {
@@ -12,7 +12,7 @@ export async function PATCH(req: Request) {
       return new Response("Unauthorized", {status: 401});
     }
     const body = await req.json();
-    const {id, images, mainImageKey} = DeletePostValidator.parse(body);
+    const {id, images, mainImageUrl} = DeletePostValidator.parse(body);
 
     await db.post.delete({
       where: {
@@ -20,10 +20,10 @@ export async function PATCH(req: Request) {
       }
     })
 
-    await utapi.deleteFiles(mainImageKey);
+    await del(mainImageUrl);
 
     images.map(async (image) => {
-      await utapi.deleteFiles(image.key);
+      await del(image.url);
     })
 
     return new Response("OK");

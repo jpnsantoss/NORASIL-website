@@ -13,7 +13,7 @@ export async function POST(req: Request) {
 
     const body = await req.json();
 
-    const {name, title, imageUrl, imageKey} = CategoryValidator.parse(body);
+    const {name, title, imageUrl} = CategoryValidator.parse(body);
 
     const category = await db.category.findFirst({
       where: {
@@ -29,7 +29,6 @@ export async function POST(req: Request) {
       data: {
         title,
         imageUrl,
-        imageKey,
         name,
       }
     })

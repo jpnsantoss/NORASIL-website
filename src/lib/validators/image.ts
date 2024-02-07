@@ -24,22 +24,20 @@ export const ImagesFormValidator = z.object({
 
 export const MainImageValidator = z.object({
   newImageUrl: z.string().url(),
-  newImageKey: z.string(),
-  oldImageKey: z.string(),
+  oldImageUrl: z.string().url(),
   postId: z.string(),
 });
 
 export const ImagesValidator = z.object({
   newImages: z.array(z.object({
     url: z.string().url(),
-    key: z.string()
   })),
   postId: z.string()
 });
 
 export const DeleteImageValidator = z.object({
   id: z.string(),
-  imageKey: z.string()
+  imageUrl: z.string().url(),
 });
 
 export type MainImageFormRequest = z.infer<typeof MainImageFormValidator>;

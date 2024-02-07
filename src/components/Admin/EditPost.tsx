@@ -59,7 +59,7 @@ const EditPost: FC<EditPostProps> = ({ post, categories }) => {
     },
   });
 
-  const { mutate: editPost, isLoading } = useMutation({
+  const { mutate: editPost, isPending } = useMutation({
     mutationFn: async ({
       title,
       category,
@@ -302,7 +302,7 @@ const EditPost: FC<EditPostProps> = ({ post, categories }) => {
               />
             </div>
           </div>
-          <Button type="submit" isLoading={isLoading}>
+          <Button type="submit" isLoading={isPending}>
             Submit
           </Button>
         </form>

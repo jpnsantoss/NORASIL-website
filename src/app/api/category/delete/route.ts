@@ -1,7 +1,7 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { DeleteCategoryValidator } from "@/lib/validators/category";
-import { utapi } from "uploadthing/server";
+import { del } from "@vercel/blob";
 import { z } from "zod";
 
 export async function PATCH(req: Request) {
@@ -12,7 +12,7 @@ export async function PATCH(req: Request) {
       return new Response("Unauthorized", {status: 401});
     }
     const body = await req.json();
-    const {id, imageKey} = DeleteCategoryValidator.parse(body);
+    const {id, imageUrl} = DeleteCategoryValidator.parse(body);
 
     const posts = await db.post.findFirst({where: {
       categoryId: id
@@ -28,7 +28,7 @@ export async function PATCH(req: Request) {
       }
     })
 
-    await utapi.deleteFiles(imageKey);
+    await del(imageUrl);
 
     return new Response("OK");
   } catch (error) {

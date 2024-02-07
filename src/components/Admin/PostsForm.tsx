@@ -1,7 +1,6 @@
 "use client";
 
 import { toast } from "@/hooks/use-toast";
-import { uploadFiles } from "@/lib/uploadthing";
 import { cn } from "@/lib/utils";
 import {
   PostFormRequest,
@@ -11,6 +10,7 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Category } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
+import { upload } from "@vercel/blob/client";
 import axios, { AxiosError } from "axios";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
@@ -60,7 +60,7 @@ const PostsForm: FC<PostsFormProps> = ({ categories }) => {
     },
   });
 
-  const { mutate: createPost, isLoading } = useMutation({
+  const { mutate: createPost, isPending } = useMutation({
     mutationFn: async ({
       title,
       deadline,
@@ -72,13 +72,19 @@ const PostsForm: FC<PostsFormProps> = ({ categories }) => {
       type,
       images,
     }: PostFormRequest) => {
-      const [mainImageRes] = await uploadFiles([mainImage], "imageUploader");
+      const mainBlob = await upload(mainImage.name, mainImage, {
+        access: "public",
+        handleUploadUrl: "/api/upload",
+      });
 
       let imageResults: any = [];
       if (images && images.length > 0) {
         const imageUploadPromises = images.map(async (image) => {
-          const [res] = await uploadFiles([image], "imageUploader");
-          return { url: res.fileUrl, key: res.fileKey };
+          const blob = await upload(image.name, image, {
+            access: "public",
+            handleUploadUrl: "/api/upload",
+          });
+          return { url: blob.url };
         });
 
         imageResults = await Promise.all(imageUploadPromises);
@@ -97,8 +103,7 @@ const PostsForm: FC<PostsFormProps> = ({ categories }) => {
         type,
         client,
         date: date.toISOString(),
-        mainImageUrl: mainImageRes.fileUrl,
-        mainImageKey: mainImageRes.fileKey,
+        mainImageUrl: mainBlob.url,
         images: imageResults,
       };
 
@@ -189,7 +194,7 @@ const PostsForm: FC<PostsFormProps> = ({ categories }) => {
             />
             <FormField
               control={form.control}
-              name="deadline"
+              name="local"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Local</FormLabel>
@@ -370,7 +375,7 @@ const PostsForm: FC<PostsFormProps> = ({ categories }) => {
             />
           </div>
         </div>
-        <Button type="submit" isLoading={isLoading}>
+        <Button type="submit" isLoading={isPending}>
           Submit
         </Button>
       </form>

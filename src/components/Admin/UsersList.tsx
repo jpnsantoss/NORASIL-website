@@ -28,7 +28,7 @@ interface UsersListProps {
 const UsersList: FC<UsersListProps> = ({ authorizedEmails }) => {
   const router = useRouter();
 
-  const { mutate: deleteUser, isLoading } = useMutation({
+  const { mutate: deleteUser, isPending } = useMutation({
     mutationFn: async ({ email }: EmailRequest) => {
       const payload: EmailRequest = {
         email,
@@ -52,7 +52,7 @@ const UsersList: FC<UsersListProps> = ({ authorizedEmails }) => {
   });
   return (
     <div className="grid gap-6 overflow-y-auto">
-      {isLoading ? (
+      {isPending ? (
         <div className="flex items-center justify-center">
           <Loader2 className="w-8 h-8 animate-spin" />
         </div>

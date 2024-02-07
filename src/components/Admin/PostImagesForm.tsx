@@ -1,6 +1,5 @@
 "use client";
 import { toast } from "@/hooks/use-toast";
-import { uploadFiles } from "@/lib/uploadthing";
 import { cn } from "@/lib/utils";
 import {
   DeleteImageRequest,
@@ -12,6 +11,7 @@ import { ExtendedPost } from "@/types/db";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Image as PrismaImage } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
+import { upload } from "@vercel/blob/client";
 import axios from "axios";
 import { Loader2, X } from "lucide-react";
 import Image from "next/image";
@@ -54,13 +54,16 @@ const PostImagesForm: FC<PostImagesFormProps> = ({ post }) => {
     },
   });
 
-  const { mutate: addImage, isLoading } = useMutation({
+  const { mutate: addImage, isPending } = useMutation({
     mutationFn: async ({ newImages }: ImagesFormRequest) => {
       let imageResults: any = [];
       if (newImages && newImages.length > 0) {
         const imageUploadPromises = newImages.map(async (image) => {
-          const [res] = await uploadFiles([image], "imageUploader");
-          return { url: res.fileUrl, key: res.fileKey };
+          const blob = await upload(image.name, image, {
+            access: "public",
+            handleUploadUrl: "/api/upload",
+          });
+          return { url: blob.url };
         });
 
         imageResults = await Promise.all(imageUploadPromises);
@@ -90,11 +93,11 @@ const PostImagesForm: FC<PostImagesFormProps> = ({ post }) => {
   });
 
   //delete image
-  const { mutate: deleteImage, isLoading: deletingImage } = useMutation({
-    mutationFn: async ({ id, imageKey }: DeleteImageRequest) => {
+  const { mutate: deleteImage, isPending: deletingImage } = useMutation({
+    mutationFn: async ({ id, imageUrl }: DeleteImageRequest) => {
       const payload: DeleteImageRequest = {
         id,
-        imageKey,
+        imageUrl,
       };
       const { data } = await axios.patch("/api/post/edit/images", payload);
       return data;
@@ -147,7 +150,7 @@ const PostImagesForm: FC<PostImagesFormProps> = ({ post }) => {
           />
           <Button
             type="submit"
-            isLoading={isLoading}
+            isLoading={isPending}
             disabled={!form.formState.dirtyFields.newImages}
           >
             Add
@@ -199,7 +202,7 @@ const PostImagesForm: FC<PostImagesFormProps> = ({ post }) => {
                         onClick={() =>
                           deleteImage({
                             id: image.id,
-                            imageKey: image.key,
+                            imageUrl: image.url,
                           })
                         }
                       >

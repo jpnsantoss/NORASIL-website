@@ -27,11 +27,11 @@ interface DeletePostProps {
 
 const DeletePost: FC<DeletePostProps> = ({ post }) => {
   const router = useRouter();
-  const { mutate: deletePost, isLoading } = useMutation({
-    mutationFn: async ({ id, mainImageKey, images }: DeletePostRequest) => {
+  const { mutate: deletePost, isPending } = useMutation({
+    mutationFn: async ({ id, mainImageUrl, images }: DeletePostRequest) => {
       const payload: DeletePostRequest = {
         id,
-        mainImageKey,
+        mainImageUrl,
         images,
       };
       const { data } = await axios.patch("/api/post/delete", payload);
@@ -54,7 +54,7 @@ const DeletePost: FC<DeletePostProps> = ({ post }) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger>
-        {isLoading ? (
+        {isPending ? (
           <div>
             <Loader2 className="w-8 h-8 my-4 animate-spin" />
           </div>
@@ -83,7 +83,7 @@ const DeletePost: FC<DeletePostProps> = ({ post }) => {
             onClick={() =>
               deletePost({
                 id: post.id,
-                mainImageKey: post.mainImageKey,
+                mainImageUrl: post.mainImageUrl,
                 images: post.images,
               })
             }

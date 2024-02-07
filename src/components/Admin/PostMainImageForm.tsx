@@ -1,6 +1,5 @@
 "use client";
 import { toast } from "@/hooks/use-toast";
-import { uploadFiles } from "@/lib/uploadthing";
 import {
   MainImageFormRequest,
   MainImageFormValidator,
@@ -9,6 +8,7 @@ import {
 import { ExtendedPost } from "@/types/db";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
+import { upload } from "@vercel/blob/client";
 import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -38,15 +38,17 @@ const PostMainImageForm: FC<PostMainImageFormProps> = ({ post }) => {
     },
   });
 
-  const { mutate: changeMainImage, isLoading } = useMutation({
+  const { mutate: changeMainImage, isPending } = useMutation({
     mutationFn: async ({ newImage }: MainImageFormRequest) => {
-      const [res] = await uploadFiles([newImage], "imageUploader");
+      const blob = await upload(newImage.name, newImage, {
+        access: "public",
+        handleUploadUrl: "/api/upload",
+      });
 
       const payload: MainImageRequest = {
         postId: post.id,
-        newImageKey: res.fileKey,
-        newImageUrl: res.fileUrl,
-        oldImageKey: post.mainImageKey,
+        newImageUrl: blob.url,
+        oldImageUrl: post.mainImageUrl,
       };
 
       const { data } = await axios.patch("/api/post/edit/mainImage", payload);
@@ -100,7 +102,7 @@ const PostMainImageForm: FC<PostMainImageFormProps> = ({ post }) => {
           />
           <Button
             type="submit"
-            isLoading={isLoading}
+            isLoading={isPending}
             disabled={!form.formState.dirtyFields.newImage}
           >
             Change

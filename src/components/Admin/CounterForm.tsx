@@ -35,7 +35,7 @@ const CounterForm: FC<CounterFormProps> = ({ counter }) => {
     },
   });
 
-  const { mutate: updateCounter, isLoading } = useMutation({
+  const { mutate: updateCounter, isPending } = useMutation({
     mutationFn: async ({
       finishedBuilds,
       constructionBuilds,
@@ -103,7 +103,7 @@ const CounterForm: FC<CounterFormProps> = ({ counter }) => {
             <Input type="text" placeholder="Prémios" {...register("awards")} />
           </div>
         </div>
-        <Button className="shrink-0 " isLoading={isLoading}>
+        <Button className="shrink-0 " isLoading={isPending}>
           Update
         </Button>
       </form>

@@ -30,11 +30,11 @@ interface CategoriesListProps {
 
 const CategoriesList: FC<CategoriesListProps> = ({ categories }) => {
   const router = useRouter();
-  const { mutate: deleteCategory, isLoading } = useMutation({
-    mutationFn: async ({ id, imageKey }: DeleteCategoryRequest) => {
+  const { mutate: deleteCategory, isPending } = useMutation({
+    mutationFn: async ({ id, imageUrl }: DeleteCategoryRequest) => {
       const payload: DeleteCategoryRequest = {
         id,
-        imageKey,
+        imageUrl,
       };
       const { data } = await axios.patch("/api/category/delete", payload);
       return data;
@@ -65,7 +65,7 @@ const CategoriesList: FC<CategoriesListProps> = ({ categories }) => {
   });
   return (
     <div className="grid gap-6 overflow-y-auto p-2">
-      {isLoading ? (
+      {isPending ? (
         <div className="flex items-center justify-center">
           <Loader2 className="w-8 h-8 animate-spin" />
         </div>
@@ -119,7 +119,7 @@ const CategoriesList: FC<CategoriesListProps> = ({ categories }) => {
                           onClick={() =>
                             deleteCategory({
                               id: category.id,
-                              imageKey: category.imageKey,
+                              imageUrl: category.imageUrl,
                             })
                           }
                         >

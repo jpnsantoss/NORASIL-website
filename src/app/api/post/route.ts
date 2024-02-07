@@ -20,7 +20,6 @@ export async function POST(req: Request) {
       deadline,
       local,
       images,
-      mainImageKey,
       mainImageUrl,
       name,
       title,
@@ -45,7 +44,6 @@ export async function POST(req: Request) {
         local,
         date,
         mainImageUrl,
-        mainImageKey,
         title,
         type,
         categoryId: category,
@@ -58,7 +56,6 @@ export async function POST(req: Request) {
             data: {
               postId: post.id,
               url: image.url,
-              key: image.key,
             },
           });
       }));

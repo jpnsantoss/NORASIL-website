@@ -46,7 +46,6 @@ const Page = async ({ params }: pageProps) => {
         </div>
       </div>
 
-      {/* @ts-expect-error server component */}
       <SimilarPosts post={post} />
       <Footer />
     </div>

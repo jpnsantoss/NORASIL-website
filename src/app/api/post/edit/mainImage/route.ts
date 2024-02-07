@@ -1,7 +1,7 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { MainImageValidator } from "@/lib/validators/image";
-import { utapi } from "uploadthing/server";
+import { del } from "@vercel/blob";
 import { z } from "zod";
 
 export async function PATCH(req: Request) {
@@ -12,10 +12,10 @@ export async function PATCH(req: Request) {
       return new Response("Unauthorized", { status: 401 });
     }
     const body = await req.json();
-    const { postId, newImageKey, newImageUrl, oldImageKey } =
+    const { postId, newImageUrl, oldImageUrl } =
       MainImageValidator.parse(body);
 
-    await utapi.deleteFiles(oldImageKey);
+    await del(oldImageUrl);
 
     await db.post.update({
       where: {
@@ -23,7 +23,6 @@ export async function PATCH(req: Request) {
       }, 
       data: {
         mainImageUrl: newImageUrl,
-        mainImageKey: newImageKey
       }
     })
 

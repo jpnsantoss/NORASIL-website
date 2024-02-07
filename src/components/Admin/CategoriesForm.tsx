@@ -1,7 +1,6 @@
 "use client";
 
 import { toast } from "@/hooks/use-toast";
-import { uploadFiles } from "@/lib/uploadthing";
 import {
   CategoryFormRequest,
   CategoryFormValidator,
@@ -9,7 +8,10 @@ import {
 } from "@/lib/validators/category";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
+import { put } from "@vercel/blob";
+import { upload } from "@vercel/blob/client";
 import axios, { AxiosError } from "axios";
+import { revalidatePath } from "next/cache";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { Button } from "../ui/Button";
@@ -34,10 +36,12 @@ const CategoriesForm = () => {
       image: undefined,
     },
   });
-
-  const { mutate: createCategory, isLoading } = useMutation({
+  const { mutate: createCategory, isPending } = useMutation({
     mutationFn: async ({ title, image }: CategoryFormRequest) => {
-      const [res] = await uploadFiles([image], "imageUploader");
+      const blob = await upload(image.name, image, {
+        access: "public",
+        handleUploadUrl: "/api/upload",
+      });
       const payload: CategoryRequest = {
         name: title
           .normalize("NFD")
@@ -45,8 +49,7 @@ const CategoriesForm = () => {
           .replace(/\s/g, "")
           .toLowerCase(),
         title,
-        imageUrl: res.fileUrl,
-        imageKey: res.fileKey,
+        imageUrl: blob.url,
       };
 
       const { data } = await axios.post("/api/category", payload);
@@ -126,7 +129,7 @@ const CategoriesForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit" className="shadow-btn" isLoading={isLoading}>
+        <Button type="submit" className="shadow-btn" isLoading={isPending}>
           Submit
         </Button>
       </form>

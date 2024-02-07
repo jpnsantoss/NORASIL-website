@@ -1,7 +1,7 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { EditCategoryValidator } from "@/lib/validators/category";
-import { utapi } from "uploadthing/server";
+import { del } from "@vercel/blob";
 import { z } from "zod";
 
 export async function PATCH(req: Request) {
@@ -12,7 +12,7 @@ export async function PATCH(req: Request) {
       return new Response("Unauthorized", {status: 401});
     }
     const body = await req.json();
-    const {id, imageKey, imageUrl, oldImageKey, name, title} = EditCategoryValidator.parse(body);
+    const {id, imageUrl, oldImageUrl, name, title} = EditCategoryValidator.parse(body);
 
     const existingCategory = await db.category.findFirst({
       where: {
@@ -32,12 +32,11 @@ export async function PATCH(req: Request) {
         title,
         name,
         imageUrl,
-        imageKey,
       }
     })
 
-    if(oldImageKey != imageKey) {
-    await utapi.deleteFiles(oldImageKey);
+    if(oldImageUrl != imageUrl) {
+    await del(oldImageUrl);
     }
 
     return new Response("OK");
