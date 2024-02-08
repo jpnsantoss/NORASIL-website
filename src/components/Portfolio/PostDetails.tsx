@@ -1,11 +1,18 @@
 "use client";
+import { cn } from "@/lib/utils";
 import { ExtendedPost } from "@/types/db";
 import { Image as PrismaImage } from "@prisma/client";
 import { Calendar, Hammer, MapPin } from "lucide-react";
 import Image from "next/image";
-import { FC } from "react";
-import { Dialog, DialogTrigger } from "../ui/Dialog";
-import PostDialog from "./PostDialog";
+import { FC, useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/Dialog";
 
 interface PostDetailsProps {
   images: PrismaImage[];
@@ -13,6 +20,7 @@ interface PostDetailsProps {
 }
 
 const PostDetails: FC<PostDetailsProps> = ({ images, post }) => {
+  const [selectedImage, setSelectedImage] = useState(images[0]);
   return (
     <>
       <div className="grid lg:grid-cols-2 gap-8">
@@ -25,7 +33,10 @@ const PostDetails: FC<PostDetailsProps> = ({ images, post }) => {
                     key={image.id}
                     className="h-64 relative rounded-xl bg-lightGray overflow-hidden group cursor-pointer"
                   >
-                    <DialogTrigger asChild>
+                    <DialogTrigger
+                      asChild
+                      onClick={() => setSelectedImage(image)}
+                    >
                       <Image
                         src={image.url}
                         fill
@@ -43,7 +54,10 @@ const PostDetails: FC<PostDetailsProps> = ({ images, post }) => {
               ) : (
                 <>
                   <div className="h-64 relative rounded-xl bg-lightGray overflow-hidden group cursor-pointer">
-                    <DialogTrigger asChild>
+                    <DialogTrigger
+                      asChild
+                      onClick={() => setSelectedImage(images[0])}
+                    >
                       <Image
                         src={images[0].url}
                         fill
@@ -58,7 +72,10 @@ const PostDetails: FC<PostDetailsProps> = ({ images, post }) => {
                     </DialogTrigger>
                   </div>
                   <div className="h-64 relative rounded-xl bg-lightGray overflow-hidden group cursor-pointer">
-                    <DialogTrigger asChild>
+                    <DialogTrigger
+                      asChild
+                      onClick={() => setSelectedImage(images[1])}
+                    >
                       <Image
                         src={images[1].url}
                         fill
@@ -73,7 +90,10 @@ const PostDetails: FC<PostDetailsProps> = ({ images, post }) => {
                     </DialogTrigger>
                   </div>
                   <div className="h-64 relative rounded-xl bg-lightGray overflow-hidden group cursor-pointer">
-                    <DialogTrigger asChild>
+                    <DialogTrigger
+                      asChild
+                      onClick={() => setSelectedImage(images[0])}
+                    >
                       <div className="w-full h-full">
                         <Image
                           src={images[2].url}
@@ -98,7 +118,61 @@ const PostDetails: FC<PostDetailsProps> = ({ images, post }) => {
                 </>
               )}
             </div>
-            {images.length > 0 && <PostDialog images={images} post={post} />}
+            {images.length > 0 && (
+              <DialogContent className="max-w-[95%] p-4 lg:max-w-screen-2xl">
+                <DialogHeader className="hidden lg:block">
+                  <DialogTitle>{post.title}</DialogTitle>
+                  <DialogDescription>
+                    This is the set of images associated with this post.
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="grid lg:grid-cols-3 gap-4 lg:gap-16 lg:p-8">
+                  <div className="w-full lg:col-span-2">
+                    <div className="rounded-md group overflow-hidden relative w-full h-[60vh] md:h-[60vh] lg:h-[50vh]">
+                      <Image
+                        src={selectedImage.url}
+                        alt={`${post.title} Image ${images[0].id}`}
+                        fill
+                        loading="lazy"
+                        className="object-contain transition opacity-0 duration-500 object-center group-hover:scale-105 ease-in-out"
+                        onLoad={(event) => {
+                          const image = event.target as HTMLImageElement;
+                          image.classList.remove("opacity-0");
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <h2>Select an image:</h2>
+                    <div className="grid grid-cols-6 md:grid-cols-10 lg:grid-cols-4 w-full gap-4">
+                      {images.map((image) => (
+                        <button
+                          key={image.id}
+                          onClick={() => setSelectedImage(image)}
+                          className={cn(
+                            "bg-lightGray rounded-md group overflow-hidden relative h-10 lg:h-20 focus-visible:border-2 focus-visible:border-primary",
+                            image.id == selectedImage.id &&
+                              "border-2 border-black"
+                          )}
+                        >
+                          <Image
+                            src={image.url}
+                            alt={`${post.title} Image ${image.id}`}
+                            fill
+                            loading="lazy"
+                            className="rounded-md object-cover transition opacity-0 duration-500 object-center  group-hover:scale-105 ease-in-out "
+                            onLoad={(event) => {
+                              const image = event.target as HTMLImageElement;
+                              image.classList.remove("opacity-0");
+                            }}
+                          />
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </DialogContent>
+            )}
           </Dialog>
         )}
         <div className="border border-gray min-h-64 rounded-xl py-8 grid md:grid-cols-3 gap-8 md:gap-0 overflow-x-auto">
