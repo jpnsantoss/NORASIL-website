@@ -1,5 +1,5 @@
 import { getAuthSession } from "@/lib/auth";
-import db from "@/lib/db";
+import { acceleratedDb } from "@/lib/db";
 import { EditCategoryValidator } from "@/lib/validators/category";
 import { del } from "@vercel/blob";
 import { z } from "zod";
@@ -15,7 +15,7 @@ export async function PATCH(req: Request) {
     const { id, imageUrl, oldImageUrl, name, title } =
       EditCategoryValidator.parse(body);
 
-    const existingCategory = await db.category.findFirst({
+    const existingCategory = await acceleratedDb.category.findFirst({
       where: {
         name,
       },
@@ -25,7 +25,7 @@ export async function PATCH(req: Request) {
       return new Response("Category already exists", { status: 409 });
     }
 
-    await db.category.update({
+    await acceleratedDb.category.update({
       where: {
         id,
       },

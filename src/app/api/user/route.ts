@@ -1,5 +1,5 @@
 import { getAuthSession } from "@/lib/auth";
-import db from "@/lib/db";
+import { acceleratedDb } from "@/lib/db";
 import { EmailValidator } from "@/lib/validators/email";
 import { z } from "zod";
 
@@ -15,7 +15,7 @@ export async function POST(req: Request) {
 
     const { email } = EmailValidator.parse(body);
 
-    const authorizedEmail = await db.authorizedEmail.findFirst({
+    const authorizedEmail = await acceleratedDb.authorizedEmail.findFirst({
       where: {
         email,
       },
@@ -25,7 +25,7 @@ export async function POST(req: Request) {
       return new Response("Email already authorized", { status: 409 });
     }
 
-    await db.authorizedEmail.create({
+    await acceleratedDb.authorizedEmail.create({
       data: {
         email,
       },
@@ -54,13 +54,13 @@ export async function PATCH(req: Request) {
 
     const { email } = EmailValidator.parse(body);
 
-    await db.authorizedEmail.deleteMany({
+    await acceleratedDb.authorizedEmail.deleteMany({
       where: {
         email,
       },
     });
 
-    await db.user.deleteMany({
+    await acceleratedDb.user.deleteMany({
       where: {
         email,
       },

@@ -1,4 +1,4 @@
-import db from "@/lib/db";
+import { acceleratedDb } from "@/lib/db";
 
 export async function GET(req: Request) {
   const url = new URL(req.url);
@@ -7,7 +7,7 @@ export async function GET(req: Request) {
 
   if (!q) return new Response("Invalid query", { status: 400 });
 
-  const results = await db.post.findMany({
+  const results = await acceleratedDb.post.findMany({
     where: {
       title: {
         contains: q,

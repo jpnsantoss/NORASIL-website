@@ -1,4 +1,4 @@
-import db from "@/lib/db";
+import { acceleratedDb } from "@/lib/db";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import PostCard from "../PostCard";
@@ -11,7 +11,7 @@ interface SimilarPostsProps {
 }
 
 const SimilarPosts = async ({ post }: SimilarPostsProps) => {
-  const posts = await db.post.findMany({
+  const posts = await acceleratedDb.post.findMany({
     where: {
       categoryId: post.categoryId,
       id: {

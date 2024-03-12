@@ -1,5 +1,5 @@
 import { getAuthSession } from "@/lib/auth";
-import db from "@/lib/db";
+import { acceleratedDb } from "@/lib/db";
 import { DeletePostValidator } from "@/lib/validators/post";
 import { del } from "@vercel/blob";
 import { z } from "zod";
@@ -14,7 +14,7 @@ export async function PATCH(req: Request) {
     const body = await req.json();
     const { id, images, mainImageUrl } = DeletePostValidator.parse(body);
 
-    await db.post.delete({
+    await acceleratedDb.post.delete({
       where: {
         id,
       },

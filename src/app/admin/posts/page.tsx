@@ -10,20 +10,20 @@ import {
   CardTitle,
 } from "@/components/ui/Card";
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
-import db from "@/lib/db";
+import { acceleratedDb } from "@/lib/db";
 import { cn } from "@/lib/utils";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 
 const Page = async () => {
-  const categories = await db.category.findMany({
+  const categories = await acceleratedDb.category.findMany({
     orderBy: {
       createdAt: "desc",
     },
     cacheStrategy: { ttl: 60 },
   });
 
-  const posts = await db.post.findMany({
+  const posts = await acceleratedDb.post.findMany({
     include: {
       category: true,
       images: true,

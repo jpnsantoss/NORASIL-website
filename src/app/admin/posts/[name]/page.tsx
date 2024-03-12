@@ -9,7 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/Card";
-import db from "@/lib/db";
+import { acceleratedDb } from "@/lib/db";
 import { cn } from "@/lib/utils";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
@@ -25,7 +25,7 @@ const Page = async ({ params }: pageProps) => {
   const { name } = params;
   const decodedName = decodeURIComponent(name);
 
-  const post = await db.post.findFirst({
+  const post = await acceleratedDb.post.findFirst({
     where: { name: decodedName },
     include: {
       category: true,
@@ -33,7 +33,9 @@ const Page = async ({ params }: pageProps) => {
     },
   });
 
-  const categories = await db.category.findMany({ cacheStrategy: { ttl: 60 } });
+  const categories = await acceleratedDb.category.findMany({
+    cacheStrategy: { ttl: 60 },
+  });
 
   if (!post) return notFound();
 

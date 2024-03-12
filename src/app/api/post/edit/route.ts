@@ -1,5 +1,5 @@
 import { getAuthSession } from "@/lib/auth";
-import db from "@/lib/db";
+import { acceleratedDb } from "@/lib/db";
 import { EditPostValidator } from "@/lib/validators/post";
 import { z } from "zod";
 
@@ -14,7 +14,7 @@ export async function PATCH(req: Request) {
     const { id, name, title, type, category, client, date, deadline, local } =
       EditPostValidator.parse(body);
 
-    await db.post.update({
+    await acceleratedDb.post.update({
       where: {
         id,
       },

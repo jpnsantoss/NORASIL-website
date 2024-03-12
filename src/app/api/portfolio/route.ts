@@ -1,4 +1,4 @@
-import db from "@/lib/db";
+import { acceleratedDb } from "@/lib/db";
 import { z } from "zod";
 
 interface PostQuery {
@@ -51,7 +51,7 @@ async function handleInfiniteScroll(
 
   // Apply filters
   if (categoryName) {
-    const category = await db.category.findFirst({
+    const category = await acceleratedDb.category.findFirst({
       where: {
         name: categoryName,
       },
@@ -71,7 +71,7 @@ async function handleInfiniteScroll(
     };
   }
 
-  const posts = await db.post.findMany(postQuery);
+  const posts = await acceleratedDb.post.findMany(postQuery);
   return new Response(JSON.stringify(posts));
 }
 

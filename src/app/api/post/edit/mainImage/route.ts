@@ -1,5 +1,5 @@
 import { getAuthSession } from "@/lib/auth";
-import db from "@/lib/db";
+import { acceleratedDb } from "@/lib/db";
 import { MainImageValidator } from "@/lib/validators/image";
 import { del } from "@vercel/blob";
 import { z } from "zod";
@@ -16,7 +16,7 @@ export async function PATCH(req: Request) {
 
     await del(oldImageUrl);
 
-    await db.post.update({
+    await acceleratedDb.post.update({
       where: {
         id: postId,
       },

@@ -1,4 +1,4 @@
-import db from "@/lib/db";
+import { acceleratedDb } from "@/lib/db";
 import { cn } from "@/lib/utils";
 import { Inter } from "next/font/google";
 import Link from "next/link";
@@ -8,7 +8,7 @@ import { Separator } from "../ui/Separator";
 
 const inter = Inter({ subsets: ["latin"] });
 const Header = async () => {
-  const counter = await db.counter.findFirst();
+  const counter = await acceleratedDb.counter.findFirst();
   return (
     <div className="w-full h-full lg:min-h-[900px] min-h-[700px] overflow-hidden">
       <div className="w-full absolute left-0 top-0 z-20">

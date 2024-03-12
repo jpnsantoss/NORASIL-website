@@ -1,4 +1,4 @@
-import db from "@/lib/db";
+import { acceleratedDb } from "@/lib/db";
 import {
   Card,
   CardContent,
@@ -11,7 +11,7 @@ import { default as UsersForm } from "./UsersForm";
 import UsersList from "./UsersList";
 
 const UsersContainer = async () => {
-  const authorizedEmails = await db.authorizedEmail.findMany({
+  const authorizedEmails = await acceleratedDb.authorizedEmail.findMany({
     include: {
       user: true,
     },

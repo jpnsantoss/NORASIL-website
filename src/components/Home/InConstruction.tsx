@@ -1,11 +1,11 @@
-import db from "@/lib/db";
+import { acceleratedDb } from "@/lib/db";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import PostCard from "../PostCard";
 import { buttonVariants } from "../ui/Button";
 
 const InConstruction = async () => {
-  const posts = await db.post.findMany({
+  const posts = await acceleratedDb.post.findMany({
     where: {
       type: "CONSTRUCTION",
     },

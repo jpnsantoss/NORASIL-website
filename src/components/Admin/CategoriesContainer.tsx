@@ -1,4 +1,4 @@
-import db from "@/lib/db";
+import { acceleratedDb } from "@/lib/db";
 import {
   Accordion,
   AccordionContent,
@@ -17,7 +17,7 @@ import CategoriesForm from "./CategoriesForm";
 import CategoriesList from "./CategoriesList";
 
 const CategoriesContainer = async () => {
-  const categories = await db.category.findMany({
+  const categories = await acceleratedDb.category.findMany({
     orderBy: {
       createdAt: "desc",
     },

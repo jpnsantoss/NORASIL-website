@@ -1,20 +1,41 @@
-import { PrismaClient } from "@prisma/client/edge";
+import { PrismaClient } from "@prisma/client/edge"; // Import from '@prisma/client/edge'
 import { withAccelerate } from "@prisma/extension-accelerate";
+import "server-only";
 
-// Learn more about instantiating PrismaClient in Next.js here: https://www.prisma.io/docs/data-platform/accelerate/getting-started
-
-const prismaClientSingleton = () => {
-  return new PrismaClient().$extends(withAccelerate());
+const createStandardPrismaClient = () => {
+  return new PrismaClient({
+    log:
+      process.env.NODE_ENV === "development"
+        ? ["query", "error", "warn"]
+        : ["error"],
+  });
 };
 
-type PrismaClientSingleton = ReturnType<typeof prismaClientSingleton>;
+// Singleton pattern for creating an accelerated PrismaClient instance.
+const createAcceleratedPrismaClient = () => {
+  return new PrismaClient({
+    log:
+      process.env.NODE_ENV === "development"
+        ? ["query", "error", "warn"]
+        : ["error"],
+  }).$extends(withAccelerate());
+};
+
+// Define a type for the accelerated client.
+type PrismaClientAccelerated = ReturnType<typeof createAcceleratedPrismaClient>;
 
 const globalForPrisma = globalThis as unknown as {
-  prisma: PrismaClientSingleton | undefined;
+  standardPrisma: PrismaClient | undefined;
+  acceleratedPrisma: PrismaClientAccelerated | undefined;
 };
 
-const prisma = globalForPrisma.prisma ?? prismaClientSingleton();
+const db = globalForPrisma.standardPrisma ?? createStandardPrismaClient();
+const acceleratedDb =
+  globalForPrisma.acceleratedPrisma ?? createAcceleratedPrismaClient();
 
-export default prisma;
+if (process.env.NODE_ENV !== "production") {
+  globalForPrisma.standardPrisma = db;
+  globalForPrisma.acceleratedPrisma = acceleratedDb;
+}
 
-if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+export { acceleratedDb, db };

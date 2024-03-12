@@ -1,11 +1,11 @@
-import db from "@/lib/db";
+import { acceleratedDb } from "@/lib/db";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "../ui/Button";
 import { Tabs, TabsList, TabsTrigger } from "../ui/Tabs";
 import InterventionImages from "./InterventionImages";
 
 const InterventionAreas = async () => {
-  const categories = await db.category.findMany({
+  const categories = await acceleratedDb.category.findMany({
     orderBy: {
       createdAt: "asc",
     },

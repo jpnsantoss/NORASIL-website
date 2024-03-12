@@ -1,5 +1,5 @@
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
-import db from "@/lib/db";
+import { acceleratedDb } from "@/lib/db";
 import { z } from "zod";
 
 export async function GET(req: Request) {
@@ -45,7 +45,7 @@ export async function GET(req: Request) {
 
   // If both category and type are provided
   if (categoryName) {
-    const category = await db.category.findFirst({
+    const category = await acceleratedDb.category.findFirst({
       where: {
         name: categoryName,
       },
@@ -57,7 +57,7 @@ export async function GET(req: Request) {
   }
   // If only category is provided
   else if (categoryName) {
-    const category = await db.category.findFirst({
+    const category = await acceleratedDb.category.findFirst({
       where: {
         name: categoryName,
       },
@@ -68,6 +68,6 @@ export async function GET(req: Request) {
     }
   }
 
-  const results = await db.post.findMany(postQuery);
+  const results = await acceleratedDb.post.findMany(postQuery);
   return new Response(JSON.stringify(results));
 }
