@@ -1,18 +1,20 @@
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
-import { db } from "@/lib/db";
+import db from "@/lib/db";
 import { z } from "zod";
 
 export async function GET(req: Request) {
   const url = new URL(req.url);
 
-  const {categoryName, typeParam} = z.object({
-    categoryName: z.string(),
-    typeParam: z.string(),
-  }).parse({
-    categoryName: url.searchParams.get("category"),
-    typeParam: url.searchParams.get("status")
-  })
-  
+  const { categoryName, typeParam } = z
+    .object({
+      categoryName: z.string(),
+      typeParam: z.string(),
+    })
+    .parse({
+      categoryName: url.searchParams.get("category"),
+      typeParam: url.searchParams.get("status"),
+    });
+
   let postQuery: {
     where: {
       categoryId?: string; // Optional category filter
@@ -33,7 +35,7 @@ export async function GET(req: Request) {
     orderBy: {
       createdAt: "desc",
     },
-    take: INFINITE_SCROLLING_PAGINATION_RESULTS
+    take: INFINITE_SCROLLING_PAGINATION_RESULTS,
   };
 
   // Validate and convert the type parameter if provided

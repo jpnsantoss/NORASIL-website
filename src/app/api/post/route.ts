@@ -1,5 +1,5 @@
 import { getAuthSession } from "@/lib/auth";
-import { db } from "@/lib/db";
+import db from "@/lib/db";
 import { PostValidator } from "@/lib/validators/post";
 import { z } from "zod";
 
@@ -51,16 +51,17 @@ export async function POST(req: Request) {
     });
 
     if (images && images.length > 0) {
-      await Promise.all(images.map(async (image) => {
+      await Promise.all(
+        images.map(async (image) => {
           await db.image.create({
             data: {
               postId: post.id,
               url: image.url,
             },
           });
-      }));
+        })
+      );
     }
-    
 
     return new Response("OK");
   } catch (error) {

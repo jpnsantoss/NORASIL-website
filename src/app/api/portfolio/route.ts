@@ -1,4 +1,4 @@
-import { db } from "@/lib/db";
+import db from "@/lib/db";
 import { z } from "zod";
 
 interface PostQuery {
@@ -15,30 +15,38 @@ interface PostQuery {
     categoryId?: string;
     type?: "CONSTRUCTION" | "FINISHED";
   };
+  cacheStrategy: { ttl: number };
 }
 
 // Shared function to handle infinite scrolling with filters
-async function handleInfiniteScroll(req: Request, categoryName: string, typeParam: string) {
+async function handleInfiniteScroll(
+  req: Request,
+  categoryName: string,
+  typeParam: string
+) {
   const url = new URL(req.url);
 
-  const { limit, page } = z.object({
-    limit: z.string(),
-    page: z.string(),
-  }).parse({
-    limit: url.searchParams.get('limit'),
-    page: url.searchParams.get('page')
-  });
+  const { limit, page } = z
+    .object({
+      limit: z.string(),
+      page: z.string(),
+    })
+    .parse({
+      limit: url.searchParams.get("limit"),
+      page: url.searchParams.get("page"),
+    });
 
   let postQuery: PostQuery = {
     take: parseInt(limit),
     skip: (parseInt(page) - 1) * parseInt(limit),
     orderBy: {
-      createdAt: "desc"
+      createdAt: "desc",
     },
     include: {
       category: true,
       images: true,
     },
+    cacheStrategy: { ttl: 60 },
   };
 
   // Apply filters
@@ -71,13 +79,15 @@ async function handleInfiniteScroll(req: Request, categoryName: string, typePara
 export async function GET(req: Request) {
   const url = new URL(req.url);
 
-  const { categoryName, typeParam } = z.object({
-    categoryName: z.string(),
-    typeParam: z.string(),
-  }).parse({
-    categoryName: url.searchParams.get("category"),
-    typeParam: url.searchParams.get("status")
-  });
+  const { categoryName, typeParam } = z
+    .object({
+      categoryName: z.string(),
+      typeParam: z.string(),
+    })
+    .parse({
+      categoryName: url.searchParams.get("category"),
+      typeParam: url.searchParams.get("status"),
+    });
 
   try {
     return await handleInfiniteScroll(req, categoryName, typeParam);

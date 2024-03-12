@@ -1,4 +1,4 @@
-import { db } from "@/lib/db";
+import db from "@/lib/db";
 import { cn } from "@/lib/utils";
 import { Inter } from "next/font/google";
 import Link from "next/link";

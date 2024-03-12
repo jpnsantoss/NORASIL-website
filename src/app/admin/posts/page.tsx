@@ -10,7 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/Card";
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
-import { db } from "@/lib/db";
+import db from "@/lib/db";
 import { cn } from "@/lib/utils";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
@@ -20,6 +20,7 @@ const Page = async () => {
     orderBy: {
       createdAt: "desc",
     },
+    cacheStrategy: { ttl: 60 },
   });
 
   const posts = await db.post.findMany({
@@ -31,6 +32,7 @@ const Page = async () => {
       createdAt: "desc",
     },
     take: INFINITE_SCROLLING_PAGINATION_RESULTS,
+    cacheStrategy: { ttl: 60 },
   });
 
   return (

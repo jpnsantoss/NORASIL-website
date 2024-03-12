@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar";
 import PostDetails from "@/components/Portfolio/PostDetails";
 import PostImage from "@/components/Portfolio/PostImage";
 import SimilarPosts from "@/components/Portfolio/SimilarPosts";
-import { db } from "@/lib/db";
+import db from "@/lib/db";
 import { notFound } from "next/navigation";
 
 interface pageProps {

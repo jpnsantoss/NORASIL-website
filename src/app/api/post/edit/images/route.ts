@@ -1,5 +1,5 @@
 import { getAuthSession } from "@/lib/auth";
-import { db } from "@/lib/db";
+import db from "@/lib/db";
 import { DeleteImageValidator, ImagesValidator } from "@/lib/validators/image";
 import { del } from "@vercel/blob";
 import { z } from "zod";
@@ -52,18 +52,20 @@ export async function PATCH(req: Request) {
 
     await db.image.delete({
       where: {
-        id
-      }
-    })
+        id,
+      },
+    });
 
     await del(imageUrl);
 
     return new Response("OK");
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return new Response("Invalid request data passed", {status: 422})
+      return new Response("Invalid request data passed", { status: 422 });
     }
 
-    return new Response("Could not remove image, please try again later.", {status: 500});
+    return new Response("Could not remove image, please try again later.", {
+      status: 500,
+    });
   }
 }

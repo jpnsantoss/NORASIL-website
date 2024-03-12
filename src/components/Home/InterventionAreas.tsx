@@ -1,4 +1,4 @@
-import { db } from "@/lib/db";
+import db from "@/lib/db";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "../ui/Button";
 import { Tabs, TabsList, TabsTrigger } from "../ui/Tabs";
@@ -9,6 +9,7 @@ const InterventionAreas = async () => {
     orderBy: {
       createdAt: "asc",
     },
+    cacheStrategy: { ttl: 60 },
   });
   if (categories.length === 0) return null;
   return (

@@ -1,4 +1,4 @@
-import { db } from "@/lib/db";
+import db from "@/lib/db";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import PostCard from "../PostCard";
@@ -26,6 +26,7 @@ const SimilarPosts = async ({ post }: SimilarPostsProps) => {
       images: true,
       category: true,
     },
+    cacheStrategy: { ttl: 60 },
   });
   if (posts.length > 0) {
     return (

@@ -1,7 +1,7 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import PortfolioContainer from "@/components/Portfolio/PortfolioContainer";
-import { db } from "@/lib/db";
+import db from "@/lib/db";
 import { Loader2 } from "lucide-react";
 import { Suspense } from "react";
 
@@ -10,6 +10,7 @@ const Page = async () => {
     orderBy: {
       createdAt: "desc",
     },
+    cacheStrategy: { ttl: 60 },
   });
   return (
     <div>

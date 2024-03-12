@@ -1,4 +1,4 @@
-import { db } from "@/lib/db";
+import db from "@/lib/db";
 import {
   Accordion,
   AccordionContent,
@@ -21,6 +21,7 @@ const CategoriesContainer = async () => {
     orderBy: {
       createdAt: "desc",
     },
+    cacheStrategy: { ttl: 60 },
   });
   return (
     <Card>

@@ -9,7 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/Card";
-import { db } from "@/lib/db";
+import db from "@/lib/db";
 import { cn } from "@/lib/utils";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
@@ -33,7 +33,7 @@ const Page = async ({ params }: pageProps) => {
     },
   });
 
-  const categories = await db.category.findMany();
+  const categories = await db.category.findMany({ cacheStrategy: { ttl: 60 } });
 
   if (!post) return notFound();
 

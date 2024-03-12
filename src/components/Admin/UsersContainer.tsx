@@ -1,4 +1,4 @@
-import { db } from "@/lib/db";
+import db from "@/lib/db";
 import {
   Card,
   CardContent,
@@ -15,6 +15,7 @@ const UsersContainer = async () => {
     include: {
       user: true,
     },
+    cacheStrategy: { ttl: 60 },
   });
 
   return (
