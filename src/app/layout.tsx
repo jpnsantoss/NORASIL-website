@@ -2,6 +2,7 @@ import Providers from "@/components/Providers";
 import { Toaster } from "@/components/ui/Toaster";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
+import { Analytics } from "@vercel/analytics/react";
 import { Open_Sans } from "next/font/google";
 
 export const metadata = {
@@ -21,7 +22,7 @@ export const metadata = {
     title: "Norasil - Sociedade de Consturção Civil S.A.",
     url: "https://norasil.pt",
     phoneNumbers: ["(+351) 229 399 250"],
-    images: ["/assets/images/icon.svg"],
+    images: ["/assets/images/favicon.png"],
     type: "website",
     locale: "pt_PT",
   },
@@ -47,6 +48,7 @@ export default function RootLayout({
         <Providers>
           {children}
           <Toaster />
+          <Analytics />
         </Providers>
       </body>
     </html>

@@ -13,7 +13,7 @@ export const metadata = {
     title: "Norasil",
     url: "https://norasil.pt",
     phoneNumbers: ["(+351) 229 399 250"],
-    images: ["/assets/images/icon.svg"],
+    images: ["/assets/images/favicon.png"],
   },
 };
 export default async function RootLayout({
