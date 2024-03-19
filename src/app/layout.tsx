@@ -22,7 +22,7 @@ export const metadata = {
     title: "Norasil - Sociedade de Consturção Civil S.A.",
     url: "https://norasil.pt",
     phoneNumbers: ["(+351) 229 399 250"],
-    images: ["/assets/images/favicon.png"],
+    images: ["/assets/images/wallpaper.webp"],
     type: "website",
     locale: "pt_PT",
   },
