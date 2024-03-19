@@ -42,13 +42,13 @@ const Header = async () => {
           </div>
           <div className="w-full flex 2xl:justify-center container px-4">
             <div className="flex justify-center items-center border border-darkGray rounded-xl overflow-hidden 2xl:ml-[20%] w-full lg:w-1/2 2xl:w-2/5 my-4">
-              <div className="bg-black w-full flex items-center justify-center text-lightGray flex-col gap-2 py-4">
+              <div className="bg-black w-full text-center flex items-center justify-center text-lightGray flex-col gap-2 py-4">
                 <span className="font-bold text-4xl text-primary">
                   {counter?.finishedBuilds}
                 </span>
                 Obras finalizadas
               </div>
-              <div className="bg-white flex w-full items-center justify-center text-darkGray flex-col gap-2 py-4">
+              <div className="bg-white text-center flex w-full items-center justify-center text-darkGray flex-col gap-2 py-4">
                 <span className="font-bold text-4xl text-black">
                   {counter?.constructionBuilds}
                 </span>
@@ -57,7 +57,7 @@ const Header = async () => {
               <div className="bg-white h-full flex items-center">
                 <Separator orientation="vertical" className="bg-gray h-2/3" />
               </div>
-              <div className="bg-white flex w-full items-center justify-center text-darkGray flex-col gap-2 py-4">
+              <div className="bg-white flex text-center w-full items-center justify-center text-darkGray flex-col gap-2 py-4">
                 <span className="font-bold text-4xl text-black">
                   {counter?.awards}
                 </span>

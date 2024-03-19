@@ -24,7 +24,7 @@ const PostCard: FC<PostCardProps> = ({ post }) => {
       <div className="w-full relative h-56">
         <div className="absolute -top-8 w-full bg-white rounded-t-3xl h-full overflow-hidden">
           <div className="relative h-full w-full p-8">
-            <h1 className="font-bold text-2xl text-center truncate">
+            <h1 className="font-bold text-2xl text-center line-clamp-2">
               <Link className="hover:underline" href={`/obras/${post.name}`}>
                 {post.title}
               </Link>

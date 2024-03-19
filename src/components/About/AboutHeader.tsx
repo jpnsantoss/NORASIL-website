@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ["latin"] });
 const AboutHeader: FC<AboutHeaderProps> = ({}) => {
   return (
     <div className="w-full px-4 lg:px-48 lg:py-16">
-      <h2 className="text-2xl font-semibold mb-2">De obra em obra,</h2>
+      <h2 className="text-2xl font-semibold mb-2">Obra a obra,</h2>
       <div className="grid lg:grid-cols-2 gap-16">
         <div className="space-y-8">
           <h1
@@ -33,7 +33,7 @@ const AboutHeader: FC<AboutHeaderProps> = ({}) => {
         </div>
         <div className="space-y-4 texl-xl lg:text-2xl mt-4">
           <h2 className="font-bold">
-            A Norasil com mais de 40 anos de atividade. Somos uma empresa de
+            A Norasil, com mais de 40 anos de atividade, é uma empresa de
             referência no mercado de construção em Portugal Continental.
           </h2>
           <p className="text-darkGray">

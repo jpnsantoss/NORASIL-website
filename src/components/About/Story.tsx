@@ -40,12 +40,13 @@ const Story = () => {
             Fundada em maio de 1983, a Norasil – Sociedade de Construção Civil,
             S.A., teve origem como uma consequência natural da trajetória
             profissional do seu Fundador, Joaquim António Nogueira da Hora, um
-            Engenheiro Civil com experiência em empresas de construção.
+            Engenheiro Civil com experiência em vários setores de construção.
             <br />
-            <br />A empresa começou a sua jornada ao lado da Firma Nogueira da
-            Hora – Sociedade Imobiliária, Lda., fundada em março de 1983, ambas
+            <br />
+            AA empresa começou a sua jornada ao lado da firma Nogueira da Hora –
+            Sociedade Imobiliária, Lda., fundada em março de 1983, ambas
             pertencendo a um grupo de empresas familiares. Desde o início, a
-            Norasil concentrou-se em especializações na construção civil,
+            Norasil concentrou-se em especialização na construção civil,
             expandindo-se em áreas específicas e acumulando recursos técnicos e
             humanos para realizar empreitadas de infraestruturas, engenharia e
             acabamentos.
@@ -90,8 +91,8 @@ const Story = () => {
             proximidade com os clientes antigos e a valorização da formação
             contínua são pontos essenciais para a Norasil, que continuará a
             basear-se nos seus valores de compromisso, profissionalismo e
-            responsabilidade. A procura pela excelência e melhoria contínua
-            continuará a ser a base da estratégia da Norasil, permitindo-lhe
+            responsabilidade. A procura pela excelência e melhoria contínua vão
+            continuar a ser a base da estratégia da Norasil, permitindo-lhe
             enfrentar o futuro com confiança.
           </p>
         </TabsContent>

@@ -1,5 +1,7 @@
+import { cn } from "@/lib/utils";
 import { Eye, Lightbulb, PieChart, Target } from "lucide-react";
-import { Button } from "../ui/Button";
+import Link from "next/link";
+import { Button, buttonVariants } from "../ui/Button";
 
 const QualityPolicy = () => {
   return (
@@ -15,21 +17,24 @@ const QualityPolicy = () => {
               <h1 className="font-bold text-4xl">Missão</h1>
               <p className="text-darkGray text-lg">
                 A nossa missão é oferecer soluções inovadoras, combinando
-                qualidade e eficiência para a realização de projetos de sucesso.
+                qualidade e eficiência para a realização de projetos e soluções
+                de sucesso.
               </p>
             </div>
           </div>
           <div className="bg-black shadow-lg shadow-gray rounded-xl w-full flex flex-col gap-4 justify-between p-8">
             <div className="space-y-4">
               <h1 className="text-white font-bold text-3xl">
-                Comprometidos com a excelência em cada projeto.
+                Comprometidos com a excelência em cada construção.
               </h1>
               <h2 className="text-gray font-bold text-2xl">
                 Está interessado em <br /> saber mais?
               </h2>
             </div>
             <div>
-              <Button className="font-bold">Sobre nós</Button>
+              <Link href="/empresa" className={cn(buttonVariants())}>
+                Ler mais
+              </Link>
             </div>
           </div>
           <div className="w-full shadow border border-lightGray rounded-xl space-y-6 p-8">
@@ -37,8 +42,8 @@ const QualityPolicy = () => {
             <div className="space-y-4">
               <h1 className="font-bold text-4xl">Valores e Objetivos</h1>
               <p className="text-darkGray text-lg">
-                Na Norasil, o nosso objetivo é sempre alcançar a excelência em
-                tudo o que fazemos, preservando os nossos valores éticos e
+                Os nossos objetivos são sempre alcançar a competência e melhoria
+                em tudo o que fazemos, preservando os nossos valores éticos e
                 profissionais.
               </p>
             </div>
@@ -51,8 +56,8 @@ const QualityPolicy = () => {
               <h1 className="font-bold text-4xl">Visão</h1>
               <p className="text-darkGray text-lg">
                 A nossa visão é ser reconhecidos como uma empresa que oferece
-                soluçõesde alta qualidade, visando o sucesso dos nossos
-                clientes.
+                soluções de alta qualidade e competência, visando o sucesso dos
+                nossos clientes.
               </p>
             </div>
           </div>
@@ -61,8 +66,9 @@ const QualityPolicy = () => {
             <div className="space-y-4">
               <h1 className="font-bold text-4xl">Estratégia</h1>
               <p className="text-darkGray text-lg">
-                Na Norasil, trabalhamos na promoção e valorização da sua imagem,
-                consolidando-se como referência no mercado da construção civil.
+                Na Norasil, tudo fazemos para promover e valorizar a nossa
+                imagem, para sermos reconhecidos como referência no mercado da
+                construção civil.
               </p>
             </div>
           </div>

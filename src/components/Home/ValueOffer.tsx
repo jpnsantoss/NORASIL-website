@@ -43,8 +43,8 @@ const ValueOffer: FC = () => {
             </h1>
             <p className="text-darkGray text-xl">
               Oferecemos soluções personalizadas e de alta qualidade para os
-              nossos clientes, combinando o nosso conhecimento técnico e
-              compromisso com o prazo e orçamento.
+              nossos clientes, combinando o nosso conhecimento técnico com o
+              compromisso de prazo e orçamento.
             </p>
             <Link
               href={"/empresa"}

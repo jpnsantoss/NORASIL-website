@@ -38,12 +38,12 @@ const Company = () => {
           </h2>
           <p className="text-lightGray font-bold text-xl">
             Fundada em 1983 por Joaquim António Nogueira da Hora, a Norasil é
-            uma empresa de construção civil.
+            uma empresa de construção civil e obras públicas.
           </p>
           <p className="text-lightGray text-lg">
-            Este empresa especializou-se em diversas áreas e adquiriu os meios
-            necessários para atingir um volume de negócios anual superior a 22
-            milhões de euros.
+            Este empresa especializou-se em diversas áreas e adquiriu a
+            competência os meios necessários para atingir um volume de negócios
+            anual superior a 22 milhões de euros.
           </p>
           <h3 className="text-lightGray text-lg">
             Para continuar a ler ...{" "}
