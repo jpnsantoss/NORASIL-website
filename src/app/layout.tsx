@@ -1,8 +1,9 @@
+import CookieConsent from "@/components/CookieConsent";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import Providers from "@/components/Providers";
 import { Toaster } from "@/components/ui/Toaster";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
 import { Open_Sans } from "next/font/google";
 
@@ -45,12 +46,14 @@ export default function RootLayout({
         openSans.className
       )}
     >
+      <GoogleAnalytics GA_MEASUREMENT_ID={process.env.GOOGLE_ANALYTICS_ID!} />
       <body className="min-h-screen h-full w-full m-0 antialiased bg-white">
         <Providers>
           {children}
           <Toaster />
           <Analytics />
-          <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_ID!} />
+
+          <CookieConsent />
         </Providers>
       </body>
     </html>
