@@ -2,6 +2,7 @@ import Providers from "@/components/Providers";
 import { Toaster } from "@/components/ui/Toaster";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
 import { Open_Sans } from "next/font/google";
 
@@ -49,6 +50,7 @@ export default function RootLayout({
           {children}
           <Toaster />
           <Analytics />
+          <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_ID!} />
         </Providers>
       </body>
     </html>
