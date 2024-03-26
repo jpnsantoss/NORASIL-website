@@ -32,7 +32,7 @@ const CookieConsent = () => {
   return (
     <div
       className={cn(
-        "left-4 bottom-4 max-w-[400px] shadow border bg-background border-lightGray rounded-xl p-4 space-y-2",
+        "z-50 m-4 left-0 bottom-0 max-w-[400px] shadow border bg-background border-lightGray rounded-xl p-4 space-y-2",
         cookieConsent != null ? "hidden" : "fixed"
       )}
     >
