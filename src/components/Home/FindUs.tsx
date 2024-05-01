@@ -17,7 +17,9 @@ const FindUs = () => {
               </h2>
             </div>
             <Link
-              href={"https://maps.app.goo.gl/k2Xz6KycpdDCWNXK7"}
+              href="geo:41.1824841,-8.6902678"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-darkGray"
             >
               Rua de Brito Capelo 598, Matosinhos
@@ -45,7 +47,9 @@ const FindUs = () => {
               </h2>
             </div>
             <Link
-              href={"https://maps.app.goo.gl/EsNpgbcpZhcQdQ1R9"}
+              href="geo:41.2309784,-8.7046805"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-darkGray"
             >
               Rua das Rosas, 519 4455-550 Perafita
