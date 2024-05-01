@@ -16,14 +16,14 @@ const FindUs = () => {
                 Sede
               </h2>
             </div>
-            <Link
+            <a
               href="geo:41.1824841,-8.6902678"
               target="_blank"
               rel="noopener noreferrer"
               className="text-darkGray"
             >
               Rua de Brito Capelo 598, Matosinhos
-            </Link>
+            </a>
           </div>
           <div className="h-[45vh]">
             <div className="w-full h-full  rounded-xl border-2 border-darkGray shadow overflow-hidden">
@@ -46,14 +46,14 @@ const FindUs = () => {
                 Estaleiro Central
               </h2>
             </div>
-            <Link
+            <a
               href="geo:41.2309784,-8.7046805"
               target="_blank"
               rel="noopener noreferrer"
               className="text-darkGray"
             >
               Rua das Rosas, 519 4455-550 Perafita
-            </Link>
+            </a>
           </div>
           <div className="h-[45vh]">
             <div className="w-full h-full  rounded-xl border-2 border-darkGray shadow overflow-hidden">
