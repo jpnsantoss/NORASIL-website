@@ -17,7 +17,7 @@ const FindUs = () => {
               </h2>
             </div>
             <a
-              href="http://maps.apple.com/?q=Norasil+-+Sociedade+De+Construção+Civil,+S.A"
+              href="https://maps.app.goo.gl/BuarwdcAvmdHB8rC8"
               target="_blank"
               rel="noopener noreferrer"
               className="text-darkGray"
@@ -47,7 +47,7 @@ const FindUs = () => {
               </h2>
             </div>
             <a
-              href="http://maps.apple.com/?q=Rua+das+Rosas+519,+4455-550+Perafita"
+              href="https://maps.app.goo.gl/EsNpgbcpZhcQdQ1R9"
               target="_blank"
               rel="noopener noreferrer"
               className="text-darkGray"
