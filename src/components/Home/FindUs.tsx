@@ -17,7 +17,7 @@ const FindUs = () => {
               </h2>
             </div>
             <a
-              href="geo:41.1824841,-8.6902678"
+              href="http://maps.apple.com/?q=cupertino"
               target="_blank"
               rel="noopener noreferrer"
               className="text-darkGray"
