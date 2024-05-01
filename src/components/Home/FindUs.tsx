@@ -1,4 +1,5 @@
 import { MapPin } from "lucide-react";
+import Link from "next/link";
 
 const FindUs = () => {
   return (
@@ -15,9 +16,12 @@ const FindUs = () => {
                 Sede
               </h2>
             </div>
-            <span className="text-darkGray">
+            <Link
+              href={"https://maps.app.goo.gl/k2Xz6KycpdDCWNXK7"}
+              className="text-darkGray"
+            >
               Rua de Brito Capelo 598, Matosinhos
-            </span>
+            </Link>
           </div>
           <div className="h-[45vh]">
             <div className="w-full h-full  rounded-xl border-2 border-darkGray shadow overflow-hidden">
@@ -40,9 +44,12 @@ const FindUs = () => {
                 Estaleiro Central
               </h2>
             </div>
-            <span className="text-darkGray">
+            <Link
+              href={"https://maps.app.goo.gl/EsNpgbcpZhcQdQ1R9"}
+              className="text-darkGray"
+            >
               Rua das Rosas, 519 4455-550 Perafita
-            </span>
+            </Link>
           </div>
           <div className="h-[45vh]">
             <div className="w-full h-full  rounded-xl border-2 border-darkGray shadow overflow-hidden">
