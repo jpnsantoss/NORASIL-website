@@ -39,7 +39,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                href="/portfolio"
+                href="/empresa"
                 className={cn(
                   buttonVariants({ variant: "link" }),
                   "p-0 text-gray font-bold"
