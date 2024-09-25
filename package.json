@@ -5,6 +5,7 @@
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "next build",
     "dev": "next dev --turbo",
