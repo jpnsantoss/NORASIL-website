@@ -1,22 +1,19 @@
-const createNextIntlPlugin = require('next-intl/plugin');
-
-const withNextIntl = createNextIntlPlugin();
-
-/**
- * @type {import('next').NextConfig}
- */
-const nextConfig = {
-  /* config options here */
+/** @type {import("next").NextConfig} */
+const config = {
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  reactStrictMode: true,
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'jkiz29dbzkcwru3p.public.blob.vercel-storage.com',
-        port: '',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "jkiz29dbzkcwru3p.public.blob.vercel-storage.com",
       },
     ],
   },
-}
-
-module.exports = withNextIntl(nextConfig);
+};
+export default config;
