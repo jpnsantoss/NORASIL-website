@@ -1,16 +1,48 @@
-import { getToken } from 'next-auth/jwt'
-import type { NextRequest } from 'next/server'
-import { NextResponse } from 'next/server'
+import { withAuth } from "next-auth/middleware";
+import createMiddleware from "next-intl/middleware";
+import { NextRequest } from "next/server";
+import { routing } from "./i18n/routing";
 
-export async function middleware(req: NextRequest) {
-  const token = await getToken({ req })
+const publicPages = [
+  "/",
+  "/sign-in",
+  // (/secret requires auth)
+];
 
-  if (!token) {
-    return NextResponse.redirect(new URL('/sign-in', req.nextUrl))
+const intlMiddleware = createMiddleware(routing);
+
+const authMiddleware = withAuth(
+  // Note that this callback is only invoked if
+  // the `authorized` callback has returned `true`
+  // and not for pages listed in `pages`.
+  (req) => intlMiddleware(req),
+  {
+    callbacks: {
+      authorized: ({ token }) => token != null,
+    },
+    pages: {
+      signIn: "/sign-in",
+    },
+  }
+);
+
+export default function middleware(req: NextRequest) {
+  const publicPathnameRegex = RegExp(
+    `^(/(${routing.locales.join("|")}))?(${publicPages
+      .flatMap((p) => (p === "/" ? ["", "/"] : p))
+      .join("|")})/?$`,
+    "i"
+  );
+  const isPublicPage = publicPathnameRegex.test(req.nextUrl.pathname);
+
+  if (isPublicPage) {
+    return intlMiddleware(req);
+  } else {
+    return (authMiddleware as any)(req);
   }
 }
-// See "Matching Paths" below to learn more
+
 export const config = {
-  //'/r/:path*/submit', '/r/create'
-   matcher: [],
- }
+  // Skip all paths that should not be internationalized
+  matcher: ["/((?!api|_next|.*\\..*).*)"],
+};
