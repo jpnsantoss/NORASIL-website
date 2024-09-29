@@ -10,7 +10,7 @@ import { Separator } from "../ui/Separator";
 const inter = Inter({ subsets: ["latin"] });
 const Header = async () => {
   const counter = await acceleratedDb.counter.findFirst();
-  const t = await getTranslations("HomePage");
+  const t = await getTranslations("HomePage.Header");
   return (
     <div className="w-full h-full lg:min-h-[900px] min-h-[700px] overflow-hidden">
       <div className="w-full absolute left-0 top-0 z-20">
@@ -23,22 +23,17 @@ const Header = async () => {
                   inter.className,
                   "text-5xl lg:text-7xl font-extrabold leading-[4rem] lg:leading-[5rem]"
                 )}
-              >
-                {t("title")}
-                40 anos <br /> de{" "}
-                <span className="text-primary"> excelência</span> <br />
-                na construção
-              </h1>
+                dangerouslySetInnerHTML={{ __html: t.raw("title") }}
+              />
               <p className="max-w-2xl text-lg lg:text-2xl font-bold spacing text-darkGray tracking-wide">
-                Investimos em inovação e sustentabilidade para garantir
-                construções seguras, duráveis e únicas.
+                {t("subtitle")}
               </p>
               <div>
                 <Link
                   href={"/portfolio"}
                   className={cn(buttonVariants({ size: "lg" }), "my-4")}
                 >
-                  Ver obras
+                  {t("button")}
                 </Link>
               </div>
             </div>
@@ -49,13 +44,13 @@ const Header = async () => {
                 <span className="font-bold text-4xl text-primary">
                   {counter?.finishedBuilds}
                 </span>
-                Obras finalizadas
+                {t("finishedBuilds")}
               </div>
               <div className="bg-white text-center flex w-full items-center justify-center text-darkGray flex-col gap-2 py-4">
                 <span className="font-bold text-4xl text-black">
                   {counter?.constructionBuilds}
                 </span>
-                Obras em construção
+                {t("constructionBuilds")}
               </div>
               <div className="bg-white h-full flex items-center">
                 <Separator orientation="vertical" className="bg-gray h-2/3" />
@@ -64,7 +59,7 @@ const Header = async () => {
                 <span className="font-bold text-4xl text-black">
                   {counter?.awards}
                 </span>
-                Prémios
+                {t("awards")}
               </div>
             </div>
           </div>

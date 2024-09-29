@@ -26,12 +26,13 @@ import {
   DropdownMenuTrigger,
 } from "./ui/DropdownMenu";
 
-import { FC } from "react";
+import { useTranslations } from "next-intl";
 import Contact from "./Contact";
 import { Sheet, SheetTrigger } from "./ui/Sheet";
 
 const Navbar = () => {
   const pathname = usePathname();
+  const t = useTranslations("Navbar");
   return (
     <div className="py-6 px-4 bg-white">
       <div className="container flex justify-between items-center">
@@ -58,7 +59,7 @@ const Navbar = () => {
                 })
               )}
             >
-              Início
+              {t("home")}
             </Link>
           </li>
           <li>
@@ -75,7 +76,7 @@ const Navbar = () => {
                 })
               )}
             >
-              Portfólio
+              {t("portfolio")}
             </Link>
           </li>
           <li>
@@ -92,7 +93,7 @@ const Navbar = () => {
                 })
               )}
             >
-              Empresa
+              {t("company")}
             </Link>
           </li>
           <li>
@@ -103,11 +104,11 @@ const Navbar = () => {
                   size="sm"
                   className={cn("text-xl text-darkGray font-bold focus:ring-0")}
                 >
-                  Documentos
+                  {t("documents")}
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-56">
-                <DropdownMenuLabel>Pdf Documents</DropdownMenuLabel>
+                <DropdownMenuLabel>{t("pdf-documents")}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <Link
                   href="/assets/documents/AlvaraDeConstrucao.pdf"
@@ -117,7 +118,7 @@ const Navbar = () => {
                 >
                   <DropdownMenuItem className="hover:cursor-pointer">
                     <Building className="mr-2 h-4 w-4" />
-                    <span>Alvará de Construção</span>
+                    <span>{t("alvara-de-construcao")}</span>
                   </DropdownMenuItem>
                 </Link>
                 <Link
@@ -128,7 +129,7 @@ const Navbar = () => {
                 >
                   <DropdownMenuItem className="hover:cursor-pointer">
                     <FileSearch className="mr-2 h-4 w-4" />
-                    <span>Relatório de Contas</span>
+                    <span>{t("relatorio-de-contas")}</span>
                   </DropdownMenuItem>
                 </Link>
               </DropdownMenuContent>
@@ -145,7 +146,7 @@ const Navbar = () => {
                     "text-xl text-darkGray font-bold border-2 border-black p-5"
                   )}
                 >
-                  Contacto
+                  {t("contact")}
                 </Button>
               </SheetTrigger>
               <Contact />
@@ -157,25 +158,25 @@ const Navbar = () => {
             <Menu className="w-10 h-10 hover:cursor-pointer hover:scale-110 transition duration-300 ease-in-out" />
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56">
-            <DropdownMenuLabel>Onde queres ir?</DropdownMenuLabel>
+            <DropdownMenuLabel>{t("where")}</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <Link href="/" className="flex gap-2 items-center">
                   <Home className="mr-2 h-4 w-4" />
-                  <span>Início</span>
+                  <span>{t("home")}</span>
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Link href={"/empresa"} className="flex gap-2 items-center">
                   <Building className="mr-2 h-4 w-4" />
-                  <span>Empresa</span>
+                  <span>{t("company")}</span>
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuSub>
                 <DropdownMenuSubTrigger className="hover:cursor-pointer">
                   <Paperclip className="mr-2 h-4 w-4" />
-                  <span>Documentos</span>
+                  <span>{t("documents")}</span>
                 </DropdownMenuSubTrigger>
                 <DropdownMenuPortal>
                   <DropdownMenuSubContent>
@@ -186,7 +187,7 @@ const Navbar = () => {
                       referrerPolicy="no-referrer"
                     >
                       <DropdownMenuItem className="hover:cursor-pointer">
-                        <span>Alvará de Construção</span>
+                        <span>{t("alvara-de-construcao")}</span>
                       </DropdownMenuItem>
                     </Link>
                     <Link
@@ -196,7 +197,7 @@ const Navbar = () => {
                       referrerPolicy="no-referrer"
                     >
                       <DropdownMenuItem className="hover:cursor-pointer">
-                        <span>Relatório de Contas</span>
+                        <span>{t("relatorio-de-contas")}</span>
                       </DropdownMenuItem>
                     </Link>
                   </DropdownMenuSubContent>
@@ -205,7 +206,7 @@ const Navbar = () => {
               <DropdownMenuItem>
                 <Link href={"/portfolio"} className="flex gap-2 items-center">
                   <ImageIcon className="mr-2 h-4 w-4" />
-                  <span>Portfólio</span>
+                  <span>{t("portfolio")}</span>
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
