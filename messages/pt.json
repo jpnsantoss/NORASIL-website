@@ -1,6 +1,27 @@
 {
+  "Navbar": {
+    "home": "Início",
+    "portfolio": "Portfólio",
+    "company": "Empresa",
+    "documents": "Documentos",
+    "pdf-documents": "Pdf Documents",
+    "alvara-de-construcao": "Alvará de Construção",
+    "relatorio-de-contas": "Relatório de Contas",
+    "contact": "Contacto",
+    "where": "Onde queres ir?"
+  },
   "HomePage": {
-    "title": "Olá!!",
-    "about": "Go to the about page"
+    "Header": {
+      "title": "40 anos <br /> de <span class='text-primary'>excelência</span> <br /> na construção",
+      "subtitle": "Investimos em inovação e sustentabilidade para garantir construções seguras, duráveis e únicas.",
+      "button": "Ver Obras",
+      "finishedBuilds": "Obras Finalizadas",
+      "constructionBuilds": "Obras em Construção",
+      "awards": "Prêmios"
+    },
+    "InConstruction": {
+      "title": "Obras em <span class='bg-secondary'>Curso</span>",
+      "button": "Ver Mais"
+    }
   }
 }

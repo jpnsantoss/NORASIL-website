@@ -1,6 +1,27 @@
 {
+  "Navbar": {
+    "home": "Home",
+    "portfolio": "Portfolio",
+    "company": "Company",
+    "documents": "Documents",
+    "pdf-documents": "Pdf Documents",
+    "alvara-de-construcao": "Construction Permit",
+    "relatorio-de-contas": "Accounts Report",
+    "contact": "Contact",
+    "where": "Where do you want to go?"
+  },
   "HomePage": {
-    "title": "Hello world!",
-    "about": "Go to the about page"
+    "Header": {
+      "title": "40 years <br /> of <span class='text-primary'>excellence</span> <br /> in construction",
+      "subtitle": "We invest in innovation and sustainability to ensure safe, durable, and unique constructions.",
+      "button": "See Works",
+      "finishedBuilds": "Finished Works",
+      "constructionBuilds": "Works Under Construction",
+      "awards": "Awards"
+    },
+    "InConstruction": {
+      "title": "Works <span class='bg-secondary'>In Progress</span>",
+      "button": "See More"
+    }
   }
 }
