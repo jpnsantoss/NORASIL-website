@@ -28,6 +28,7 @@ import {
 
 import { useTranslations } from "next-intl";
 import Contact from "./Contact";
+import LanguageSelector from "./LanguageSelector";
 import { Sheet, SheetTrigger } from "./ui/Sheet";
 
 const Navbar = () => {
@@ -135,7 +136,9 @@ const Navbar = () => {
               </DropdownMenuContent>
             </DropdownMenu>
           </li>
-
+          <li>
+            <LanguageSelector />
+          </li>
           <li>
             <Sheet>
               <SheetTrigger asChild>
@@ -153,65 +156,69 @@ const Navbar = () => {
             </Sheet>
           </li>
         </ul>
-        <DropdownMenu>
-          <DropdownMenuTrigger className="2xl:hidden" asChild>
-            <Menu className="w-10 h-10 hover:cursor-pointer hover:scale-110 transition duration-300 ease-in-out" />
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56">
-            <DropdownMenuLabel>{t("where")}</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <Link href="/" className="flex gap-2 items-center">
-                  <Home className="mr-2 h-4 w-4" />
-                  <span>{t("home")}</span>
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link href={"/empresa"} className="flex gap-2 items-center">
-                  <Building className="mr-2 h-4 w-4" />
-                  <span>{t("company")}</span>
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuSub>
-                <DropdownMenuSubTrigger className="hover:cursor-pointer">
-                  <Paperclip className="mr-2 h-4 w-4" />
-                  <span>{t("documents")}</span>
-                </DropdownMenuSubTrigger>
-                <DropdownMenuPortal>
-                  <DropdownMenuSubContent>
-                    <Link
-                      href="/assets/documents/AlvaraDeConstrucao.pdf"
-                      locale={false}
-                      target="_blank"
-                      referrerPolicy="no-referrer"
-                    >
-                      <DropdownMenuItem className="hover:cursor-pointer">
-                        <span>{t("alvara-de-construcao")}</span>
-                      </DropdownMenuItem>
-                    </Link>
-                    <Link
-                      href="/assets/documents/RelatorioDeContas.pdf"
-                      locale={false}
-                      target="_blank"
-                      referrerPolicy="no-referrer"
-                    >
-                      <DropdownMenuItem className="hover:cursor-pointer">
-                        <span>{t("relatorio-de-contas")}</span>
-                      </DropdownMenuItem>
-                    </Link>
-                  </DropdownMenuSubContent>
-                </DropdownMenuPortal>
-              </DropdownMenuSub>
-              <DropdownMenuItem>
-                <Link href={"/portfolio"} className="flex gap-2 items-center">
-                  <ImageIcon className="mr-2 h-4 w-4" />
-                  <span>{t("portfolio")}</span>
-                </Link>
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <ul className="flex items-center gap-4 2xl:hidden">
+          <LanguageSelector />
+
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Menu className="w-10 h-10 hover:cursor-pointer hover:scale-110 transition duration-300 ease-in-out" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-56">
+              <DropdownMenuLabel>{t("where")}</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuItem>
+                  <Link href="/" className="flex gap-2 items-center">
+                    <Home className="mr-2 h-4 w-4" />
+                    <span>{t("home")}</span>
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href={"/empresa"} className="flex gap-2 items-center">
+                    <Building className="mr-2 h-4 w-4" />
+                    <span>{t("company")}</span>
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger className="hover:cursor-pointer">
+                    <Paperclip className="mr-2 h-4 w-4" />
+                    <span>{t("documents")}</span>
+                  </DropdownMenuSubTrigger>
+                  <DropdownMenuPortal>
+                    <DropdownMenuSubContent>
+                      <Link
+                        href="/assets/documents/AlvaraDeConstrucao.pdf"
+                        locale={false}
+                        target="_blank"
+                        referrerPolicy="no-referrer"
+                      >
+                        <DropdownMenuItem className="hover:cursor-pointer">
+                          <span>{t("alvara-de-construcao")}</span>
+                        </DropdownMenuItem>
+                      </Link>
+                      <Link
+                        href="/assets/documents/RelatorioDeContas.pdf"
+                        locale={false}
+                        target="_blank"
+                        referrerPolicy="no-referrer"
+                      >
+                        <DropdownMenuItem className="hover:cursor-pointer">
+                          <span>{t("relatorio-de-contas")}</span>
+                        </DropdownMenuItem>
+                      </Link>
+                    </DropdownMenuSubContent>
+                  </DropdownMenuPortal>
+                </DropdownMenuSub>
+                <DropdownMenuItem>
+                  <Link href={"/portfolio"} className="flex gap-2 items-center">
+                    <ImageIcon className="mr-2 h-4 w-4" />
+                    <span>{t("portfolio")}</span>
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </ul>
       </div>
     </div>
   );
