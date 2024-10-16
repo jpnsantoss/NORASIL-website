@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  norasil-website:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000"
+    depends_on:
+      - db
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: mydatabase
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.norasil-website.rule=Host(`yourdomain.com`)"
+      - "traefik.http.services.norasil-website.loadbalancer.server.port=3000"
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: mydatabase
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  traefik:
+    image: traefik:v2.5
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+volumes:
+  postgres-data:
