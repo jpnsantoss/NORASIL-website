@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   norasil-website:
     image: ghcr.io/jpnsantoss/norasil-website:prod
