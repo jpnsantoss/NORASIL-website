@@ -7,14 +7,14 @@ WORKDIR /usr/src/app
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
-# Install dependencies
-RUN npm install
-
 # Copy the prisma directory
 COPY prisma ./prisma
 
 # Copy the rest of the application code
 COPY . .
+
+# Install dependencies
+RUN npm install
 
 # Build the Next.js app
 RUN npm run build
