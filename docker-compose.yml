@@ -1,6 +1,8 @@
 services:
   server:
-    image: ghcr.io/jpnsantoss/norasil-website/website
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: norasil-website
     ports:
       - "3000:3000"
