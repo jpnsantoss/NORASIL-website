@@ -1,15 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Label } from "../ui/Label";
 import { RadioGroup, RadioGroupItem } from "../ui/RadioGroup";
 
-import { cn } from "@/lib/utils";
-import { Category } from "@prisma/client";
-import { MessagesSquare } from "lucide-react";
+import type { Category } from "@prisma/client";
 import { useRouter, useSearchParams } from "next/navigation";
-import { FC } from "react";
-import { Button } from "../ui/Button";
+import type { FC } from "react";
 
 interface SidebarProps {
   categories: Category[];
@@ -50,7 +46,7 @@ const Sidebar: FC<SidebarProps> = ({ categories }) => {
       <div className="bg-white border border-gray shadow p-8 space-y-4 rounded-xl">
         <h1 className="text-xl font-bold">Tipo de Obras</h1>
         <RadioGroup
-          defaultValue={searchParams.get("status") || "all"}
+          defaultValue={searchParams.get("status") ?? "all"}
           onValueChange={(value) => handleStatusChange(value)}
           className="space-y-2"
         >
@@ -77,7 +73,7 @@ const Sidebar: FC<SidebarProps> = ({ categories }) => {
       <div className="bg-white border border-gray shadow p-8 space-y-4 rounded-xl">
         <h1 className="text-xl font-bold">Áreas de Intervenção</h1>
         <RadioGroup
-          defaultValue={searchParams.get("category") || "all"}
+          defaultValue={searchParams.get("category") ?? "all"}
           onValueChange={(value) => handleCategoryChange(value)}
           className="space-y-2 truncate"
         >

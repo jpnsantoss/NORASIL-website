@@ -7,11 +7,7 @@ import ValueOffer from "@/components/About/ValueOffer";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 
-import { FC } from "react";
-
-interface pageProps {}
-
-const Page: FC<pageProps> = ({}) => {
+const Page = () => {
   return (
     <div>
       <Navbar />

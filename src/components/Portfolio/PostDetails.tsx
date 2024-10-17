@@ -1,7 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { ExtendedPost } from "@/types/db";
-import { Image as PrismaImage } from "@prisma/client";
+import type { ExtendedPost } from "@/types/db";
+import type { Image as PrismaImage } from "@prisma/client";
 import { Calendar, Hammer, MapPin } from "lucide-react";
 import Image from "next/image";
 import { FC, useState } from "react";
@@ -59,7 +59,7 @@ const PostDetails: FC<PostDetailsProps> = ({ images, post }) => {
                       onClick={() => setSelectedImage(images[0])}
                     >
                       <Image
-                        src={images[0].url}
+                        src={images[0]?.url ?? ''}
                         fill
                         alt={`Image n0`}
                         loading="lazy"
@@ -77,7 +77,7 @@ const PostDetails: FC<PostDetailsProps> = ({ images, post }) => {
                       onClick={() => setSelectedImage(images[1])}
                     >
                       <Image
-                        src={images[1].url}
+                        src={images[1]?.url ?? ''}
                         fill
                         alt={`Image n0`}
                         loading="lazy"
@@ -96,7 +96,7 @@ const PostDetails: FC<PostDetailsProps> = ({ images, post }) => {
                     >
                       <div className="w-full h-full">
                         <Image
-                          src={images[2].url}
+                          src={images[2]?.url ?? ''}
                           fill
                           alt={`Image n0`}
                           loading="lazy"
@@ -130,8 +130,8 @@ const PostDetails: FC<PostDetailsProps> = ({ images, post }) => {
                   <div className="w-full lg:col-span-2">
                     <div className="rounded-md group overflow-hidden relative w-full h-[60vh] md:h-[60vh] lg:h-[50vh]">
                       <Image
-                        src={selectedImage.url}
-                        alt={`${post.title} Image ${images[0].id}`}
+                        src={selectedImage?.url ?? ''}
+                        alt={`${post.title} Image ${images[0]?.id}`}
                         fill
                         loading="lazy"
                         className="object-contain transition opacity-0 duration-500 object-center group-hover:scale-105 ease-in-out"
@@ -151,8 +151,8 @@ const PostDetails: FC<PostDetailsProps> = ({ images, post }) => {
                           onClick={() => setSelectedImage(image)}
                           className={cn(
                             "bg-lightGray rounded-md group overflow-hidden relative h-10 lg:h-20 focus-visible:border-2 focus-visible:border-primary",
-                            image.id == selectedImage.id &&
-                              "border-2 border-black"
+                            image.id == selectedImage?.id &&
+                              "border-2 border-black",
                           )}
                         >
                           <Image

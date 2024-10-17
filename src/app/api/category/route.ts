@@ -1,5 +1,5 @@
 import { getAuthSession } from "@/lib/auth";
-import { acceleratedDb } from "@/lib/db";
+import { db } from "@/lib/db";
 import { CategoryValidator } from "@/lib/validators/category";
 import { z } from "zod";
 
@@ -15,7 +15,7 @@ export async function POST(req: Request) {
 
     const { name, title, imageUrl } = CategoryValidator.parse(body);
 
-    const category = await acceleratedDb.category.findFirst({
+    const category = await db.category.findFirst({
       where: {
         name,
       },
@@ -24,7 +24,7 @@ export async function POST(req: Request) {
       return new Response("Category already exists", { status: 409 });
     }
 
-    await acceleratedDb.category.create({
+    await db.category.create({
       data: {
         title,
         imageUrl,

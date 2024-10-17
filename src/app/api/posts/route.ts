@@ -1,4 +1,4 @@
-import { acceleratedDb } from "@/lib/db";
+import { db } from "@/lib/db";
 import { z } from "zod";
 
 export async function GET(req: Request) {
@@ -15,7 +15,7 @@ export async function GET(req: Request) {
         page: url.searchParams.get("page"),
       });
 
-    const posts = await acceleratedDb.post.findMany({
+    const posts = await db.post.findMany({
       take: parseInt(limit),
       skip: (parseInt(page) - 1) * parseInt(limit),
       orderBy: {
@@ -25,7 +25,6 @@ export async function GET(req: Request) {
         category: true,
         images: true,
       },
-      cacheStrategy: { ttl: 60 },
     });
 
     return new Response(JSON.stringify(posts));

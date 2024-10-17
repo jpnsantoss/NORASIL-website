@@ -1,5 +1,5 @@
-import { ExtendedPost } from "@/types/db";
-import { FC } from "react";
+import type { ExtendedPost } from "@/types/db";
+import type { FC } from "react";
 import { Separator } from "../ui/Separator";
 import PostImagesForm from "./PostImagesForm";
 import PostMainImageForm from "./PostMainImageForm";

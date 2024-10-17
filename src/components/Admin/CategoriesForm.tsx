@@ -8,10 +8,8 @@ import {
 } from "@/lib/validators/category";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
-import { put } from "@vercel/blob";
 import { upload } from "@vercel/blob/client";
 import axios, { AxiosError } from "axios";
-import { revalidatePath } from "next/cache";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { Button } from "../ui/Button";
@@ -114,8 +112,8 @@ const CategoriesForm = () => {
                   type="file"
                   accept="image/*"
                   onChange={(e) => {
-                    const file = e.target.files?.[0] || null;
-                    field.onChange(file as File);
+                    const file = e.target.files?.[0] ?? null;
+                    field.onChange(file! as File);
                   }}
                   onBlur={field.onBlur}
                   name={field.name}

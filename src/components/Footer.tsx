@@ -31,7 +31,7 @@ const Footer = () => {
                 href="/"
                 className={cn(
                   buttonVariants({ variant: "link" }),
-                  "p-0 text-gray font-bold"
+                  "p-0 text-gray font-bold",
                 )}
               >
                 Início
@@ -42,7 +42,7 @@ const Footer = () => {
                 href="/empresa"
                 className={cn(
                   buttonVariants({ variant: "link" }),
-                  "p-0 text-gray font-bold"
+                  "p-0 text-gray font-bold",
                 )}
               >
                 Empresa
@@ -54,7 +54,7 @@ const Footer = () => {
                 href="/portfolio"
                 className={cn(
                   buttonVariants({ variant: "link" }),
-                  "p-0 text-gray font-bold"
+                  "p-0 text-gray font-bold",
                 )}
               >
                 Portfólio
@@ -72,7 +72,7 @@ const Footer = () => {
                 href="/privacidade"
                 className={cn(
                   buttonVariants({ variant: "link" }),
-                  "p-0 text-gray font-bold"
+                  "p-0 text-gray font-bold",
                 )}
               >
                 Política de Privacidade
@@ -85,7 +85,7 @@ const Footer = () => {
                 referrerPolicy="no-referrer"
                 className={cn(
                   buttonVariants({ variant: "link" }),
-                  "p-0 text-gray font-bold"
+                  "p-0 text-gray font-bold",
                 )}
               >
                 Canal de Denúncias
@@ -99,7 +99,7 @@ const Footer = () => {
                 referrerPolicy="no-referrer"
                 className={cn(
                   buttonVariants({ variant: "link" }),
-                  "p-0 text-gray font-bold"
+                  "p-0 text-gray font-bold",
                 )}
               >
                 Livro de Reclamações

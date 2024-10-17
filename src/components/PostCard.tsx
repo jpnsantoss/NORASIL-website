@@ -1,9 +1,8 @@
-import { ExtendedPost } from "@/types/db";
-import { format } from "date-fns";
+import type { ExtendedPost } from "@/types/db";
 import { Calendar, Contact, Link2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { FC } from "react";
+import type { FC } from "react";
 import { Separator } from "./ui/Separator";
 
 interface PostCardProps {

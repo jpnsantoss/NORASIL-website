@@ -1,9 +1,9 @@
 "use client";
-import { Category } from "@prisma/client";
+import type { Category } from "@prisma/client";
 import { ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { FC } from "react";
+import type { FC } from "react";
 import { AspectRatio } from "../ui/AspectRatio";
 import { TabsContent } from "../ui/Tabs";
 

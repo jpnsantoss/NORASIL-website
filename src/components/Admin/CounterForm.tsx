@@ -2,7 +2,6 @@
 
 import { toast } from "@/hooks/use-toast";
 import { CounterRequest, CounterValidator } from "@/lib/validators/counter";
-import { EmailRequest, EmailValidator } from "@/lib/validators/email";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
@@ -11,8 +10,8 @@ import { useForm } from "react-hook-form";
 import { Button } from "../ui/Button";
 import { Input } from "../ui/Input";
 
-import { Counter } from "@prisma/client";
-import { FC } from "react";
+import type { Counter } from "@prisma/client";
+import type { FC } from "react";
 import { Label } from "../ui/Label";
 
 interface CounterFormProps {
@@ -25,7 +24,6 @@ const CounterForm: FC<CounterFormProps> = ({ counter }) => {
   const {
     handleSubmit,
     register,
-    formState: { errors },
   } = useForm<CounterRequest>({
     resolver: zodResolver(CounterValidator),
     defaultValues: {

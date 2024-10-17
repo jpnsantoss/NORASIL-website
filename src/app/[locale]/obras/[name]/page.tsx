@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar";
 import PostDetails from "@/components/Portfolio/PostDetails";
 import PostImage from "@/components/Portfolio/PostImage";
 import SimilarPosts from "@/components/Portfolio/SimilarPosts";
-import { acceleratedDb } from "@/lib/db";
+import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
 
 interface pageProps {
@@ -16,7 +16,7 @@ const Page = async ({ params }: pageProps) => {
   const { name } = params;
   const decodedName = decodeURIComponent(name);
 
-  const post = await acceleratedDb.post.findFirst({
+  const post = await db.post.findFirst({
     where: { name: decodedName },
     include: {
       category: true,

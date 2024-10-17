@@ -1,7 +1,7 @@
 "use client";
-import { User } from "next-auth";
+import type { User } from "next-auth";
 import { signOut } from "next-auth/react";
-import { FC } from "react";
+import type { FC } from "react";
 import { Button } from "./ui/Button";
 
 interface UserAccountNavProps {

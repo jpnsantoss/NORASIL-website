@@ -1,8 +1,8 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { ExtendedPost } from "@/types/db";
+import type { ExtendedPost } from "@/types/db";
 import Link from "next/link";
-import { FC } from "react";
+import type { FC } from "react";
 import { buttonVariants } from "../ui/Button";
 import { TableCell } from "../ui/Table";
 

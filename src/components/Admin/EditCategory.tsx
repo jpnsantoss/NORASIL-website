@@ -7,13 +7,13 @@ import {
   EditCategoryRequest,
 } from "@/lib/validators/category";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Category } from "@prisma/client";
+import type { Category } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import { upload } from "@vercel/blob/client";
 import axios, { AxiosError } from "axios";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { FC } from "react";
+import type { FC } from "react";
 import { useForm } from "react-hook-form";
 import { AspectRatio } from "../ui/AspectRatio";
 import { Button } from "../ui/Button";
@@ -159,8 +159,8 @@ const EditCategory: FC<EditCategoryProps> = ({ category }) => {
                       type="file"
                       accept="image/*"
                       onChange={(e) => {
-                        const file = e.target.files?.[0] || null;
-                        field.onChange(file as File);
+                        const file = e.target.files?.[0] ?? null;
+                        field.onChange(file! as File);
                       }}
                       onBlur={field.onBlur}
                       name={field.name}

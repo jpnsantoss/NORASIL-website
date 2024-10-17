@@ -1,14 +1,14 @@
 "use client";
-import { AuthorizedEmail, User } from "@prisma/client";
+import type { AuthorizedEmail, User } from "@prisma/client";
 import { Loader2, X } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/Avatar";
 
 import { toast } from "@/hooks/use-toast";
-import { EmailRequest } from "@/lib/validators/email";
+import type { EmailRequest } from "@/lib/validators/email";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { FC } from "react";
+import type { FC } from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -67,13 +67,13 @@ const UsersList: FC<UsersListProps> = ({ authorizedEmails }) => {
                 <div className="flex items-center space-x-4">
                   <Avatar className="hidden lg:block">
                     <AvatarImage
-                      src={item.user?.image || "/assets/images/user.png"}
+                      src={item.user?.image ?? "/assets/images/user.png"}
                     />
                     <AvatarFallback>?</AvatarFallback>
                   </Avatar>
                   <div>
                     <p className="text-sm font-medium leading-none">
-                      {item.user?.name || item.email.split("@")[0]}
+                      {item.user?.name ?? item.email.split("@")[0]}
                     </p>
                     <p className="text-sm text-muted-foreground">
                       {item.email}

@@ -9,7 +9,6 @@ export async function POST(request: Request): Promise<NextResponse> {
       body,
       request,
       onBeforeGenerateToken: async (
-        pathname: string
         /* clientPayload?: string, */
       ) => {
         // Generate a client token for the browser to upload the file
@@ -34,7 +33,7 @@ export async function POST(request: Request): Promise<NextResponse> {
         try {
           // Run any logic after the file upload completed
           // const { userId } = JSON.parse(tokenPayload);
-          // await acceleratedDb.update({ avatar: blob.url, userId });
+          // await db.update({ avatar: blob.url, userId });
         } catch (error) {
           throw new Error("Could not update user");
         }
@@ -45,7 +44,7 @@ export async function POST(request: Request): Promise<NextResponse> {
   } catch (error) {
     return NextResponse.json(
       { error: (error as Error).message },
-      { status: 400 } // The webhook will retry 5 times waiting for a 200
+      { status: 400 }, // The webhook will retry 5 times waiting for a 200
     );
   }
 }

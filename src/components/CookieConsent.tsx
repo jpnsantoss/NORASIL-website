@@ -1,7 +1,7 @@
 "use client";
 import { getLocalStorage, setLocalStorage } from "@/lib/storageHelper";
 import { cn } from "@/lib/utils";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "./ui/Button";
 
 const CookieConsent = () => {
@@ -33,7 +33,7 @@ const CookieConsent = () => {
     <div
       className={cn(
         "z-50 m-4 left-0 bottom-0 max-w-[400px] shadow border bg-background border-lightGray rounded-xl p-4 space-y-2",
-        cookieConsent != null ? "hidden" : "fixed"
+        cookieConsent != null ? "hidden" : "fixed",
       )}
     >
       <p className="text-sm">

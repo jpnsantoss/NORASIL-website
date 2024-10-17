@@ -7,15 +7,15 @@ import {
   EditPostFormValidator,
   EditPostRequest,
 } from "@/lib/validators/post";
-import { ExtendedPost } from "@/types/db";
+import type { ExtendedPost } from "@/types/db";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Category } from "@prisma/client";
+import type { Category } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { ChangeEvent, FC } from "react";
+import type { ChangeEvent, FC } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "../ui/Button";
 import { Calendar } from "../ui/Calendar";
@@ -106,7 +106,7 @@ const EditPost: FC<EditPostProps> = ({ post, categories }) => {
           .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "")
           .replace(/\s/g, "")
-          .toLowerCase()}`
+          .toLowerCase()}`,
       );
     },
   });
@@ -263,7 +263,7 @@ const EditPost: FC<EditPostProps> = ({ post, categories }) => {
                           <Button
                             variant={"ghost"}
                             className={cn(
-                              "border border-input pl-3 text-left font-normal bg-white"
+                              "border border-input pl-3 text-left font-normal bg-white",
                             )}
                           >
                             {field.value ? (
@@ -280,7 +280,7 @@ const EditPost: FC<EditPostProps> = ({ post, categories }) => {
                           mode="single"
                           selected={field.value}
                           onSelect={(
-                            day: Date | ChangeEvent<Element> | undefined
+                            day: Date | ChangeEvent<Element> | undefined,
                           ) => {
                             if (day instanceof Date) {
                               field.onChange(day);
@@ -289,7 +289,6 @@ const EditPost: FC<EditPostProps> = ({ post, categories }) => {
                           disabled={(date) =>
                             date > new Date() || date < new Date("1900-01-01")
                           }
-                          initialFocus
                         />
                       </PopoverContent>
                     </Popover>

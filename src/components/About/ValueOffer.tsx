@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { HeartHandshake, Search, ShieldCheck, Wrench } from "lucide-react";
 import Link from "next/link";
-import { Button, buttonVariants } from "../ui/Button";
+import { buttonVariants } from "../ui/Button";
 
 const ValueOffer = () => {
   return (

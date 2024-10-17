@@ -9,7 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/Card";
-import { acceleratedDb } from "@/lib/db";
+import { db } from "@/lib/db";
 import { cn } from "@/lib/utils";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
@@ -25,7 +25,7 @@ const Page = async ({ params }: pageProps) => {
   const { name } = params;
   const decodedName = decodeURIComponent(name);
 
-  const post = await acceleratedDb.post.findFirst({
+  const post = await db.post.findFirst({
     where: { name: decodedName },
     include: {
       category: true,
@@ -33,9 +33,7 @@ const Page = async ({ params }: pageProps) => {
     },
   });
 
-  const categories = await acceleratedDb.category.findMany({
-    cacheStrategy: { ttl: 60 },
-  });
+  const categories = await db.category.findMany({});
 
   if (!post) return notFound();
 
@@ -46,7 +44,7 @@ const Page = async ({ params }: pageProps) => {
           href="/admin/posts"
           className={cn(
             buttonVariants({ variant: "ghost" }),
-            "self-start -mt-20"
+            "self-start -mt-20",
           )}
         >
           <ChevronLeft className="mr-2 h-4 w-4" />

@@ -5,14 +5,14 @@ import {
   MainImageFormValidator,
   MainImageRequest,
 } from "@/lib/validators/image";
-import { ExtendedPost } from "@/types/db";
+import type { ExtendedPost } from "@/types/db";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { upload } from "@vercel/blob/client";
 import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { FC } from "react";
+import type { FC } from "react";
 import { useForm } from "react-hook-form";
 import { AspectRatio } from "../ui/AspectRatio";
 import { Button } from "../ui/Button";
@@ -88,8 +88,8 @@ const PostMainImageForm: FC<PostMainImageFormProps> = ({ post }) => {
                     type="file"
                     accept="image/*"
                     onChange={(e) => {
-                      const file = e.target.files?.[0] || null;
-                      field.onChange(file as File);
+                      const file = e.target.files?.[0] ?? null;
+                      field.onChange(file! as File);
                     }}
                     onBlur={field.onBlur}
                     name={field.name}

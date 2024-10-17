@@ -1,4 +1,4 @@
-import { acceleratedDb } from "@/lib/db";
+import { db } from "@/lib/db";
 import {
   Card,
   CardContent,
@@ -11,11 +11,10 @@ import { default as UsersForm } from "./UsersForm";
 import UsersList from "./UsersList";
 
 const UsersContainer = async () => {
-  const authorizedEmails = await acceleratedDb.authorizedEmail.findMany({
+  const authorizedEmails = await db.authorizedEmail.findMany({
     include: {
       user: true,
     },
-    cacheStrategy: { ttl: 60 },
   });
 
   return (

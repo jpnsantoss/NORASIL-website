@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Eye, Lightbulb, PieChart, Target } from "lucide-react";
 import Link from "next/link";
-import { Button, buttonVariants } from "../ui/Button";
+import { buttonVariants } from "../ui/Button";
 
 const QualityPolicy = () => {
   return (

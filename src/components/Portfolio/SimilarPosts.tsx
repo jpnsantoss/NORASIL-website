@@ -1,17 +1,17 @@
-import { acceleratedDb } from "@/lib/db";
+import { db } from "@/lib/db";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import PostCard from "../PostCard";
 import { buttonVariants } from "../ui/Button";
 
-import { ExtendedPost } from "@/types/db";
+import type { ExtendedPost } from "@/types/db";
 
 interface SimilarPostsProps {
   post: ExtendedPost;
 }
 
 const SimilarPosts = async ({ post }: SimilarPostsProps) => {
-  const posts = await acceleratedDb.post.findMany({
+  const posts = await db.post.findMany({
     where: {
       categoryId: post.categoryId,
       id: {
@@ -26,7 +26,6 @@ const SimilarPosts = async ({ post }: SimilarPostsProps) => {
       images: true,
       category: true,
     },
-    cacheStrategy: { ttl: 60 },
   });
   if (posts.length > 0) {
     return (

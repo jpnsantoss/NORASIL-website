@@ -1,10 +1,9 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { FC } from "react";
 import { buttonVariants } from "../ui/Button";
 
-const ValueOffer: FC = () => {
+const ValueOffer = () => {
   return (
     <div className="container grid lg:grid-cols-2 gap-8 py-16 lg:px-48">
       <div className="w-full flex items-center">
@@ -27,7 +26,7 @@ const ValueOffer: FC = () => {
               href="/empresa"
               className={cn(
                 buttonVariants({ variant: "link" }),
-                "text-primary p-0 text-2xl"
+                "text-primary p-0 text-2xl",
               )}
             >
               Ver mais
@@ -73,7 +72,7 @@ const ValueOffer: FC = () => {
               href="/empresa"
               className={cn(
                 buttonVariants({ variant: "link" }),
-                "text-primary p-0 text-2xl"
+                "text-primary p-0 text-2xl",
               )}
             >
               Ver mais

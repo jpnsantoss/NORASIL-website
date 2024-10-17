@@ -10,20 +10,19 @@ import {
   CardTitle,
 } from "@/components/ui/Card";
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
-import { acceleratedDb } from "@/lib/db";
+import { db } from "@/lib/db";
 import { cn } from "@/lib/utils";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 
 const Page = async () => {
-  const categories = await acceleratedDb.category.findMany({
+  const categories = await db.category.findMany({
     orderBy: {
       createdAt: "desc",
     },
-    cacheStrategy: { ttl: 60 },
   });
 
-  const posts = await acceleratedDb.post.findMany({
+  const posts = await db.post.findMany({
     include: {
       category: true,
       images: true,
@@ -32,7 +31,6 @@ const Page = async () => {
       createdAt: "desc",
     },
     take: INFINITE_SCROLLING_PAGINATION_RESULTS,
-    cacheStrategy: { ttl: 60 },
   });
 
   return (
@@ -42,7 +40,7 @@ const Page = async () => {
           href="/admin"
           className={cn(
             buttonVariants({ variant: "ghost" }),
-            "self-start -mt-20"
+            "self-start -mt-20",
           )}
         >
           <ChevronLeft className="mr-2 h-4 w-4" />

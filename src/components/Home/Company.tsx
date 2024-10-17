@@ -51,7 +51,7 @@ const Company = () => {
               href="/empresa"
               className={cn(
                 buttonVariants({ variant: "link" }),
-                "text-primary font-semibold p-2"
+                "text-primary font-semibold p-2",
               )}
             >
               Sobre nós
@@ -69,7 +69,7 @@ const Company = () => {
                   "rotate-0 z-30": current === 1,
                   "-rotate-6 z-10": current === 2,
                   "rotate-6 z-20": current === 3,
-                }
+                },
               )}
             >
               <Image
@@ -87,7 +87,7 @@ const Company = () => {
                   "rotate-6 z-20": current === 1,
                   "rotate-0 z-30": current === 2,
                   "-rotate-6 z-10": current === 3,
-                }
+                },
               )}
             >
               <Image
@@ -105,7 +105,7 @@ const Company = () => {
                   "-rotate-6 z-10": current === 1,
                   "rotate-6 z-20": current === 2,
                   "rotate-0 z-30": current === 3,
-                }
+                },
               )}
             >
               <Image
@@ -126,7 +126,7 @@ const Company = () => {
                   "w-12 h-12 text-darkGray hover:text-primary scale-110 transition",
                   {
                     "text-primary": current === 1,
-                  }
+                  },
                 )}
               />
             </Button>
@@ -139,7 +139,7 @@ const Company = () => {
                   "w-12 h-12 text-darkGray hover:text-primary scale-110 transition",
                   {
                     "text-primary": current === 2,
-                  }
+                  },
                 )}
               />
             </Button>
@@ -152,7 +152,7 @@ const Company = () => {
                   "w-12 h-12 text-darkGray hover:text-primary scale-110 transition",
                   {
                     "text-primary": current === 3,
-                  }
+                  },
                 )}
               />
             </Button>

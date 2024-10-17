@@ -1,7 +1,7 @@
 "use client";
-import { Post } from "@prisma/client";
+import type { Post } from "@prisma/client";
 import Image from "next/image";
-import { FC } from "react";
+import type { FC } from "react";
 import { AspectRatio } from "../ui/AspectRatio";
 
 interface PortfolioImageProps {

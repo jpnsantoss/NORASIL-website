@@ -1,12 +1,12 @@
 "use client";
 import { useOnClickOutside } from "@/hooks/use-on-click-outside";
-import { Post, Prisma } from "@prisma/client";
+import type { Post, Prisma } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import debounce from "lodash.debounce";
 import { Dot } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import { FC, useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   Command,
   CommandEmpty,
@@ -16,9 +16,7 @@ import {
   CommandList,
 } from "./ui/Command";
 
-interface PostsSearchProps {}
-
-const PostsSearch: FC<PostsSearchProps> = ({}) => {
+const PostsSearch = () => {
   const [input, setInput] = useState<string>("");
 
   const router = useRouter();
@@ -85,7 +83,7 @@ const PostsSearch: FC<PostsSearchProps> = ({}) => {
                     router.push(
                       pathname == "/admin/posts"
                         ? `/admin/posts/${e}`
-                        : `/obras/${e}`
+                        : `/obras/${e}`,
                     );
                     router.refresh();
                   }}

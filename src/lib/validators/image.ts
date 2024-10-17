@@ -29,10 +29,12 @@ export const MainImageValidator = z.object({
 });
 
 export const ImagesValidator = z.object({
-  newImages: z.array(z.object({
-    url: z.string().url(),
-  })),
-  postId: z.string()
+  newImages: z.array(
+    z.object({
+      url: z.string().url(),
+    }),
+  ),
+  postId: z.string(),
 });
 
 export const DeleteImageValidator = z.object({

@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
-import { ExtendedPost } from "@/types/db";
+import type { ExtendedPost } from "@/types/db";
 import Link from "next/link";
-import { FC } from "react";
+import type { FC } from "react";
 import { buttonVariants } from "../ui/Button";
 import PortfolioImage from "./PortfolioImage";
 
@@ -26,7 +26,7 @@ const PortfolioPost: FC<PortfolioPostProps> = ({ post }) => {
           href={`/obras/${post.name}`}
           className={cn(
             buttonVariants({ variant: "link" }),
-            "text-primary p-0 text-2xl font-bold w-fit"
+            "text-primary p-0 text-2xl font-bold w-fit",
           )}
         >
           Ver mais

@@ -1,4 +1,5 @@
-import { LucideProps, MessageSquare, User } from "lucide-react";
+import type { LucideProps } from "lucide-react";
+import { MessageSquare, User } from "lucide-react";
 
 export const Icons = {
   user: User,

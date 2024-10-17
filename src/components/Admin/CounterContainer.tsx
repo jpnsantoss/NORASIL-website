@@ -1,4 +1,4 @@
-import { acceleratedDb } from "@/lib/db";
+import { db } from "@/lib/db";
 import {
   Card,
   CardContent,
@@ -9,7 +9,7 @@ import {
 import CounterForm from "./CounterForm";
 
 const CounterContainer = async ({}) => {
-  const counter = (await acceleratedDb.counter.findFirst()) || {
+  const counter = (await db.counter.findFirst()) ?? {
     id: "0",
     finishedBuilds: "0",
     constructionBuilds: "0",

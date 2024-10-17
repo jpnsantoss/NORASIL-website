@@ -1,14 +1,12 @@
 import { cn } from "@/lib/utils";
 import { Inter } from "next/font/google";
 import Link from "next/link";
-import { FC } from "react";
 import { buttonVariants } from "../ui/Button";
 
-interface AboutHeaderProps {}
 
 const inter = Inter({ subsets: ["latin"] });
 
-const AboutHeader: FC<AboutHeaderProps> = ({}) => {
+const AboutHeader = () => {
   return (
     <div className="w-full px-4 lg:px-48 lg:py-16">
       <h2 className="text-2xl font-semibold mb-2">Obra a obra,</h2>
@@ -17,7 +15,7 @@ const AboutHeader: FC<AboutHeaderProps> = ({}) => {
           <h1
             className={cn(
               inter.className,
-              "text-3xl lg:text-6xl font-semibold leading-[2.5rem] lg:leading-[5rem]"
+              "text-3xl lg:text-6xl font-semibold leading-[2.5rem] lg:leading-[5rem]",
             )}
           >
             Vamos construindo o futuro, seguramente.

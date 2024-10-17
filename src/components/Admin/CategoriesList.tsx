@@ -4,12 +4,12 @@ import { Loader2, X } from "lucide-react";
 import { Button } from "../ui/Button";
 
 import { toast } from "@/hooks/use-toast";
-import { DeleteCategoryRequest } from "@/lib/validators/category";
-import { Category } from "@prisma/client";
+import type { DeleteCategoryRequest } from "@/lib/validators/category";
+import type { Category } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
-import { FC } from "react";
+import type { FC } from "react";
 import {
   AlertDialog,
   AlertDialogAction,

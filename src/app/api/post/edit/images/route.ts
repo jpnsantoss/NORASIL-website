@@ -1,5 +1,5 @@
 import { getAuthSession } from "@/lib/auth";
-import { acceleratedDb } from "@/lib/db";
+import { db } from "@/lib/db";
 import { DeleteImageValidator, ImagesValidator } from "@/lib/validators/image";
 import { del } from "@vercel/blob";
 import { z } from "zod";
@@ -17,13 +17,13 @@ export async function POST(req: Request) {
 
     await Promise.all(
       images.map(async (image) => {
-        await acceleratedDb.image.create({
+        await db.image.create({
           data: {
             postId,
             url: image.url,
           },
         });
-      })
+      }),
     );
 
     return new Response("OK");
@@ -50,7 +50,7 @@ export async function PATCH(req: Request) {
     const body = await req.json();
     const { id, imageUrl } = DeleteImageValidator.parse(body);
 
-    await acceleratedDb.image.delete({
+    await db.image.delete({
       where: {
         id,
       },

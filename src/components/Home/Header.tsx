@@ -1,4 +1,4 @@
-import { acceleratedDb } from "@/lib/db";
+import { db } from "@/lib/db";
 import { cn } from "@/lib/utils";
 import { getTranslations } from "next-intl/server";
 import { Inter } from "next/font/google";
@@ -9,7 +9,7 @@ import { Separator } from "../ui/Separator";
 
 const inter = Inter({ subsets: ["latin"] });
 const Header = async () => {
-  const counter = await acceleratedDb.counter.findFirst();
+  const counter = await db.counter.findFirst();
   const t = await getTranslations("HomePage.Header");
   return (
     <div className="w-full h-full lg:min-h-[900px] min-h-[700px] overflow-hidden">
@@ -21,7 +21,7 @@ const Header = async () => {
               <h1
                 className={cn(
                   inter.className,
-                  "text-5xl lg:text-7xl font-extrabold leading-[4rem] lg:leading-[5rem]"
+                  "text-5xl lg:text-7xl font-extrabold leading-[4rem] lg:leading-[5rem]",
                 )}
                 dangerouslySetInnerHTML={{ __html: t.raw("title") }}
               />

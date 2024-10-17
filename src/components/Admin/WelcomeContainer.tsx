@@ -1,12 +1,12 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { LogOut } from "lucide-react";
-import { User } from "next-auth";
+import type { User } from "next-auth";
 import { signOut } from "next-auth/react";
 import { Inter } from "next/font/google";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FC } from "react";
+import type { FC } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/Avatar";
 import { Button, buttonVariants } from "../ui/Button";
 import { Card } from "../ui/Card";
@@ -22,12 +22,12 @@ const WelcomeContainer: FC<WelcomeContainerProps> = ({ user }) => {
       <div className="grid lg:grid-cols-3 gap-8 p-12 items-center h-fit">
         <div className="space-y-2 flex flex-row-reverse lg:block gap-4 justify-end items-center">
           <Avatar>
-            <AvatarImage src={user?.image || "/assets/images/user.png"} />
+            <AvatarImage src={user?.image ?? "/assets/images/user.png"} />
             <AvatarFallback>?</AvatarFallback>
           </Avatar>
           <h1 className={cn("text-lg font-semibold", inter.className)}>
             Welcome back, <br />
-            <span className="text-2xl font-bold">{user?.name || "User"}</span>.
+            <span className="text-2xl font-bold">{user?.name ?? "User"}</span>.
           </h1>
           <Button
             size={"xs"}

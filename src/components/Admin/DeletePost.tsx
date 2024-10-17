@@ -1,13 +1,13 @@
 "use client";
 import { toast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
-import { DeletePostRequest } from "@/lib/validators/post";
-import { ExtendedPost } from "@/types/db";
+import type { DeletePostRequest } from "@/lib/validators/post";
+import type { ExtendedPost } from "@/types/db";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { FC } from "react";
+import type { FC } from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -62,7 +62,7 @@ const DeletePost: FC<DeletePostProps> = ({ post }) => {
           <div
             className={cn(
               buttonVariants({ variant: "destructive", size: "xs" }),
-              "text-destructive underline hover:bg-transparent"
+              "text-destructive underline hover:bg-transparent",
             )}
           >
             Delete Post

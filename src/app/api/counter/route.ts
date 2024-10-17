@@ -1,7 +1,6 @@
 import { getAuthSession } from "@/lib/auth";
-import { acceleratedDb } from "@/lib/db";
+import { db } from "@/lib/db";
 import { CounterValidator } from "@/lib/validators/counter";
-import { EditPostValidator } from "@/lib/validators/post";
 import { z } from "zod";
 
 export async function PATCH(req: Request) {
@@ -15,8 +14,8 @@ export async function PATCH(req: Request) {
     const { finishedBuilds, constructionBuilds, awards } =
       CounterValidator.parse(body);
 
-    const counter = await acceleratedDb.counter.findFirst();
-    await acceleratedDb.counter.update({
+    const counter = await db.counter.findFirst();
+    await db.counter.update({
       where: {
         id: counter?.id,
       },

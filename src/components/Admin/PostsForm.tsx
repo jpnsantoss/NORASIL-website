@@ -8,14 +8,14 @@ import {
   PostRequest,
 } from "@/lib/validators/post";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Category } from "@prisma/client";
+import type { Category } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import { upload } from "@vercel/blob/client";
 import axios, { AxiosError } from "axios";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { ChangeEvent, FC } from "react";
+import type { ChangeEvent, FC } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "../ui/Button";
 import { Calendar } from "../ui/Calendar";
@@ -283,7 +283,7 @@ const PostsForm: FC<PostsFormProps> = ({ categories }) => {
                         <Button
                           variant={"ghost"}
                           className={cn(
-                            "border border-input pl-3 text-left font-normal bg-white"
+                            "border border-input pl-3 text-left font-normal bg-white",
                           )}
                         >
                           {field.value ? (
@@ -300,7 +300,7 @@ const PostsForm: FC<PostsFormProps> = ({ categories }) => {
                         mode="single"
                         selected={field.value}
                         onSelect={(
-                          day: Date | ChangeEvent<Element> | undefined
+                          day: Date | ChangeEvent<Element> | undefined,
                         ) => {
                           if (day instanceof Date) {
                             field.onChange(day);
@@ -309,7 +309,6 @@ const PostsForm: FC<PostsFormProps> = ({ categories }) => {
                         disabled={(date) =>
                           date > new Date() || date < new Date("1900-01-01")
                         }
-                        initialFocus
                       />
                     </PopoverContent>
                   </Popover>
@@ -331,8 +330,8 @@ const PostsForm: FC<PostsFormProps> = ({ categories }) => {
                       type="file"
                       accept="image/*"
                       onChange={(e) => {
-                        const file = e.target.files?.[0] || null;
-                        field.onChange(file as File);
+                        const file = e.target.files?.[0] ?? null;
+                        field.onChange(file! as File);
                       }}
                       onBlur={field.onBlur}
                       name={field.name}
@@ -358,7 +357,7 @@ const PostsForm: FC<PostsFormProps> = ({ categories }) => {
                       type="file"
                       multiple
                       onChange={(e) => {
-                        const files = Array.from(e.target.files || []);
+                        const files = Array.from(e.target.files ?? []);
                         field.onChange(files);
                       }}
                       onBlur={field.onBlur}

@@ -1,5 +1,5 @@
 import { getAuthSession } from "@/lib/auth";
-import { acceleratedDb } from "@/lib/db";
+import { db } from "@/lib/db";
 import { PostValidator } from "@/lib/validators/post";
 import { z } from "zod";
 
@@ -26,7 +26,7 @@ export async function POST(req: Request) {
       type,
     } = PostValidator.parse(body);
 
-    const existingPost = await acceleratedDb.post.findFirst({
+    const existingPost = await db.post.findFirst({
       where: {
         name,
       },
@@ -36,7 +36,7 @@ export async function POST(req: Request) {
       return new Response("Post already exists", { status: 409 });
     }
 
-    const post = await acceleratedDb.post.create({
+    const post = await db.post.create({
       data: {
         name,
         client,
@@ -53,13 +53,13 @@ export async function POST(req: Request) {
     if (images && images.length > 0) {
       await Promise.all(
         images.map(async (image) => {
-          await acceleratedDb.image.create({
+          await db.image.create({
             data: {
               postId: post.id,
               url: image.url,
             },
           });
-        })
+        }),
       );
     }
 

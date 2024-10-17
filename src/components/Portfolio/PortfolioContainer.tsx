@@ -1,13 +1,13 @@
 "use client";
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
-import { ExtendedPost } from "@/types/db";
+import type { ExtendedPost } from "@/types/db";
 import { useIntersection } from "@mantine/hooks";
-import { Category } from "@prisma/client";
+import type { Category } from "@prisma/client";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Loader2 } from "lucide-react";
 import { useSearchParams } from "next/navigation";
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useEffect, useRef } from "react";
 import PostsSearch from "../PostsSearch";
 import PortfolioPost from "./PortfolioPost";
 import Sidebar from "./Sidebar";
@@ -31,7 +31,7 @@ const PortfolioContainer: FC<PortfolioContainerProps> = ({ categories }) => {
   const { data: initialPosts, isLoading: loadingInitialData } = useQuery({
     queryFn: async () => {
       const { data } = await axios.get(
-        `/api/portfolio/initialData?category=${category}&status=${status}`
+        `/api/portfolio/initialData?category=${category}&status=${status}`,
       );
       return data as ExtendedPost[];
     },

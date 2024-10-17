@@ -1,15 +1,14 @@
-import { acceleratedDb } from "@/lib/db";
+import { db } from "@/lib/db";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "../ui/Button";
 import { Tabs, TabsList, TabsTrigger } from "../ui/Tabs";
 import InterventionImages from "./InterventionImages";
 
 const InterventionAreas = async () => {
-  const categories = await acceleratedDb.category.findMany({
+  const categories = await db.category.findMany({
     orderBy: {
       createdAt: "asc",
     },
-    cacheStrategy: { ttl: 60 },
   });
   if (categories.length === 0) return null;
   return (
@@ -17,7 +16,7 @@ const InterventionAreas = async () => {
       <h1 className="text-5xl font-bold text-center leading-[4.5rem]">
         Áreas de <span className=" bg-secondary">Intervenção</span>
       </h1>
-      <Tabs defaultValue={categories[0].name} className="pt-16">
+      <Tabs defaultValue={categories[0]?.name} className="pt-16">
         <TabsList className="h-full flex flex-wrap gap-8 bg-transparent container">
           {categories.map((category) => (
             <TabsTrigger
@@ -26,7 +25,7 @@ const InterventionAreas = async () => {
               // className="font-bold text-2xl text-darkGray"
               className={cn(
                 buttonVariants({ variant: "outline" }),
-                "data-[state=active]:bg-secondary data-[state=active]:outline-secondary data-[state=active]:text-darkGray truncate w-full sm:w-52"
+                "data-[state=active]:bg-secondary data-[state=active]:outline-secondary data-[state=active]:text-darkGray truncate w-full sm:w-52",
               )}
             >
               {category.title}

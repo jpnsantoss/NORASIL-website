@@ -1,5 +1,5 @@
 import { getAuthSession } from "@/lib/auth";
-import { acceleratedDb } from "@/lib/db";
+import { db } from "@/lib/db";
 import { DeleteCategoryValidator } from "@/lib/validators/category";
 import { del } from "@vercel/blob";
 import { z } from "zod";
@@ -14,7 +14,7 @@ export async function PATCH(req: Request) {
     const body = await req.json();
     const { id, imageUrl } = DeleteCategoryValidator.parse(body);
 
-    const posts = await acceleratedDb.post.findFirst({
+    const posts = await db.post.findFirst({
       where: {
         categoryId: id,
       },
@@ -26,7 +26,7 @@ export async function PATCH(req: Request) {
       });
     }
 
-    await acceleratedDb.category.delete({
+    await db.category.delete({
       where: {
         id,
       },

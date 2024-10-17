@@ -32,7 +32,6 @@ export const PostFormValidator = z.object({
   images: z.array(fileSchema).optional(),
 });
 
-
 export const PostValidator = z.object({
   name: z.string(),
   title: z.string(),
@@ -43,18 +42,22 @@ export const PostValidator = z.object({
   category: z.string(),
   date: z.string().datetime(),
   mainImageUrl: z.string().url(),
-  images: z.array(z.object({
-    url: z.string().url(),
-  }))
+  images: z.array(
+    z.object({
+      url: z.string().url(),
+    }),
+  ),
 });
 
 export const DeletePostValidator = z.object({
   id: z.string(),
   mainImageUrl: z.string().url(),
-  images: z.array(z.object({
-    url: z.string().url(),
-  }))
-})
+  images: z.array(
+    z.object({
+      url: z.string().url(),
+    }),
+  ),
+});
 
 export const EditPostFormValidator = z.object({
   title: z.string().min(1),

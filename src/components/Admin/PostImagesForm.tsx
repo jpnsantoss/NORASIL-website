@@ -7,16 +7,16 @@ import {
   ImagesFormValidator,
   ImagesRequest,
 } from "@/lib/validators/image";
-import { ExtendedPost } from "@/types/db";
+import type { ExtendedPost } from "@/types/db";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Image as PrismaImage } from "@prisma/client";
+import type { Image as PrismaImage } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import { upload } from "@vercel/blob/client";
 import axios from "axios";
 import { Loader2, X } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { FC } from "react";
+import type { FC } from "react";
 import { useForm } from "react-hook-form";
 import {
   AlertDialog,
@@ -136,7 +136,7 @@ const PostImagesForm: FC<PostImagesFormProps> = ({ post }) => {
                     type="file"
                     multiple
                     onChange={(e) => {
-                      const files = Array.from(e.target.files || []);
+                      const files = Array.from(e.target.files ?? []);
                       field.onChange(files);
                     }}
                     onBlur={field.onBlur}
@@ -180,7 +180,7 @@ const PostImagesForm: FC<PostImagesFormProps> = ({ post }) => {
                     <div
                       className={cn(
                         buttonVariants({ variant: "destructive", size: "xs" }),
-                        "bg-black/40"
+                        "bg-black/40",
                       )}
                     >
                       <X className="w-4 h-4 text-white" />

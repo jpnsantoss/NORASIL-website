@@ -55,9 +55,9 @@ const Navbar = () => {
                   size: "sm",
                   className: cn(
                     "text-xl text-darkGray font-bold",
-                    pathname == "/" && "text-primary underline"
+                    pathname == "/" && "text-primary underline",
                   ),
-                })
+                }),
               )}
             >
               {t("home")}
@@ -72,9 +72,9 @@ const Navbar = () => {
                   size: "sm",
                   className: cn(
                     "text-xl text-darkGray font-bold",
-                    pathname == "/portfolio" && "text-primary underline"
+                    pathname == "/portfolio" && "text-primary underline",
                   ),
-                })
+                }),
               )}
             >
               {t("portfolio")}
@@ -89,9 +89,9 @@ const Navbar = () => {
                   size: "sm",
                   className: cn(
                     "text-xl text-darkGray font-bold",
-                    pathname == "/empresa" && "text-primary underline"
+                    pathname == "/empresa" && "text-primary underline",
                   ),
-                })
+                }),
               )}
             >
               {t("company")}
@@ -146,7 +146,7 @@ const Navbar = () => {
                   variant={"link"}
                   size={"sm"}
                   className={cn(
-                    "text-xl text-darkGray font-bold border-2 border-black p-5"
+                    "text-xl text-darkGray font-bold border-2 border-black p-5",
                   )}
                 >
                   {t("contact")}

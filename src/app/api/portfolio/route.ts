@@ -1,4 +1,4 @@
-import { acceleratedDb } from "@/lib/db";
+import { db } from "@/lib/db";
 import { z } from "zod";
 
 interface PostQuery {
@@ -15,14 +15,13 @@ interface PostQuery {
     categoryId?: string;
     type?: "CONSTRUCTION" | "FINISHED";
   };
-  cacheStrategy: { ttl: number };
 }
 
 // Shared function to handle infinite scrolling with filters
 async function handleInfiniteScroll(
   req: Request,
   categoryName: string,
-  typeParam: string
+  typeParam: string,
 ) {
   const url = new URL(req.url);
 
@@ -36,7 +35,7 @@ async function handleInfiniteScroll(
       page: url.searchParams.get("page"),
     });
 
-  let postQuery: PostQuery = {
+  const postQuery: PostQuery = {
     take: parseInt(limit),
     skip: (parseInt(page) - 1) * parseInt(limit),
     orderBy: {
@@ -46,12 +45,11 @@ async function handleInfiniteScroll(
       category: true,
       images: true,
     },
-    cacheStrategy: { ttl: 60 },
   };
 
   // Apply filters
   if (categoryName) {
-    const category = await acceleratedDb.category.findFirst({
+    const category = await db.category.findFirst({
       where: {
         name: categoryName,
       },
@@ -71,7 +69,7 @@ async function handleInfiniteScroll(
     };
   }
 
-  const posts = await acceleratedDb.post.findMany(postQuery);
+  const posts = await db.post.findMany(postQuery);
   return new Response(JSON.stringify(posts));
 }
 

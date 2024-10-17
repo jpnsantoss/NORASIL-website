@@ -1,4 +1,4 @@
-import { acceleratedDb } from "@/lib/db";
+import { db } from "@/lib/db";
 import { cn } from "@/lib/utils";
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
@@ -7,7 +7,7 @@ import { buttonVariants } from "../ui/Button";
 
 const InConstruction = async () => {
   const t = await getTranslations("HomePage.InConstruction");
-  const posts = await acceleratedDb.post.findMany({
+  const posts = await db.post.findMany({
     where: {
       type: "CONSTRUCTION",
     },
@@ -19,7 +19,6 @@ const InConstruction = async () => {
       images: true,
       category: true,
     },
-    cacheStrategy: { ttl: 60 },
   });
   if (posts.length > 0) {
     return (

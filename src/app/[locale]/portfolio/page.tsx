@@ -1,16 +1,15 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import PortfolioContainer from "@/components/Portfolio/PortfolioContainer";
-import { acceleratedDb } from "@/lib/db";
+import { db } from "@/lib/db";
 import { Loader2 } from "lucide-react";
 import { Suspense } from "react";
 
 const Page = async () => {
-  const categories = await acceleratedDb.category.findMany({
+  const categories = await db.category.findMany({
     orderBy: {
       createdAt: "desc",
     },
-    cacheStrategy: { ttl: 60 },
   });
   return (
     <div>
