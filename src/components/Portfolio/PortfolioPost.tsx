@@ -20,7 +20,7 @@ const PortfolioPost: FC<PortfolioPostProps> = ({ post }) => {
               ? `${post.title.substring(0, 64)}...`
               : post.title}
           </h1>
-          <h2 className="text-darkGray text-2xl">#{post.category.title}</h2>
+          <h2 className="text-darkGray text-2xl">{post.category.title}</h2>
         </div>
         <Link
           href={`/obras/${post.name}`}
