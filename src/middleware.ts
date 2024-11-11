@@ -3,14 +3,9 @@ import createMiddleware from "next-intl/middleware";
 import { NextRequest } from "next/server";
 import { routing } from "./i18n/routing";
 
-const publicPages = [
-  "/",
-  "/sign-in",
-  "/portfolio",
-  "/empresa",
-  "/privacidade",
-  
-  // (/secret requires auth)
+const privatePages = [
+  "/admin",
+  // Add more private pages here
 ];
 
 const intlMiddleware = createMiddleware(routing);
@@ -31,18 +26,18 @@ const authMiddleware = withAuth(
 );
 
 export default function middleware(req: NextRequest) {
-  const publicPathnameRegex = RegExp(
-    `^(/(${routing.locales.join("|")}))?(${publicPages
+  const privatePathnameRegex = RegExp(
+    `^(/(${routing.locales.join("|")}))?(${privatePages
       .flatMap((p) => (p === "/" ? ["", "/"] : p))
       .join("|")})/?$`,
     "i"
   );
-  const isPublicPage = publicPathnameRegex.test(req.nextUrl.pathname);
+  const isPrivatePage = privatePathnameRegex.test(req.nextUrl.pathname);
 
-  if (isPublicPage) {
-    return intlMiddleware(req);
-  } else {
+  if (isPrivatePage) {
     return (authMiddleware as any)(req);
+  } else {
+    return intlMiddleware(req);
   }
 }
 
