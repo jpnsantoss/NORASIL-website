@@ -6,6 +6,10 @@ import { routing } from "./i18n/routing";
 const publicPages = [
   "/",
   "/sign-in",
+  "/portfolio",
+  "/empresa",
+  "/privacidade",
+  
   // (/secret requires auth)
 ];
 
