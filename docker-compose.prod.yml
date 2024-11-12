@@ -18,9 +18,7 @@ services:
       - letsencrypt:/letsencrypt
       - /var/run/docker.sock:/var/run/docker.sock
   norasil-website:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/jpnsantoss/norasil-website:prod
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.guestbook.rule=Host(`teste.norasil.pt`)"
