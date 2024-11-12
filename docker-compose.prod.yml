@@ -19,7 +19,9 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
   norasil-website:
-    image: ghcr.io/jpnsantoss/norasil-website:prod
+    build:
+      context: .
+      dockerfile: Dockerfile
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.norasil.rule=Host(`norasil.pt`)"
