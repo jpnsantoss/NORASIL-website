@@ -17,13 +17,17 @@ services:
     volumes:
       - letsencrypt:/letsencrypt
       - /var/run/docker.sock:/var/run/docker.sock
+
   norasil-website:
     image: ghcr.io/jpnsantoss/norasil-website:prod
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.guestbook.rule=Host(`teste.norasil.pt`)"
-      - "traefik.http.routers.guestbook.entrypoints=websecure"
-      - "traefik.http.routers.guestbook.tls.certresolver=myresolver"
+      - "traefik.http.routers.norasil.rule=Host(`norasil.pt`)"
+      - "traefik.http.routers.norasil.entrypoints=websecure"
+      - "traefik.http.routers.norasil.tls.certresolver=myresolver"
+      - "traefik.http.routers.norasil-2.rule=Host(`api.norasil.pt`)"
+      - "traefik.http.routers.norasil-2.entrypoints=websecure"
+      - "traefik.http.routers.norasil-2.tls.certresolver=myresolver"
       - "com.centurylinklabs.watchtower.enable=true"
     environment:
       - POSTGRES_HOST=db
