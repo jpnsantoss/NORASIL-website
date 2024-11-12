@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client"; // Import from '@prisma/client/edge'
+import { PrismaClient } from "@prisma/client";
 import "server-only";
 
 const createPrismaClient = () => {
