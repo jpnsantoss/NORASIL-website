@@ -16,6 +16,9 @@ COPY . .
 # Install dependencies
 RUN npm install
 
+# Generate Prisma client
+RUN npx prisma generate --no-engine
+
 # Build the Next.js app
 RUN npm run build
 

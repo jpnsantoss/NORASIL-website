@@ -25,16 +25,13 @@ services:
       - "traefik.http.routers.guestbook.entrypoints=websecure"
       - "traefik.http.routers.guestbook.tls.certresolver=myresolver"
       - "com.centurylinklabs.watchtower.enable=true"
-    secrets:
-      - db-password
     environment:
       - POSTGRES_HOST=db
-      - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
       - POSTGRES_USER=postgres
       - POSTGRES_DB=website
       - POSTGRES_PORT=5432
       - POSTGRES_SSLMODE=disable
-      - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD_FILE}@db:5432/website
+      - DATABASE_URL=postgresql://postgres:db!password@db:5432/website
     deploy:
       mode: replicated
       replicas: 3
@@ -45,24 +42,19 @@ services:
   db:
     image: postgres
     restart: always
-    user: postgres
-    secrets:
-      - db-password
-    volumes:
-      - db-data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_DB=website
-      - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: db!password
+      POSTGRES_DB: website
     expose:
       - 5432
     healthcheck:
-      test: [ "CMD", "pg_isready" ]
+      test: [ "CMD", "pg_isready", "-U", "postgres" ]
       interval: 10s
       timeout: 5s
       retries: 5
+    volumes:
+      - db-data:/var/lib/postgresql/data
 volumes:
   db-data:
   letsencrypt:
-secrets:
-  db-password:
-    file: ~/db/password.txt

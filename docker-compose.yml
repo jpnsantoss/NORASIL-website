@@ -1,21 +1,16 @@
 services:
-  server:
+  norasil-website:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: norasil-website
-    ports:
-      - "3000:3000"
-    secrets:
-      - db-password
     environment:
       - POSTGRES_HOST=db
-      - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
       - POSTGRES_USER=postgres
       - POSTGRES_DB=website
       - POSTGRES_PORT=5432
       - POSTGRES_SSLMODE=disable
-      - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD_FILE}@db:5432/website
+      - DATABASE_URL=postgresql://postgres:db!password@db:5432/website
+    restart: always
     depends_on:
       db:
         condition: service_healthy
@@ -23,23 +18,19 @@ services:
   db:
     image: postgres
     restart: always
-    user: postgres
-    secrets:
-      - db-password
-    volumes:
-      - db-data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_DB=website
-      - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: db!password
+      POSTGRES_DB: website
     expose:
       - 5432
     healthcheck:
-      test: [ "CMD", "pg_isready" ]
+      test: [ "CMD", "pg_isready", "-U", "postgres" ]
       interval: 10s
       timeout: 5s
       retries: 5
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
 volumes:
   db-data:
-secrets:
-  db-password:
-    file: ~/db/password.txt
