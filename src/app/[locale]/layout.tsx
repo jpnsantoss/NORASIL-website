@@ -4,7 +4,6 @@ import Providers from "@/components/Providers";
 import { Toaster } from "@/components/ui/Toaster";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
-import { Analytics } from "@vercel/analytics/react";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { Open_Sans } from "next/font/google";
@@ -49,7 +48,7 @@ export default async function LocaleLayout({
       lang={locale}
       className={cn(
         "text-slate-900 antialiased light w-full h-full m-0",
-        openSans.className,
+        openSans.className
       )}
     >
       <GoogleAnalytics GA_MEASUREMENT_ID={process.env.GOOGLE_ANALYTICS_ID!} />
@@ -58,7 +57,6 @@ export default async function LocaleLayout({
           <Providers>
             {children}
             <Toaster />
-            <Analytics />
 
             <CookieConsent />
           </Providers>
