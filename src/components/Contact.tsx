@@ -32,7 +32,7 @@ const Contact = () => {
             <Mail />
             <div>
               <h2 className="text-lg font-semibold">Endereço de E-Mail</h2>
-              <p className="text-sm">(+351) 229 399 250</p>
+              <p className="text-sm">norasil@norasil.pt</p>
             </div>
           </div>
           <div className="flex items-center text-center flex-col gap-2">
