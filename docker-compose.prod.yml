@@ -1,0 +1,75 @@
+services:
+  reverse-proxy:
+    image: traefik:v3.1
+    command:
+      - "--providers.docker"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entryPoints.websecure.address=:443"
+      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+      - "--certificatesresolvers.myresolver.acme.email=norasil@norasil.pt"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - letsencrypt:/letsencrypt
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  norasil-website:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.norasil.rule=Host(`norasil.pt`)"
+      - "traefik.http.routers.norasil.entrypoints=websecure"
+      - "traefik.http.routers.norasil.tls.certresolver=myresolver"
+      - "traefik.http.routers.norasil.middlewares=redirect-to-www"
+      - "traefik.http.middlewares.redirect-to-www.redirectregex.regex=^https://norasil.pt(.*)"
+      - "traefik.http.middlewares.redirect-to-www.redirectregex.replacement=https://www.norasil.pt$${1}"
+      - "traefik.http.middlewares.redirect-to-www.redirectregex.permanent=true"
+      - "traefik.http.routers.www-norasil.rule=Host(`www.norasil.pt`)"
+      - "traefik.http.routers.www-norasil.entrypoints=websecure"
+      - "traefik.http.routers.www-norasil.tls.certresolver=myresolver"
+      - "traefik.http.routers.api-norasil.rule=Host(`api.norasil.pt`)"
+      - "traefik.http.routers.api-norasil.entrypoints=websecure"
+      - "traefik.http.routers.api-norasil.tls.certresolver=myresolver"
+      - "com.centurylinklabs.watchtower.enable=true"
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=website
+      - POSTGRES_PORT=5432
+      - POSTGRES_SSLMODE=disable
+      - DATABASE_URL=postgresql://postgres:db!password@db:5432/website
+    deploy:
+      mode: replicated
+      replicas: 3
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: db!password
+      POSTGRES_DB: website
+    expose:
+      - 5432
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:
+  letsencrypt:
